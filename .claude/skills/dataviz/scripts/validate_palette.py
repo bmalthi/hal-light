@@ -1,0 +1,547 @@
+#!/usr/bin/env python3
+"""
+Validate a categorical chart palette against the computable data-viz checks.
+
+Design-system-agnostic: feed it ANY palette's hex values plus the mode and
+surface, and it computes \u2014 never eyeballs \u2014
+the five checks that can be measured from color alone:
+
+  2. Lightness band   \u2014 OKLCH L within the mode's band
+  3. Chroma floor     \u2014 OKLCH C >= floor (below it a hue reads as gray)
+  4. CVD separation   \u2014 OKLab \u0394E (×100) between slots under simulated protan/deutan
+                        (tritan reported); adjacent pairs by default, --pairs all
+                        for scatter/bubble/maps
+  4b. Normal-vision floor \u2014 worst OKLab \u0394E (×100) on the active pairlist
+      (adjacent by default; all pairs with --pairs all) under unsimulated vision;
+                        full-color readers must be able to tell neighbors apart too
+  5. Contrast vs surface \u2014 WCAG ratio of each mark against the chart surface
+
+Checks 1 (fixed hue order) and 6 (values resolve to real ramp steps) are
+structural rules the skill enforces, not measurable from hexes alone.
+
+Usage:
+  uv run validate_palette.py "#2a78d6,#eb6834,#1baf7a,#eda100,#e87ba4,#008300,#6250d6,#e34948" --mode light
+  uv run validate_palette.py "#3987e5,#d95926" --mode dark --surface "#1a1a19"
+  uv run validate_palette.py --contrast "#0b0b0b" "#fcfcfb"
+  uv run validate_palette.py --apca "#0b0b0b" "#fcfcfb"
+
+Exit code 0 unless a check hard-FAILs; 1 on any FAIL. WARN bands do not fail:
+adjacent CVD in the 6\u20138 floor band, and contrast in the sub-3:1 relief band, are
+reported as WARNs and still exit 0 (each is legal only with mandatory secondary
+encoding: direct labels, gaps, or texture). The normal-vision floor is a hard
+gate: a worst unsimulated pair below 15 FAILs the run.
+"""
+
+import argparse
+import json
+import math
+import re
+import sys
+
+# Adapted from Anthropic's bundled dataviz skill (Claude Code 2.1.318); see NOTICE.
+# Oklab: https://bottosson.github.io/posts/oklab/
+# CVD matrices: https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html
+# WCAG contrast: https://www.w3.org/TR/WCAG22/#dfn-relative-luminance
+
+# -- thresholds ----------------------------------------------------------------
+BAND = {"light": (0.43, 0.77), "dark": (0.48, 0.67)}  # OKLCH L
+CHROMA_FLOOR = 0.10  # OKLCH C
+# Delta E is Euclidean distance in OKLab ×100. The CVD thresholds are calibrated to
+# the Machado-Oliveira-Fernandes (2009) severity-1.0 simulation below - the sim
+# model is part of the standard, not an implementation detail (swapping in e.g.
+# Viénot-1999 moves borderline pairs and would require recalibrating these).
+CVD_TARGET, CVD_FLOOR = (
+    8.0,
+    6.0,
+)  # OKLab Delta E×100, min(protan, deutan), adjacent pairs
+NORMAL_FLOOR = (
+    15.0  # OKLab Delta E×100, worst pair on the active pairlist, unsimulated vision
+)
+CONTRAST_MIN = 3.0  # WCAG vs surface
+DEFAULT_SURFACE = {"light": "#fcfcfb", "dark": "#1a1a19"}
+
+# Machado, Oliveira & Fernandes (2009) CVD transforms at severity 1.0 (linear RGB).
+MACHADO = {
+    "protan": [
+        [0.152286, 1.052583, -0.204868],
+        [0.114503, 0.786281, 0.099216],
+        [-0.003882, -0.048116, 1.051998],
+    ],
+    "deutan": [
+        [0.367322, 0.860646, -0.227968],
+        [0.280085, 0.672501, 0.047413],
+        [-0.011820, 0.042940, 0.968881],
+    ],
+    "tritan": [
+        [1.255528, -0.076749, -0.178779],
+        [-0.078411, 0.930809, 0.147602],
+        [0.004733, 0.691367, 0.303900],
+    ],
+}
+
+
+# -- color conversions ----------------------------------------------------------
+def hex2srgb(h):
+    h = strip_ws(h)
+    if not is_hex_color(h):
+        raise ValueError(f"invalid hex color: {h!r}; expected #rrggbb")
+    h = h.lstrip("#")
+    return tuple(int(h[i : i + 2], 16) / 255 for i in (0, 2, 4))
+
+
+# -- input boundary -- EVERY user-supplied color string (palette entries AND
+# the surface) passes these before any math: unguarded, malformed input
+# either raises or fails OPEN. Normalization is spelled out rather than
+# engine-native: JS trim() and Python str.strip() differ at the edges
+# (trim() strips U+FEFF; str.strip() strips U+001C-U+001F and U+0085), so
+# the shared set is their intersection - ASCII whitespace plus the Unicode
+# space/separator characters both engines strip, which also covers the
+# NBSP/em-space padding picked up when copy-pasting hex lists from rendered
+# pages. Retained from the upstream Python/JavaScript implementation.
+_WS = (
+    " \t\n\v\f\r\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006"
+    "\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000"
+)
+
+
+def strip_ws(v):
+    return v.strip(_WS)
+
+
+def split_colors(raw):
+    return [c for c in (strip_ws(s) for s in (raw or "").split(",")) if c]
+
+
+def is_hex_color(v):
+    return re.fullmatch(r"#?[0-9a-fA-F]{6}", v) is not None
+
+
+def s2lin(c):
+    return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+
+def lin2s(c):
+    c = max(0.0, min(1.0, c))
+    return 12.92 * c if c <= 0.0031308 else 1.055 * c ** (1 / 2.4) - 0.055
+
+
+def lin(h):
+    return tuple(s2lin(c) for c in hex2srgb(h))
+
+
+def relative_luminance(h):
+    r, g, b = lin(h)
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def contrast(h1, h2):
+    a, b = sorted((relative_luminance(h1), relative_luminance(h2)), reverse=True)
+    return (a + 0.05) / (b + 0.05)
+
+
+# Ported from Color.js 0.5.2, src/contrast/APCA.js, itself a port of github.com/Myndex/apca-w3,
+# under Color.js's MIT license:
+# MIT License
+#
+# Copyright (c) 2021 Lea Verou, Chris Lilley
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+def _apca_y(h):
+    r, g, b = (c**2.4 for c in hex2srgb(h))
+    y = 0.2126729 * r + 0.7151522 * g + 0.072175 * b
+    return y if y >= 0.022 else y + (0.022 - y) ** 1.414
+
+
+# APCA 0.0.98G lightness contrast (Lc). Negative means light text on a dark background.
+# Color.js's argument order is (background, text); this one is (text, background).
+def apca(text, background):
+    t, b = _apca_y(text), _apca_y(background)
+    if abs(b - t) < 0.0005:
+        return 0.0
+    c = 1.14 * (b**0.56 - t**0.57 if b > t else b**0.65 - t**0.62)
+    return 0.0 if abs(c) < 0.1 else (c - (0.027 if c > 0 else -0.027)) * 100
+
+
+def lin2oklab(r, g, b):
+    cone_l = 0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b
+    m = 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b
+    s = 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b
+    cone_l, m, s = cone_l ** (1 / 3), m ** (1 / 3), s ** (1 / 3)
+    L = 0.2104542553 * cone_l + 0.7936177850 * m - 0.0040720468 * s
+    a = 1.9779984951 * cone_l - 2.4285922050 * m + 0.4505937099 * s
+    bb = 0.0259040371 * cone_l + 0.7827717662 * m - 0.8086757660 * s
+    return L, a, bb
+
+
+def lin2oklch(r, g, b):
+    L, a, bb = lin2oklab(r, g, b)
+    return L, math.hypot(a, bb)  # (L, C)
+
+
+def oklch(h):
+    return lin2oklch(*lin(h))
+
+
+def simulate(h, kind):
+    r, g, b = lin(h)
+    M = MACHADO[kind]
+    sr = M[0][0] * r + M[0][1] * g + M[0][2] * b
+    sg = M[1][0] * r + M[1][1] * g + M[1][2] * b
+    sb = M[2][0] * r + M[2][1] * g + M[2][2] * b
+    return (max(0.0, min(1.0, sr)), max(0.0, min(1.0, sg)), max(0.0, min(1.0, sb)))
+
+
+def deltaE(h1, h2, kind=None):
+    # Euclidean distance in OKLab, ×100. kind=None -> unsimulated (normal) vision.
+    a = lin2oklab(*(simulate(h1, kind) if kind else lin(h1)))
+    b = lin2oklab(*(simulate(h2, kind) if kind else lin(h2)))
+    return 100 * math.dist(a, b)
+
+
+def _jn(v):
+    # JSON-number parity with the JS twin: +x.toFixed(n) serializes an
+    # integral value as 1, but Python's round() keeps it a float and
+    # json.dumps prints 1.0 - normalize so the twins' output stays
+    # byte-identical on integral values (e.g. #ffffff's L of 1).
+    return int(v) if isinstance(v, float) and v.is_integer() else v
+
+
+# -- checks ----------------------------------------------------------------------
+def validate(palette, mode, surface, pairs="adjacent"):
+    lo, hi = BAND[mode]
+    report, ok = [], True
+
+    # 2. lightness band
+    offband = [
+        (c, _jn(round(oklch(c)[0], 3)))
+        for c in palette
+        if not (lo <= oklch(c)[0] <= hi)
+    ]
+    if offband:
+        ok = False
+    report.append(
+        (
+            "Lightness band",
+            not offband,
+            f"all {len(palette)} inside L {lo}\u2013{hi}"
+            if not offband
+            else f"outside band: {json.dumps(offband, separators=(',', ':'))}",
+        )
+    )
+
+    # 3. chroma floor
+    lowc = [
+        (c, _jn(round(oklch(c)[1], 3))) for c in palette if oklch(c)[1] < CHROMA_FLOOR
+    ]
+    if lowc:
+        ok = False
+    report.append(
+        (
+            "Chroma floor",
+            not lowc,
+            f"all {len(palette)} >= {CHROMA_FLOOR}"
+            if not lowc
+            else f"below floor (reads gray): {json.dumps(lowc, separators=(',', ':'))}",
+        )
+    )
+
+    # 4. CVD separation. Which pairs can sit side by side depends on the chart:
+    #    adjacent only for ordered stacks/bars (assignment never skips a slot); ALL pairs
+    #    for crossing lines/scatter/bubble/choropleth/small-multiples, where any two marks can land
+    #    next to each other. --pairs all catches collapses the adjacent check hides.
+    n = len(palette)
+    pairlist = (
+        [(i, j) for i in range(n) for j in range(i + 1, n)]
+        if pairs == "all"
+        else [(i, i + 1) for i in range(n - 1)]
+    )
+    label = "all-pairs" if pairs == "all" else "adjacent"
+    worst = None
+    for kind in ("protan", "deutan"):
+        for i, j in pairlist:
+            d = deltaE(palette[i], palette[j], kind)
+            if worst is None or d < worst[0]:
+                worst = (d, kind, palette[i], palette[j])
+    tri = min(
+        (deltaE(palette[i], palette[j], "tritan") for i, j in pairlist), default=99
+    )
+    wd = worst[0] if worst else 99
+    cvd_state = "pass" if wd >= CVD_TARGET else ("floor" if wd >= CVD_FLOOR else "fail")
+    if cvd_state == "fail":
+        ok = False
+    report.append(
+        (
+            "CVD separation",
+            cvd_state,
+            f"worst {label} {worst[3]}\u2194{worst[2]} \u0394E {wd:.1f} ({worst[1]}) · "
+            f"tritan {tri:.1f}"
+            if worst
+            else "n/a",
+        )
+    )
+
+    # 4b. Normal-vision floor. The CVD gate protects dichromat readers; this one
+    #     protects everyone else - neighbors must stay easy to tell apart under
+    #     unsimulated vision too. A hard gate: secondary encoding does not
+    #     excuse it, and weak pairs are not masked to keep an existing palette
+    #     validating.
+    nworst = None
+    for i, j in pairlist:
+        d = deltaE(palette[i], palette[j])
+        if nworst is None or d < nworst[0]:
+            nworst = (d, palette[i], palette[j])
+    nd = nworst[0] if nworst else 99
+    nor_state = "pass" if nd >= NORMAL_FLOOR else "fail"
+    if nor_state == "fail":
+        ok = False
+    report.append(
+        (
+            "Normal-vision floor",
+            nor_state,
+            f"worst {label} {nworst[2]}\u2194{nworst[1]} \u0394E {nd:.1f} (normal)"
+            + (
+                ""
+                if nd >= NORMAL_FLOOR
+                else f" \u2014 below {NORMAL_FLOOR:.0f}, hard to tell apart even with full color vision"
+            )
+            if nworst
+            else "n/a",
+        )
+    )
+
+    # 5. contrast vs surface
+    low = [
+        (c, _jn(round(contrast(c, surface), 2)))
+        for c in palette
+        if contrast(c, surface) < CONTRAST_MIN
+    ]
+    # contrast below 3:1 is a documented conditional relax (visible labels / table view), not a hard fail
+    report.append(
+        (
+            "Contrast vs surface",
+            "pass" if not low else "relief",
+            f"all {len(palette)} >= {CONTRAST_MIN:g}:1"
+            if not low
+            else f"below {CONTRAST_MIN:g}:1 \u2014 relief required (visible labels or table view): {json.dumps(low, separators=(',', ':'))}",
+        )
+    )
+    return report, ok
+
+
+# -- ordinal ramp --------------------------------------------------------------
+ORDINAL_MIN_DL = 0.06  # min OKLCH delta L between adjacent steps
+ORDINAL_LIGHT_FLOOR = 2.0  # lightest step: WCAG contrast vs surface
+
+
+def validate_ordinal(palette, mode, surface):
+    """Ordered categories (funnel stages, size tiers, time buckets rendered as
+    discrete marks) take a one-hue ramp, not categorical hues. The categorical
+    checks FAIL a correct ramp by design (it spans the lightness band; light
+    steps drop below the chroma floor). The ordinal checks instead verify the
+    ramp reads *as a ramp*: one hue, monotone lightness with visible gaps
+    between steps, and a lightest step that still clears the surface."""
+    report, ok = [], True
+    Ls = [oklch(c)[0] for c in palette]
+
+    # Monotone lightness - sorted by L must match input order (or its reverse).
+    order = sorted(range(len(Ls)), key=Ls.__getitem__)
+    mono = order == list(range(len(Ls))) or order == list(range(len(Ls)))[::-1]
+    if not mono:
+        ok = False
+    report.append(
+        (
+            "Lightness monotone",
+            mono,
+            "steps read light\u2192dark"
+            if mono
+            else f"out of order \u2014 L values {json.dumps([_jn(round(lightness, 3)) for lightness in Ls], separators=(',', ':'))}",
+        )
+    )
+
+    # Adjacent delta L - each step must be visibly distinct from its neighbour.
+    gaps = [abs(Ls[i + 1] - Ls[i]) for i in range(len(Ls) - 1)]
+    thin = [
+        (palette[i], palette[i + 1], _jn(round(g, 3)))
+        for i, g in enumerate(gaps)
+        if g < ORDINAL_MIN_DL
+    ]
+    if thin:
+        ok = False
+    report.append(
+        (
+            "Adjacent \u0394L",
+            not thin,
+            f"all gaps >= {ORDINAL_MIN_DL}"
+            if not thin
+            else f"steps too close: {json.dumps(thin, separators=(',', ':'))}",
+        )
+    )
+
+    # Lightest step vs surface - the pale end must still read as a mark.
+    lightest = (
+        max(palette, key=lambda c: oklch(c)[0])
+        if mode == "light"
+        else min(palette, key=lambda c: oklch(c)[0])
+    )
+    cr = contrast(lightest, surface)
+    if cr < ORDINAL_LIGHT_FLOOR:
+        ok = False
+    report.append(
+        (
+            "Light-end contrast",
+            cr >= ORDINAL_LIGHT_FLOOR,
+            f"{lightest} at {cr:.2f}:1 vs surface"
+            + (
+                ""
+                if cr >= ORDINAL_LIGHT_FLOOR
+                else f" \u2014 below {ORDINAL_LIGHT_FLOOR:g}:1 floor"
+            ),
+        )
+    )
+
+    # Single hue - an ordinal ramp is one hue; a hue jump means it's categorical.
+    hues = []
+    for c in palette:
+        _, a, bb = lin2oklab(*lin(c))
+        hues.append(math.degrees(math.atan2(bb, a)) % 360)
+    spread = (max(hues) - min(hues)) if hues else 0
+    if spread > 180:
+        spread = 360 - spread
+    one_hue = spread <= 40
+    if not one_hue:
+        ok = False
+    report.append(
+        (
+            "Single hue",
+            one_hue,
+            f"hue spread {spread:.0f}°"
+            + ("" if one_hue else " \u2014 >40°, not a one-hue ramp"),
+        )
+    )
+    return report, ok
+
+
+def main():
+    ap = argparse.ArgumentParser(
+        description="Validate a categorical chart palette (the data-viz six checks)."
+    )
+    ap.add_argument(
+        "palette", nargs="?", help="comma-separated six-digit hex values, in slot order"
+    )
+    ap.add_argument("--mode", choices=["light", "dark"], default="light")
+    ap.add_argument(
+        "--surface", default=None, help="chart surface hex (defaults per mode)"
+    )
+    ap.add_argument(
+        "--pairs",
+        choices=["adjacent", "all"],
+        default="adjacent",
+        help="adjacent: ordered stacks/bars (default). all: crossing lines/scatter/bubble/maps/"
+        "small-multiples, where any two marks can sit side by side.",
+    )
+    ap.add_argument(
+        "--ordinal",
+        action="store_true",
+        help="ordered categories (funnel, tiers, buckets) \u2014 validate as a "
+        "one-hue ramp instead of the categorical checks.",
+    )
+    measures = ap.add_mutually_exclusive_group()
+    measures.add_argument(
+        "--contrast",
+        nargs=2,
+        metavar=("TEXT", "BACKGROUND"),
+        help="report WCAG text contrast for one color pair",
+    )
+    measures.add_argument(
+        "--apca",
+        nargs=2,
+        metavar=("TEXT", "BACKGROUND"),
+        help="report signed APCA lightness contrast (Lc) for one color pair",
+    )
+    a = ap.parse_args()
+    if a.contrast or a.apca:
+        if a.palette or a.ordinal or a.surface or a.pairs != "adjacent":
+            ap.error("text-contrast checks take only TEXT and BACKGROUND colors")
+        text, background = map(strip_ws, a.contrast or a.apca)
+        if not all(is_hex_color(c) for c in (text, background)):
+            ap.error("invalid hex value; expected #rrggbb")
+        if a.apca:
+            print(
+                f"APCA {text} on {background}: {apca(text, background):.2f} Lc "
+                "(negative means light text on dark; interpret with text size and weight)"
+            )
+        else:
+            ratio = contrast(text, background)
+            print(
+                f"contrast {text} vs {background}: {ratio:.2f}:1 — "
+                f"normal text (4.5:1) {'PASS' if ratio >= 4.5 else 'FAIL'} · "
+                f"large text (3:1) {'PASS' if ratio >= 3.0 else 'FAIL'}"
+            )
+        return 0
+    palette = split_colors(a.palette)
+    if not palette:
+        ap.error(
+            "provide a nonempty palette, --contrast TEXT BACKGROUND, or --apca TEXT BACKGROUND"
+        )
+    # An empty/whitespace-only surface counts as absent (falls back to the
+    # default), preserving the pre-boundary falsy behavior.
+    raw_surface = strip_ws(a.surface) if a.surface is not None else ""
+    surface = raw_surface or DEFAULT_SURFACE[a.mode]
+    bad_hex = [c for c in [*palette, surface] if not is_hex_color(c)]
+    if bad_hex:
+        ap.error(f"invalid hex value(s): {', '.join(bad_hex)} — expected #rrggbb")
+
+    report, ok = (
+        validate_ordinal(palette, a.mode, surface)
+        if a.ordinal
+        else validate(palette, a.mode, surface, a.pairs)
+    )
+    glyph = {
+        True: "PASS",
+        False: "FAIL",
+        "pass": "PASS",
+        "floor": "WARN",
+        "fail": "FAIL",
+        "relief": "WARN",
+    }
+    kind = "ordinal ramp" if a.ordinal else "categorical"
+    print(f"\nPalette ({a.mode}, surface {surface}, {kind}): {len(palette)} slots")
+    for name, state, detail in report:
+        print(f"  [{glyph[state]:4}] {name:22} {detail}")
+    verdict = "ALL CHECKS PASS" if ok else "FAILED \u2014 fix the marked checks"
+    if a.ordinal:
+        print(
+            f"\n  \u2192 {verdict}"
+            "  (ordinal: one hue, monotone L, visible step gaps, light end clears surface)"
+        )
+    else:
+        print(
+            f"\n  \u2192 {verdict}"
+            "  (CVD in the 6\u20138 floor band is legal ONLY with secondary encoding:"
+            " direct labels, gaps, or texture)"
+        )
+        print(
+            "  scope: categorical palettes only. For a lone status/text color check"
+            " text contrast with --contrast or --apca; for a sequential ramp, lightness monotonicity.\n"
+        )
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

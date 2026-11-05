@@ -1,0 +1,6 @@
+SOURCE NOTES — checked 2026-11-04
+
+Public dataset: https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset
+Citation: 10.24432/C5JW3Z (UCI Machine Learning Repository, 2020).
+Dataset license: Creative Commons Attribution 4.0 International (CC BY 4.0).
+https://creativecommons.org/licenses/by/4.0/

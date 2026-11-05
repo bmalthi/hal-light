@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iranian Telecom Churn — retention memo</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5f6b7a;
+    --accent: #1f6feb;
+    --accent-soft: #f5f8ff;
+    --rule: #e3e8ee;
+    --page: #ffffff;
+    --canvas: #f0f2f5;
+    --good: #1d7a3a;
+    --good-soft: #f6fbf6;
+    --good-rule: #cfe8cf;
+    --bad: #b42318;
+    --warn: #8a5a00;
+    --warn-rule: #d0a000;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .page {
+    max-width: 780px;
+    margin: 32px auto;
+    background: var(--page);
+    padding: 46px 56px 52px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+  }
+  .kicker {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 6px 0 4px;
+    font-size: 25px;
+    line-height: 1.25;
+  }
+  .byline {
+    margin: 0 0 22px;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .bottomline {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+  }
+  .bottomline b { color: #000; }
+  h2 {
+    margin: 24px 0 11px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  h3 {
+    margin: 22px 0 5px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin: 0 0 7px; }
+  .num {
+    color: #000;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .caveat {
+    color: var(--warn);
+    border-bottom: 1px dotted var(--warn-rule);
+  }
+  .finding { margin: 0 0 6px; }
+  .fig {
+    margin: 10px 0 16px;
+    text-align: center;
+  }
+  .fig svg,
+  .fig img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .fig figcaption {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+  table.bridge {
+    width: 100%;
+    margin: 10px 0 12px;
+    border-collapse: collapse;
+    font-size: 15.5px;
+  }
+  table.bridge th,
+  table.bridge td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.bridge th {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+  .up { color: var(--good); font-weight: 700; }
+  .down { color: var(--bad); font-weight: 700; }
+  .rec {
+    margin: 8px 0 16px;
+    padding: 14px 18px;
+    background: var(--good-soft);
+    border: 1px solid var(--good-rule);
+    border-radius: 6px;
+  }
+  .rec h2 {
+    margin-top: 0;
+    border: 0;
+    color: var(--good);
+  }
+  .method {
+    color: #3d4654;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .foot {
+    margin-top: 20px;
+    color: #9aa4b1;
+    font-size: 12.5px;
+  }
+  em { color: #000; }
+  code {
+    padding: 1px 4px;
+    background: #f6f8fa;
+    border-radius: 4px;
+    font: .92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media screen and (max-width: 680px) {
+    body { font-size: 16px; }
+    .page { margin: 0; padding: 28px 22px 34px; border-radius: 0; }
+    table.bridge { font-size: 14px; }
+    table.bridge th,
+    table.bridge td { padding: 7px 6px; }
+    .num { white-space: normal; }
+  }
+  /* ── Print / PDF ──────────────────────────────────────────────────────────
+     The on-screen "card" is a screen affordance; on paper the sheet IS the card.
+     The print rules preserve the document layout during browser export. */
+  @media print {
+    :root { color-scheme: light; }
+    @page { margin: 12mm; }
+    html, body { background: #fff !important; }
+    body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important; /* keep callout & chart fills, not white */
+    }
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: #fff;
+    }
+    /* never split a finding, chart, table row, or callout across a page fold */
+    .finding, .fig, figure, table.bridge, tr, img, svg,
+    .rec, .bottomline { break-inside: avoid; page-break-inside: avoid; }
+    /* don't strand a heading at the foot of a page */
+    h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    /* opt-in hard page break: <div class="new-page"></div> */
+    .new-page { break-before: page; page-break-before: always; }
+  }
+</style>
+</head>
+<body><main class="page"><div class="kicker">Retention targeting · analytical memo</div>
+<h1>Prioritize service recovery; test offers before scaling</h1>
+<div class="byline">Iranian Telecom Churn · 3,150 records · prepared 4 November 2026 (Pacific)</div>
+<section class="bottomline"><b>Pilot service recovery for active complainants; use richer models to test broader outreach.</b> Across 30 grouped splits, expanded logistic detects 77.7% of all-account churn at a 20% contact cap, versus 70.3% for the scorecard, and the gain survives duplicate removal. Among active accounts, a simple complaints-then-low-usage rule improves coverage, but neither predictive accuracy nor the value index proves that an offer prevents churn or pays for itself.</section>
+<h2>Complaints identify risk even among active customers</h2>
+<p>Overall churn is <b>495 / 3,150 (15.7%)</b>. Customers with complaints churn at <b>83.0%</b>, versus <b>10.1%</b> without. Among active customers alone, the comparison is <b>71.1% versus 2.9%</b>, so the complaint signal is not explained solely by account status.</p>
+<table class="bridge"><thead><tr><th>Status</th><th>Complaints</th><th>Customers</th><th>Churners</th><th>Churn rate</th></tr></thead><tbody><tr><td>Active</td><td>No</td><td>2,285</td><td>66</td><td>2.9%</td></tr><tr><td>Active</td><td>Yes</td><td>83</td><td>59</td><td>71.1%</td></tr><tr><td>Non-active</td><td>No</td><td>624</td><td>229</td><td>36.7%</td></tr><tr><td>Non-active</td><td>Yes</td><td>158</td><td>141</td><td>89.2%</td></tr></tbody></table>
+<p>These are associations, not evidence that complaints cause churn or that resolving them prevents it. Activity changes the interpretation: the highest call-seconds quartile has <b>0 / 788</b> observed churners, including <b>0 / 22</b> customers with complaints. Zero observed events do not establish zero future risk.</p>
+<h2>Lower engagement dominates the descriptive profile</h2>
+<p>Each row below is a separate split of the full sample. Numeric bins use full-sample quartiles for description only; the scorecard uses a different, training-only threshold. Counts and percentages are unadjusted. Age values are five codes mapping one-to-one to age groups, not a continuous age distribution.</p>
+<table class="bridge"><thead><tr><th>Profile</th><th>Segment</th><th>Customers</th><th>Churners</th><th>Rate</th></tr></thead><tbody><tr><td>Complaints</td><td>No</td><td>2,909</td><td>295</td><td>10.1%</td></tr><tr><td>Complaints</td><td>Yes</td><td>241</td><td>200</td><td>83.0%</td></tr><tr><td>Status</td><td>Active</td><td>2,368</td><td>125</td><td>5.3%</td></tr><tr><td>Status</td><td>Non-active</td><td>782</td><td>370</td><td>47.3%</td></tr><tr><td>Tariff</td><td>Pay as you go</td><td>2,905</td><td>489</td><td>16.8%</td></tr><tr><td>Tariff</td><td>Contractual</td><td>245</td><td>6</td><td>2.4%</td></tr><tr><td>Age code</td><td>15 (group 1)</td><td>123</td><td>0</td><td>0.0%</td></tr><tr><td>Age code</td><td>25 (group 2)</td><td>1,037</td><td>184</td><td>17.7%</td></tr><tr><td>Age code</td><td>30 (group 3)</td><td>1,425</td><td>230</td><td>16.1%</td></tr><tr><td>Age code</td><td>45 (group 4)</td><td>395</td><td>79</td><td>20.0%</td></tr><tr><td>Age code</td><td>55 (group 5)</td><td>170</td><td>2</td><td>1.2%</td></tr></tbody></table>
+<h3>Raw failure counts do not show a monotonic gradient</h3>
+<table class="bridge"><thead><tr><th>Call failures</th><th>Customers</th><th>Churners</th><th>Rate</th></tr></thead><tbody><tr><td>&lt;= 1</td><td>823</td><td>152</td><td>18.5%</td></tr><tr><td>&gt; 1 to &lt;= 6</td><td>816</td><td>125</td><td>15.3%</td></tr><tr><td>&gt; 6 to &lt;= 12</td><td>817</td><td>109</td><td>13.3%</td></tr><tr><td>&gt; 12</td><td>694</td><td>109</td><td>15.7%</td></tr></tbody></table>
+<h3>Tenure risk peaks in the 31–35 month band</h3>
+<table class="bridge"><thead><tr><th>Months subscribed</th><th>Customers</th><th>Churners</th><th>Rate</th></tr></thead><tbody><tr><td>&lt;= 30</td><td>867</td><td>109</td><td>12.6%</td></tr><tr><td>&gt; 30 to &lt;= 35</td><td>806</td><td>180</td><td>22.3%</td></tr><tr><td>&gt; 35 to &lt;= 38</td><td>763</td><td>129</td><td>16.9%</td></tr><tr><td>&gt; 38</td><td>714</td><td>77</td><td>10.8%</td></tr></tbody></table>
+<h3>Churn is concentrated at lower call duration</h3>
+<table class="bridge"><thead><tr><th>Call seconds</th><th>Customers</th><th>Churners</th><th>Rate</th></tr></thead><tbody><tr><td>&lt;= 1391.25</td><td>788</td><td>281</td><td>35.7%</td></tr><tr><td>&gt; 1391.25 to &lt;= 2990</td><td>788</td><td>145</td><td>18.4%</td></tr><tr><td>&gt; 2990 to &lt;= 6478.25</td><td>786</td><td>69</td><td>8.8%</td></tr><tr><td>&gt; 6478.25</td><td>788</td><td>0</td><td>0.0%</td></tr></tbody></table>
+<h3>Lower call frequency also marks risk</h3>
+<table class="bridge"><thead><tr><th>Call count</th><th>Customers</th><th>Churners</th><th>Rate</th></tr></thead><tbody><tr><td>&lt;= 27</td><td>795</td><td>256</td><td>32.2%</td></tr><tr><td>&gt; 27 to &lt;= 54</td><td>801</td><td>177</td><td>22.1%</td></tr><tr><td>&gt; 54 to &lt;= 95</td><td>776</td><td>49</td><td>6.3%</td></tr><tr><td>&gt; 95</td><td>778</td><td>13</td><td>1.7%</td></tr></tbody></table>
+<h3>High SMS use is associated with little observed churn</h3>
+<table class="bridge"><thead><tr><th>SMS count</th><th>Customers</th><th>Churners</th><th>Rate</th></tr></thead><tbody><tr><td>&lt;= 6</td><td>800</td><td>176</td><td>22.0%</td></tr><tr><td>&gt; 6 to &lt;= 21</td><td>785</td><td>185</td><td>23.6%</td></tr><tr><td>&gt; 21 to &lt;= 87</td><td>778</td><td>129</td><td>16.6%</td></tr><tr><td>&gt; 87</td><td>787</td><td>5</td><td>0.6%</td></tr></tbody></table>
+<h3>Calling fewer distinct numbers marks risk</h3>
+<table class="bridge"><thead><tr><th>Distinct numbers</th><th>Customers</th><th>Churners</th><th>Rate</th></tr></thead><tbody><tr><td>&lt;= 10</td><td>803</td><td>251</td><td>31.3%</td></tr><tr><td>&gt; 10 to &lt;= 21</td><td>808</td><td>140</td><td>17.3%</td></tr><tr><td>&gt; 21 to &lt;= 34</td><td>793</td><td>88</td><td>11.1%</td></tr><tr><td>&gt; 34</td><td>746</td><td>16</td><td>2.1%</td></tr></tbody></table>
+<h3>The value index runs opposite to churn risk</h3>
+<table class="bridge"><thead><tr><th>Value index</th><th>Customers</th><th>Churners</th><th>Rate</th></tr></thead><tbody><tr><td>&lt;= 113.801</td><td>788</td><td>276</td><td>35.0%</td></tr><tr><td>&gt; 113.801 to &lt;= 228.48</td><td>788</td><td>142</td><td>18.0%</td></tr><tr><td>&gt; 228.48 to &lt;= 788.389</td><td>786</td><td>72</td><td>9.2%</td></tr><tr><td>&gt; 788.389</td><td>788</td><td>5</td><td>0.6%</td></tr></tbody></table>
+<p>Call failures require an exposure denominator: among customers with calls, failure/call ratios above 15% have <b>270 / 1,037 (26.0%)</b> churn, compared with <b>6 / 345 (1.7%)</b> for positive ratios up to 5%. Even among active customers without complaints, the rates are <b>24 / 585 (4.1%)</b> versus <b>2 / 333 (0.6%)</b>. This is a diagnostic ratio, not a validated network failure probability: three records have more failures than calls.</p>
+<p>Some apparent drivers change after stratification. Among active customers, tenure of at most 30 months has <b>71 / 716 (9.9%)</b> churn versus <b>8 / 535 (1.5%)</b> above 38 months. The age-45 code has 20.0% overall churn but only <b>5 / 252 (2.0%)</b> among active customers. Active contractual customers have <b>5 / 244 (2.0%)</b> churn versus <b>120 / 2,124 (5.6%)</b> for active pay-as-you-go customers; this does not establish that migrating tariff plans prevents churn.</p>
+<p>Customer Value is an undocumented calculated index, not verified revenue or future margin. Churners average <b>124.8</b> index units versus <b>535.5</b> for non-churners. Use it as a provisional prioritization signal only; do not translate these units into a cash return.</p>
+<h2>The scorecard is stable enough to benchmark, but leaves predictive gains available</h2>
+<p><b>Thirty grouped train/validation/test splits</b> test stability, model capacity, calibration and duplicate sensitivity. The same predictor profiles remain together, and every model in a split sees the same held-out records. All settings and probability calibration are fitted without test outcomes. Results below use <b>mean performance across splits</b>; ranges are the 10th–90th percentiles. They describe sensitivity to splitting, <b>not confidence intervals</b>: tests overlap and the dataset has already been explored.</p>
+<p>The scorecard averages <b>54.3% precision</b> (48.1–59.1%) and <b>70.3% recall</b> (66.0–74.5%) at a 20% all-account contact cap. Its complete recall range is 62.9–77.9%. The original 74.0% single-split recall is plausible, but sits toward the favorable end of this distribution. Boundary ties are averaged exactly rather than allowing a lucky tie seed to decide performance.</p>
+<p>Compare models first on the same three inputs—complaints, status and call seconds—then expand to ten behavioral inputs. The expanded models add failures, tenure, charge, call frequency, SMS, distinct called numbers and tariff. Age and the undocumented value index are excluded from risk fitting; value remains an evaluation weight. Logistic models use regularization and log transforms for usage/counts; shallow trees learn a small number of interactions. Neither model family is tuned on test.</p>
+<figure class="fig"><svg class="viz-repeated_precision" viewBox="0 0 700 216" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Richer models improve predictive precision"><style>
+  .viz-repeated_precision {
+    --surface: #fcfcfb; --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --c-blue: #2a78d6;
+  }
+  .viz-repeated_precision text { font-family: system-ui,-apple-system,'Segoe UI',sans-serif; }
+</style><rect x="0" y="0" width="700" height="216" fill="var(--surface)"/><text x="16" y="20" fill="var(--ink-primary)" font-size="14.5" font-weight="700">Richer models improve predictive precision</text><text x="16" y="37" fill="var(--ink-secondary)" font-size="12">Mean across 30 grouped splits • 20% of all test records contacted • uniform tie expectation</text><path d="M190.0,50.0 L491.2,50.0 Q495.2,50.0 495.2,54.0 L495.2,62.0 Q495.2,66.0 491.2,66.0 L190.0,66.0 Z" fill="var(--c-blue)"/><text x="182" y="63.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Scorecard</text><text x="501.2" y="63.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">54.3%</text><path d="M190.0,80.0 L506.1,80.0 Q510.1,80.0 510.1,84.0 L510.1,92.0 Q510.1,96.0 506.1,96.0 L190.0,96.0 Z" fill="var(--c-blue)"/><text x="182" y="93.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Logistic: 3 inputs</text><text x="516.1" y="93.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">56.9%</text><path d="M190.0,110.0 L515.0,110.0 Q519.0,110.0 519.0,114.0 L519.0,122.0 Q519.0,126.0 515.0,126.0 L190.0,126.0 Z" fill="var(--c-blue)"/><text x="182" y="123.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Shallow tree: 3 inputs</text><text x="525.0" y="123.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">58.5%</text><path d="M190.0,140.0 L522.9,140.0 Q526.9,140.0 526.9,144.0 L526.9,152.0 Q526.9,156.0 522.9,156.0 L190.0,156.0 Z" fill="var(--c-blue)"/><text x="182" y="153.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Logistic: 10 inputs</text><text x="532.9" y="153.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">59.9%</text><path d="M190.0,170.0 L521.4,170.0 Q525.4,170.0 525.4,174.0 L525.4,182.0 Q525.4,186.0 521.4,186.0 L190.0,186.0 Z" fill="var(--c-blue)"/><text x="182" y="183.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Shallow tree: 10 inputs</text><text x="531.4" y="183.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">59.6%</text></svg><figcaption>Every value is repeated in the table. Selection quality does not measure treatment benefit.</figcaption></figure>
+<table class="bridge"><thead><tr><th>Model</th><th>AUC</th><th>Precision</th><th>Precision range</th><th>Recall</th><th>Value captured</th></tr></thead><tbody><tr><td>Scorecard</td><td>0.896</td><td>54.3%</td><td>48.1%–59.1%</td><td>70.3%</td><td>64.2%</td></tr><tr><td>Logistic: 3 inputs</td><td>0.910</td><td>56.9%</td><td>51.5%–64.3%</td><td>73.8%</td><td>64.7%</td></tr><tr><td>Shallow tree: 3 inputs</td><td>0.926</td><td>58.5%</td><td>51.4%–65.1%</td><td>75.8%</td><td>72.5%</td></tr><tr><td>Logistic: 10 inputs</td><td>0.935</td><td>59.9%</td><td>55.0%–65.2%</td><td>77.7%</td><td>67.8%</td></tr><tr><td>Shallow tree: 10 inputs</td><td>0.924</td><td>59.6%</td><td>53.7%–66.3%</td><td>77.3%</td><td>72.7%</td></tr></tbody></table>
+<p>The ten-input logistic model improves precision by <b>5.65 percentage points</b> and recall by <b>7.39 points</b> versus the scorecard on average, with positive differences on all 30 matched splits. That is consistency across resamples, not 30 independent demonstrations. The three-input shallow tree also improves recall and value capture, so the gain is not solely from collecting more features. Expanded trees capture more of the churn-associated value index than expanded logistic models, despite similar overall precision; model choice depends on the operational objective.</p>
+<h2>Duplicate removal preserves the model comparison</h2>
+<p>Repeat the complete fit, validation selection and test pipeline on <b>2,850 exact distinct rows</b>, keeping each profile in the same partition as in the full-data counterpart. Contradictory-label profiles remain grouped; no outcome is used to split them. Deduplication changes both training and evaluation weights, so the difference is a sensitivity result—not a pure improvement in training.</p>
+<table class="bridge"><thead><tr><th>Model</th><th>Full precision</th><th>Dedup precision</th><th>Full recall</th><th>Dedup recall</th></tr></thead><tbody><tr><td>Scorecard</td><td>54.3%</td><td>53.7%</td><td>70.3%</td><td>69.7%</td></tr><tr><td>Logistic: 3 inputs</td><td>56.9%</td><td>56.2%</td><td>73.8%</td><td>73.0%</td></tr><tr><td>Shallow tree: 3 inputs</td><td>58.5%</td><td>57.6%</td><td>75.8%</td><td>74.9%</td></tr><tr><td>Logistic: 10 inputs</td><td>59.9%</td><td>59.9%</td><td>77.7%</td><td>77.8%</td></tr><tr><td>Shallow tree: 10 inputs</td><td>59.6%</td><td>58.9%</td><td>77.3%</td><td>76.4%</td></tr></tbody></table>
+<p>Scorecard precision changes by <b>−0.56 points</b> on average; expanded-logistic precision changes by <b>−0.01 points</b>. The richer-model advantage therefore does not depend on the exact duplicate rows. Without customer IDs, neither keeping nor removing matching rows can establish the true number of independent customers.</p>
+<h2>Calibration helps the scorecard’s probabilities, not its ranking</h2>
+<p>A sigmoid calibration model is fitted to each selected model’s validation predictions and evaluated on the separate test subset. The same validation subset selects model settings and fits calibration; it never becomes test data. Lower Brier score means lower mean squared probability error. The table reports mean test error before and after calibration.</p>
+<table class="bridge"><thead><tr><th>Model</th><th>Raw Brier</th><th>Calibrated Brier</th><th>Splits improved / 30</th></tr></thead><tbody><tr><td>Scorecard</td><td>0.0794</td><td>0.0776</td><td>25</td></tr><tr><td>Logistic: 3 inputs</td><td>0.0745</td><td>0.0747</td><td>9</td></tr><tr><td>Shallow tree: 3 inputs</td><td>0.0708</td><td>0.0716</td><td>9</td></tr><tr><td>Logistic: 10 inputs</td><td>0.0690</td><td>0.0691</td><td>15</td></tr><tr><td>Shallow tree: 10 inputs</td><td>0.0661</td><td>0.0672</td><td>10</td></tr></tbody></table>
+<p>The scorecard underpredicts the selected top fifth’s churn by <b>9.95 points</b> on average; calibration changes that to <b>1.10 points of overprediction</b>. Its mean absolute overall calibration bias falls from <b>2.16 to 1.68 points</b>, and fixed-band calibration error falls from <b>2.93 to 2.70 points</b>. Brier improves in <b>25 / 30</b> splits. In contrast, all four logistic/tree alternatives have slightly worse mean Brier after this calibration step; do not apply it automatically. All fitted calibration slopes are positive, so rankings, precision and recall are unchanged. These checks do not establish calibration on future accounts.</p>
+<h2>Among active customers, combine complaints with usage</h2>
+<p>For an operational retention comparison, allocate <b>20% of each active test population</b> to every rule—87–101 contacts, about 94 on average. This is a different denominator from the all-account table. Each active test subset has only <b>12–38 churn events</b>; precision and recall remain variable. The model alternatives are trained and tuned on all accounts, then restricted to active accounts for this evaluation; dedicated active-only fitting is not claimed.</p>
+<table class="bridge"><thead><tr><th>Active targeting rule</th><th>Precision</th><th>Precision range</th><th>Recall</th><th>Value captured</th></tr></thead><tbody><tr><td>Complaints first, then random</td><td>14.0%</td><td>10.3%–17.3%</td><td>54.5%</td><td>59.5%</td></tr><tr><td>Lowest call seconds</td><td>15.9%</td><td>11.6%–20.5%</td><td>61.8%</td><td>41.7%</td></tr><tr><td>Scorecard</td><td>16.1%</td><td>12.6%–19.4%</td><td>62.8%</td><td>57.8%</td></tr><tr><td>Complaints, then lowest seconds</td><td>19.1%</td><td>14.5%–23.1%</td><td>74.2%</td><td>61.0%</td></tr><tr><td>Logistic: 3 inputs</td><td>19.1%</td><td>14.5%–23.1%</td><td>74.2%</td><td>61.0%</td></tr><tr><td>Shallow tree: 3 inputs</td><td>20.8%</td><td>15.1%–25.1%</td><td>80.4%</td><td>83.9%</td></tr><tr><td>Logistic: 10 inputs</td><td>20.8%</td><td>16.9%–24.9%</td><td>81.2%</td><td>68.9%</td></tr><tr><td>Shallow tree: 10 inputs</td><td>19.0%</td><td>14.1%–23.4%</td><td>73.6%</td><td>70.0%</td></tr></tbody></table>
+<p><b>Complaints followed by low call seconds</b> improves active precision by <b>3.01 points</b> and recall by <b>11.44 points</b> over the scorecard, with positive differences in all 30 splits, both with and without exact duplicates. Low usage alone has lower value capture than the scorecard in every full-data split. The ten-input logistic model adds further breadth: <b>81.2% active-churn recall</b> versus 62.8% for the scorecard, but still only <b>20.8% precision</b>. Roughly four in five contacts therefore have observed non-churn labels.</p>
+<p>The three-input shallow tree is a useful competing candidate: <b>80.4% active-churn recall</b> and <b>83.9% capture of the churn-associated value index</b>, versus 81.2% and 68.9% for expanded logistic. Its larger index capture does not establish higher profit. Prospective validation should compare these objectives after defining true margin.</p>
+<p><b>A small service-only cohort is a different trade-off.</b> Contacting only active complainants averages <b>16 contacts</b>, or <b>3.4% of active accounts</b>, with <b>68.8% observed churn</b> and <b>45.1% active-churn recall</b>. Its churn fraction ranges from 52.9% to 84.8% across the middle 80% of splits; the cap never binds. This supports it as a focused service-recovery experiment, but it misses over half of active churn. Do not compare its precision with full-budget rules as if contact volume were equal.</p>
+<p><b>Policy implication:</b> begin with the focused service pilot; if seeking broader coverage, test a complaints-then-low-usage outreach rule and compare the three-input tree and expanded logistic as predictive challengers. Broader contact is not a reason to send blanket discounts. Reserve offers for randomized, margin-qualified treatment tests and retain ordinary service for everyone.</p>
+<h2>Three operational questions need data this file does not contain</h2>
+<table class="bridge"><thead><tr><th>Check worth doing</th><th>Why it could change the call</th><th>Why it cannot be completed here</th></tr></thead><tbody><tr><td>Status and timing audit</td><td>Establish whether non-active accounts are still reachable/retainable and whether each predictor existed before campaign assignment.</td><td>The CSV has one summarized Status value, no customer ID, dated feature snapshots, status-change or churn timestamps, contactability fields, or campaign-assignment date. UCI describes a nominal nine-to-twelve-month design; that does not verify row-level timing or eligibility.</td></tr><tr><td>Validate customer value and margin</td><td>Choose economically worthwhile interventions and assess whether index-weighted capture reflects future profit.</td><td>No authoritative value formula, currency/unit definition, longitudinal revenue, contribution margin, service cost, offer cost or redemption data is supplied. The index can be profiled but cannot be validated as future cash margin.</td></tr><tr><td>Measure intervention effectiveness</td><td>Distinguish customers whose churn can be prevented from customers merely likely to churn; estimate incremental net benefit.</td><td>No randomized assignment, service/offer exposure, usual-care control, treatment timing, uptake or intervention cost fields exist. Churn outcomes alone cannot identify treatment effects. A prospective experiment is needed.</td></tr></tbody></table>
+<p>These gaps are missing evidence, not inconclusive statistical tests. Repeated splitting, deduplication and better prediction cannot fill them. The experiment design below specifies how to obtain the causal evidence.</p>
+<h2>A frozen holdout illustrates the scorecard and budget mechanics</h2>
+<p>The following scorecard and budget tables retain one reproducible training/validation/test split. Use the 30-split comparisons above for stability and policy selection; this worked example explains the scorecard and contact-count arithmetic.</p><h3>The twelve-cell scorecard</h3>
+<p>Split by identical predictor profiles: <b>1,888 training</b>, <b>609 validation</b>, and <b>653 test</b> records. No predictor profile crosses splits. All cutoffs and probabilities are learned from training; validation precision at 20% capacity selects among the three candidates below. The test set is then used for evaluation and explicitly labeled policy sensitivities, without retuning the scorecard.</p>
+<table class="bridge"><thead><tr><th>Candidate</th><th>Validation AUC</th><th>Precision at 20%</th><th>Detected / 91 churners</th></tr></thead><tbody><tr><td>Complaints</td><td>0.705</td><td>34.7%</td><td>42</td></tr><tr><td>Complaints + usage</td><td>0.830</td><td>44.6%</td><td>54</td></tr><tr><td>Complaints + usage + status</td><td>0.876</td><td>50.4%</td><td>61</td></tr></tbody></table>
+<p>For each complaint × status × usage cell, the score is <code>(training churners + 20 × 300/1888) / (training customers + 20)</code>. This fixed smoothing prevents zero/one probabilities in small cells. Call usage is <b>zero</b>, <b>1–3,100 seconds</b>, or <b>above 3,100 seconds</b>; 3,100 is the median positive training usage. A new combination falls back to the training prevalence, <b>15.9%</b>. Unexpected codes or missing inputs require review. Age and value do not enter any fitted risk model in this memo.</p>
+<table class="bridge"><thead><tr><th>Complaints</th><th>Status</th><th>Seconds</th><th>Training n</th><th>Score</th></tr></thead><tbody><tr><td>Yes</td><td>Non-active</td><td>1–3,100</td><td>80</td><td>72.2%</td></tr><tr><td>Yes</td><td>Active</td><td>1–3,100</td><td>22</td><td>59.9%</td></tr><tr><td>No</td><td>Non-active</td><td>0</td><td>68</td><td>46.8%</td></tr><tr><td>Yes</td><td>Non-active</td><td>&gt;3,100</td><td>11</td><td>45.7%</td></tr><tr><td>Yes</td><td>Non-active</td><td>0</td><td>9</td><td>42.0%</td></tr><tr><td>No</td><td>Non-active</td><td>1–3,100</td><td>308</td><td>31.5%</td></tr><tr><td>No</td><td>Non-active</td><td>&gt;3,100</td><td>6</td><td>27.6%</td></tr><tr><td>Yes</td><td>Active</td><td>0</td><td>2</td><td>23.5%</td></tr><tr><td>Yes</td><td>Active</td><td>&gt;3,100</td><td>15</td><td>23.4%</td></tr><tr><td>No</td><td>Active</td><td>0</td><td>17</td><td>16.7%</td></tr><tr><td>No</td><td>Active</td><td>1–3,100</td><td>487</td><td>5.4%</td></tr><tr><td>No</td><td>Active</td><td>&gt;3,100</td><td>863</td><td>1.8%</td></tr></tbody></table>
+<p>On test: <b>AUC 0.907</b>, <b>average precision 0.632</b> (prevalence 15.9%), and <b>Brier score 0.079</b>. A constant training-prevalence prediction has Brier about 0.134 on this test. The status-free candidate still reaches <b>AUC 0.856</b> and detects <b>66 / 104</b> churners at 130 contacts.</p>
+<p>Calibration is imperfect: the selected 130 average <b>45.7%</b> predicted risk but show <b>59.2%</b> observed churn. Sparse cells are strongly pulled toward the prior. Treat the score as a ranking aid; validate and recalibrate on a later cohort before using probabilities for pricing or expected returns.</p>
+<table class="bridge"><thead><tr><th>Score band</th><th>Test n</th><th>Mean prediction</th><th>Observed churn</th></tr></thead><tbody><tr><td>&lt;10%</td><td>462</td><td>3.1%</td><td>2.4%</td></tr><tr><td>10–&lt;30%</td><td>19</td><td>20.7%</td><td>31.6%</td></tr><tr><td>30–&lt;60%</td><td>150</td><td>37.8%</td><td>46.7%</td></tr><tr><td>60%+</td><td>22</td><td>72.2%</td><td>77.3%</td></tr></tbody></table>
+<h2>A contact cap exposes the cost of false positives</h2>
+<p>Assume a <b>20% contact cap</b>, not a known currency budget. Take <code>floor(cap × eligible population)</code> contacts; the main retrospective comparison allows all 653 test records. Rank descending by score and use an outcome-blind tie-break (fixed seed 19). Each table reports observed labels, not prevented churn. “Non-churners” are prediction false positives; they are not proven wasted interventions.</p>
+<table class="bridge"><thead><tr><th>Cap</th><th>Contacts</th><th>Churners detected</th><th>Non-churners</th><th>Precision</th><th>Recall</th></tr></thead><tbody><tr><td>5.0%</td><td>32</td><td>27</td><td>5</td><td>84.4%</td><td>26.0%</td></tr><tr><td>10.0%</td><td>65</td><td>49</td><td>16</td><td>75.4%</td><td>47.1%</td></tr><tr><td>20.0%</td><td>130</td><td>77</td><td>53</td><td>59.2%</td><td>74.0%</td></tr><tr><td>30.0%</td><td>195</td><td>93</td><td>102</td><td>47.7%</td><td>89.4%</td></tr></tbody></table>
+<p>At 20%, the confusion counts are <b>77 detected, 53 false positives, 27 missed, and 496 true negatives</b>. The selection lift is <b>3.72×</b> relative to random selection, which would find <b>20.7</b> churners on average. This is prediction lift, not retention lift.</p>
+<p>Tied scores matter: 20 fixed tie seeds detect <b>70–77</b> churners (53.8%–59.2% precision). The exact expectation under uniform random tie-breaking is <b>74.3</b>. A nominal 95% Wilson interval for the fixed-seed precision is <b>50.6%–67.3%</b>; it assumes independent records and does not account for duplicate clusters, model selection or future distribution change.</p>
+<figure class="fig"><svg class="viz-policy_precision" viewBox="0 0 700 186" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Risk ranking finds more observed churners per contact"><style>
+  .viz-policy_precision {
+    --surface: #fcfcfb; --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --c-blue: #2a78d6;
+  }
+  .viz-policy_precision text { font-family: system-ui,-apple-system,'Segoe UI',sans-serif; }
+</style><rect x="0" y="0" width="700" height="186" fill="var(--surface)"/><text x="16" y="20" fill="var(--ink-primary)" font-size="14.5" font-weight="700">Risk ranking finds more observed churners per contact</text><text x="16" y="37" fill="var(--ink-secondary)" font-size="12">653 held-out records • 130 contacts per policy • observed precision, not treatment lift</text><path d="M165.0,50.0 L512.7,50.0 Q516.7,50.0 516.7,54.0 L516.7,62.0 Q516.7,66.0 512.7,66.0 L165.0,66.0 Z" fill="var(--c-blue)"/><text x="157" y="63.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Risk score</text><text x="522.7" y="63.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">59.2%</text><path d="M165.0,80.0 L407.6,80.0 Q411.6,80.0 411.6,84.0 L411.6,92.0 Q411.6,96.0 407.6,96.0 L165.0,96.0 Z" fill="var(--c-blue)"/><text x="157" y="93.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Complaints first</text><text x="417.6" y="93.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">41.5%</text><path d="M165.0,110.0 L334.6,110.0 Q338.6,110.0 338.6,114.0 L338.6,122.0 Q338.6,126.0 334.6,126.0 L165.0,126.0 Z" fill="var(--c-blue)"/><text x="157" y="123.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Risk × value</text><text x="344.6" y="123.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">29.2%</text><path d="M165.0,140.0 L165.6,140.0 Q169.6,140.0 169.6,144.0 L169.6,152.0 Q169.6,156.0 165.6,156.0 L165.0,156.0 Z" fill="var(--c-blue)"/><text x="157" y="153.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Value only</text><text x="175.6" y="153.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">0.8%</text></svg><figcaption>Same 130-contact capacity; every plotted value appears below.</figcaption></figure>
+<table class="bridge"><thead><tr><th>Policy</th><th>Detected</th><th>Non-churners</th><th>Precision</th><th>Churn-value captured</th></tr></thead><tbody><tr><td>Risk score</td><td>77</td><td>53</td><td>59.2%</td><td>68.3%</td></tr><tr><td>Complaints first</td><td>54</td><td>76</td><td>41.5%</td><td>69.0%</td></tr><tr><td>Risk × value</td><td>38</td><td>92</td><td>29.2%</td><td>67.4%</td></tr><tr><td>Value only</td><td>1</td><td>129</td><td>0.8%</td><td>8.0%</td></tr></tbody></table>
+<p>“Churn-value captured” is the share of <code>sum(value × observed churn)</code> in selected records, not money saved. Risk × value finds fewer churners and does not improve that share here. Value-only targeting contacts 129 observed non-churners out of 130. Multiplying risk by value would also require comparable intervention effectiveness and costs to approximate an economic ranking; neither assumption is established.</p>
+<p><b>Eligibility changes the decision.</b> Risk-only selects <b>116 non-active</b> and only <b>14 active</b> customers. Restricting to the <b>493 active</b> test records and contacting 20% gives <b>98 contacts, 21 detected churners, and 77 non-churners</b>: <b>21.4% precision</b>, <b>72.4% recall of 29 active churners</b>, and <b>3.64×</b> lift over the active baseline of 5.9%. Spending the full 130-contact capacity on active customers still detects only 21, adding 32 non-churners. Do not spend the cap merely because it is available.</p>
+<section class="rec"><h2>Use separate service, offer and no-action routes</h2>
+<p><b>Service intervention:</b> verify active eligibility and contact customers with complaints; use call usage and the tested model candidates to design prioritization if capacity is scarce. Diagnose the complaint and call-failure history before proposing a remedy. In the single frozen holdout, the service cohort contains <b>22 active complainants</b>, including <b>17 observed churners and 5 non-churners</b>, well below the 130-contact cap. This is a candidate pilot rule, not a proven effect.</p>
+<p><b>Offer:</b> no automatic blanket discount. Test an offer added to service recovery among active complainants with value at least the training median, <b>222.815 index units</b>, after checking reachability and actual future contribution margin. There are only <b>7</b> such test records, insufficient for an effect estimate. Randomize eligible customers to service-only or service-plus-offer; a high historical risk score alone does not justify payment.</p>
+<p><b>No proactive paid action:</b> active customers without complaints unless fresh operational evidence creates a service need; low-risk, high-value customers do not receive a discount solely for their value. Broader low-usage outreach belongs in a measured pilot; do not fill spare capacity with unproven discounts. Non-active accounts need eligibility verification and a separately measured reactivation route before inclusion in retention.</p>
+<p>For a cash budget, choose actions with positive <code>incremental retention probability × future contribution margin − contact/service cost − expected incentive cost</code>, subject to both the total spending limit and service capacity. Costs must include discounts to customers who would stay anyway. Risk × value is not a substitute for the incremental probability. The dataset supplies neither treatment effects, cash margin nor costs, so it cannot identify a profit-maximizing spend.</p></section>
+<h2>Only a randomized comparison can establish incremental lift here</h2>
+<p>Run two prespecified randomized comparisons: <b>enhanced service versus usual care</b> among verified active complainants, and <b>service plus offer versus the same service alone</b> among value-qualified active complainants. Define eligibility and scores before assignment; preserve ordinary support in all arms. Randomize at account level (or household level if spillovers occur), stratifying by risk, value and complaint type. Keep contact intensity comparable where practical and log assignment, delivery, uptake and costs.</p>
+<p>The primary effect is <b>control churn rate minus treatment churn rate</b> over a fixed three-month window after assignment, analyzed by intention to treat. Report confidence intervals for retention lift and incremental contribution margin net of all costs; track complaints and adverse customer experience. Do not use redemption, treated-only retention or before/after comparisons as proof. Freeze the analysis, avoid repeated unplanned peeking, and reserve a later cohort to validate any learned treatment-effect targeting.</p>
+<p>Size the trial from an operational baseline and the minimum economically useful effect. For illustration only, a reduction from <b>60% to 50%</b>, 80% power, and a two-sided <b>2.5%</b> significance level per comparison (two primary comparisons) requires approximately <b>470 customers per arm</b> under independent binomial sampling. Recalculate for the actual baseline, smaller effect, nonresponse and cluster design; the seven offer-eligible test records cannot answer this question.</p>
+<h2>Watch items that could change the policy</h2>
+<ul>
+<li><b>Status timing and eligibility:</b> verify that the scoring snapshot predates the campaign and that non-active accounts can still be retained. If status is unavailable, use the tested status-free scorecard and revalidate on current accounts.</li>
+<li><b>Repeated and conflicting records:</b> 300 excess exact duplicates; 14 identical predictor profiles have conflicting outcomes. Keeping profiles together avoids cross-split overlap, but customer IDs and timestamps are needed to distinguish duplicates from genuinely similar customers. Deduplicated descriptive churn is 446 / 2,850 (15.6%); the complaint association persists.</li>
+<li><b>Out-of-time performance:</b> no dated snapshots are provided. A conventional row split gives AUC 0.884 and 48.0% precision at 20%, but shares 69 test profiles with training and uses a different test population. Neither split establishes prospective performance.</li>
+<li><b>Value and quality:</b> obtain the value formula, currency margin, eligibility and intervention costs. There are no missing values, but charge code 10 occurs despite source documentation specifying 0–9; charge is excluded from the scorecard.</li>
+<li><b>Selection and fairness:</b> age does not enter the scorecard, but investigate service access and errors by age and tariff in a larger prospective cohort. Small groups and zero-event segments are not safe grounds for denying ordinary support.</li>
+</ul>
+<h2>Methodology</h2>
+<div class="method"><p>All empirical figures were computed from the supplied local <code>question/data.csv</code>, with no population filters. Source: <a href="https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset">Iranian Churn, UCI Machine Learning Repository</a> (2020), DOI 10.24432/C5JW3Z, CC BY 4.0; metadata retrieved 5 November 2026 UTC. UCI describes first-nine-month attributes and month-12 churn labels; calendar dates and historical intervention assignments are absent. The local exercise’s author is unverified.</p>
+<p>Descriptive tables use full-sample aggregates; predictive bins, prior and cell rates use training only. Three candidate feature sets and smoothing strength were fixed before validation. Profile splitting excludes the outcome from the grouping key. Holdout metrics preserve row weights. The original scorecard and policy checks run inside in-memory DuckDB; the expanded model comparisons use transient local arrays and emit only aggregates. For the requested continuous-feature model comparisons, authorized source records are processed transiently in local memory; no row-level file, prediction list or customer contact list is saved. Saved scripts, SQL, aggregate outputs, checks and limitations are documented in <code>methodology.md</code> and <code>run_log.md</code>.</p></div>
+<h2>Question &amp; Framing</h2>
+<div class="method"><p><b>As asked:</b> Complete the Iranian Telecom Churn assignment: profile churn by complaints, call failures, subscription length, usage, tariff plan, status, age and customer value; build a model or scorecard and evaluate a budget-constrained campaign; recommend offer, service or no action; explain the evidence needed for incremental retention lift. The follow-up additionally requests repeated grouped splits, regularized/tree comparisons, calibration and duplicate sensitivity, active-policy comparisons, and explicit reasons the three operational checks remain unavailable.</p>
+<table class="bridge"><thead><tr><th>Framing decision</th><th>Resolved as</th></tr></thead><tbody><tr><td>Period</td><td>Nine-month feature summary; month-12 churn, per source metadata. No calendar backtest possible; 30 repeated grouped splits provide internal sensitivity only.</td></tr><tr><td>Metrics</td><td>Churn rate, AUC, average precision, Brier score, contacts, precision, recall, observed false positives and value-weighted capture.</td></tr><tr><td>Budget</td><td>Assumed 20% contact capacity; sensitivity at 5%, 10%, 30%. Cash-budget optimization remains conditional on costs and effects.</td></tr><tr><td>Deliverable</td><td>Self-contained memo, reproducible scorecard and model/policy comparisons, with missing operational evidence explained; no notebook required.</td></tr></tbody></table>
+</div><div class="foot">Prediction is not treatment response. Offer and service policies require a prospective experiment before scaling.</div></main></body></html>

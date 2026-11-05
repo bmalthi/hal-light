@@ -1,0 +1,1 @@
+SELECT 'complaints' dimension,cast(complaints as varchar) bin_label,count(*) n,sum(churn) churners,avg(churn) rate,avg(customer_value) mean_value FROM main.features GROUP BY 1,2 HAVING count(*)>=10 ORDER BY 2

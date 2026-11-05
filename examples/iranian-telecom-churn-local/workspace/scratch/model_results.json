@@ -1,0 +1,587 @@
+{
+  "split": [
+    {
+      "split": "test",
+      "n": 653,
+      "churners": 104,
+      "rate": 0.15926493108728942,
+      "profiles": 589
+    },
+    {
+      "split": "train",
+      "n": 1888,
+      "churners": 300,
+      "rate": 0.15889830508474576,
+      "profiles": 1680
+    },
+    {
+      "split": "validation",
+      "n": 609,
+      "churners": 91,
+      "rate": 0.14942528735632185,
+      "profiles": 567
+    }
+  ],
+  "usage_cut": 3100.0,
+  "value_cut": 222.815,
+  "smoothing": 20,
+  "validation": {
+    "complaint": {
+      "n": 609,
+      "churners": 91,
+      "prevalence": 0.14942528735632185,
+      "mean_prediction": 0.15757742382007897,
+      "brier": 0.09074685972415478,
+      "auc": 0.7046332046332047,
+      "average_precision": 0.42649375020944336,
+      "campaign20": {
+        "contacts": 121,
+        "caught": 42,
+        "false_positives": 79,
+        "caught_value": 7764.945000000001,
+        "mean_value": 470.5695041322313,
+        "inactive": 37,
+        "complaints": 49,
+        "predicted_risk": 0.3709179690147706,
+        "budget": 0.2,
+        "population": 609,
+        "capacity": 121,
+        "precision": 0.34710743801652894,
+        "recall": 0.46153846153846156,
+        "lift": 2.322949777495232,
+        "value_recall": 0.5434763132937416,
+        "missed": 49,
+        "true_negatives": 439
+      }
+    },
+    "complaint_usage": {
+      "n": 609,
+      "churners": 91,
+      "prevalence": 0.14942528735632185,
+      "mean_prediction": 0.13511368974088273,
+      "brier": 0.0845157134796358,
+      "auc": 0.8295642581356867,
+      "average_precision": 0.5528896429086605,
+      "campaign20": {
+        "contacts": 121,
+        "caught": 54,
+        "false_positives": 67,
+        "caught_value": 8494.685000000003,
+        "mean_value": 308.7796280991736,
+        "inactive": 61,
+        "complaints": 49,
+        "predicted_risk": 0.3857162285757532,
+        "budget": 0.2,
+        "population": 609,
+        "capacity": 121,
+        "precision": 0.4462809917355372,
+        "recall": 0.5934065934065934,
+        "lift": 2.986649713922441,
+        "value_recall": 0.5945515501258087,
+        "missed": 37,
+        "true_negatives": 451
+      }
+    },
+    "complaint_usage_status": {
+      "n": 609,
+      "churners": 91,
+      "prevalence": 0.14942528735632185,
+      "mean_prediction": 0.1266874969063972,
+      "brier": 0.07832553990649464,
+      "auc": 0.8758750901608043,
+      "average_precision": 0.6229520233311565,
+      "campaign20": {
+        "contacts": 121,
+        "caught": 61,
+        "false_positives": 60,
+        "caught_value": 7695.124999999998,
+        "mean_value": 122.04425619834709,
+        "inactive": 113,
+        "complaints": 35,
+        "predicted_risk": 0.42635719996612503,
+        "budget": 0.2,
+        "population": 609,
+        "capacity": 121,
+        "precision": 0.5041322314049587,
+        "recall": 0.6703296703296703,
+        "lift": 3.373808010171646,
+        "value_recall": 0.5385895412439498,
+        "missed": 30,
+        "true_negatives": 458
+      }
+    }
+  },
+  "winner": "complaint_usage_status",
+  "test": {
+    "n": 653,
+    "churners": 104,
+    "prevalence": 0.15926493108728942,
+    "mean_prediction": 0.13883930276388148,
+    "brier": 0.0791935856754257,
+    "auc": 0.9070162533277287,
+    "average_precision": 0.6321823309390364
+  },
+  "budgets": [
+    {
+      "contacts": 32,
+      "caught": 27,
+      "false_positives": 5,
+      "caught_value": 4230.820000000001,
+      "mean_value": 154.064375,
+      "inactive": 22,
+      "complaints": 32,
+      "predicted_risk": 0.6835595742534307,
+      "budget": 0.05,
+      "population": 653,
+      "capacity": 32,
+      "precision": 0.84375,
+      "recall": 0.25961538461538464,
+      "lift": 5.2977764423076925,
+      "value_recall": 0.3438391177319143,
+      "missed": 77,
+      "true_negatives": 544
+    },
+    {
+      "contacts": 65,
+      "caught": 49,
+      "false_positives": 16,
+      "caught_value": 5673.985000000001,
+      "mean_value": 98.28038461538462,
+      "inactive": 51,
+      "complaints": 37,
+      "predicted_risk": 0.5820191042782629,
+      "budget": 0.1,
+      "population": 653,
+      "capacity": 65,
+      "precision": 0.7538461538461538,
+      "recall": 0.47115384615384615,
+      "lift": 4.733284023668639,
+      "value_recall": 0.4611252656516031,
+      "missed": 55,
+      "true_negatives": 533
+    },
+    {
+      "contacts": 130,
+      "caught": 77,
+      "false_positives": 53,
+      "caught_value": 8402.779999999999,
+      "mean_value": 104.46946153846156,
+      "inactive": 116,
+      "complaints": 45,
+      "predicted_risk": 0.4565041635415525,
+      "budget": 0.2,
+      "population": 653,
+      "capacity": 130,
+      "precision": 0.5923076923076923,
+      "recall": 0.7403846153846154,
+      "lift": 3.7190088757396453,
+      "value_recall": 0.6828946780282247,
+      "missed": 27,
+      "true_negatives": 496
+    },
+    {
+      "contacts": 195,
+      "caught": 93,
+      "false_positives": 102,
+      "caught_value": 10364.310000000001,
+      "mean_value": 117.70610256410254,
+      "inactive": 160,
+      "complaints": 53,
+      "predicted_risk": 0.39331243569595625,
+      "budget": 0.3,
+      "population": 653,
+      "capacity": 195,
+      "precision": 0.47692307692307695,
+      "recall": 0.8942307692307693,
+      "lift": 2.994526627218935,
+      "value_recall": 0.8423083956065387,
+      "missed": 11,
+      "true_negatives": 447
+    }
+  ],
+  "policies": {
+    "risk": {
+      "contacts": 130,
+      "caught": 77,
+      "false_positives": 53,
+      "caught_value": 8402.779999999999,
+      "mean_value": 104.46946153846156,
+      "inactive": 116,
+      "complaints": 45,
+      "predicted_risk": 0.4565041635415525,
+      "budget": 0.2,
+      "population": 653,
+      "capacity": 130,
+      "precision": 0.5923076923076923,
+      "recall": 0.7403846153846154,
+      "lift": 3.7190088757396453,
+      "value_recall": 0.6828946780282247,
+      "missed": 27,
+      "true_negatives": 496
+    },
+    "risk_value": {
+      "contacts": 130,
+      "caught": 38,
+      "false_positives": 92,
+      "caught_value": 8299.470000000003,
+      "mean_value": 796.594269230769,
+      "inactive": 54,
+      "complaints": 40,
+      "predicted_risk": 0.27374214146242587,
+      "budget": 0.2,
+      "population": 653,
+      "capacity": 130,
+      "precision": 0.2923076923076923,
+      "recall": 0.36538461538461536,
+      "lift": 1.835355029585799,
+      "value_recall": 0.674498665138789,
+      "missed": 66,
+      "true_negatives": 457
+    },
+    "value_only": {
+      "contacts": 130,
+      "caught": 1,
+      "false_positives": 129,
+      "caught_value": 978.39,
+      "mean_value": 1431.0045000000011,
+      "inactive": 0,
+      "complaints": 2,
+      "predicted_risk": 0.0377477284130616,
+      "budget": 0.2,
+      "population": 653,
+      "capacity": 130,
+      "precision": 0.007692307692307693,
+      "recall": 0.009615384615384616,
+      "lift": 0.04829881656804734,
+      "value_recall": 0.07951384232790039,
+      "missed": 103,
+      "true_negatives": 420
+    },
+    "complaint_first": {
+      "contacts": 130,
+      "caught": 54,
+      "false_positives": 76,
+      "caught_value": 8490.33,
+      "mean_value": 331.18619230769235,
+      "inactive": 58,
+      "complaints": 53,
+      "predicted_risk": 0.3203265740843064,
+      "budget": 0.2,
+      "population": 653,
+      "capacity": 130,
+      "precision": 0.4153846153846154,
+      "recall": 0.5192307692307693,
+      "lift": 2.6081360946745566,
+      "value_recall": 0.6900098743158072,
+      "missed": 50,
+      "true_negatives": 473
+    },
+    "active_risk": {
+      "contacts": 130,
+      "caught": 21,
+      "false_positives": 109,
+      "caught_value": 4106.565,
+      "mean_value": 566.6828076923076,
+      "inactive": 0,
+      "complaints": 22,
+      "predicted_risk": 0.1313199492268789,
+      "budget": 0.2,
+      "population": 653,
+      "capacity": 130,
+      "precision": 0.16153846153846155,
+      "recall": 0.20192307692307693,
+      "lift": 1.0142751479289942,
+      "value_recall": 0.333740902829418,
+      "missed": 83,
+      "true_negatives": 440
+    },
+    "active_risk_value": {
+      "contacts": 130,
+      "caught": 16,
+      "false_positives": 114,
+      "caught_value": 3785.335,
+      "mean_value": 1266.187115384615,
+      "inactive": 0,
+      "complaints": 21,
+      "predicted_risk": 0.10923016243869393,
+      "budget": 0.2,
+      "population": 653,
+      "capacity": 130,
+      "precision": 0.12307692307692308,
+      "recall": 0.15384615384615385,
+      "lift": 0.7727810650887574,
+      "value_recall": 0.3076345121559734,
+      "missed": 88,
+      "true_negatives": 435
+    }
+  },
+  "no_status": {
+    "n": 653,
+    "churners": 104,
+    "prevalence": 0.15926493108728942,
+    "mean_prediction": 0.15024326338427438,
+    "brier": 0.08659125002876002,
+    "auc": 0.8557429592265657,
+    "average_precision": 0.5647609446585908,
+    "campaign20": {
+      "contacts": 130,
+      "caught": 66,
+      "false_positives": 64,
+      "caught_value": 7952.445000000001,
+      "mean_value": 201.25615384615395,
+      "inactive": 78,
+      "complaints": 53,
+      "predicted_risk": 0.4366765286950151,
+      "budget": 0.2,
+      "population": 653,
+      "capacity": 130,
+      "precision": 0.5076923076923077,
+      "recall": 0.6346153846153846,
+      "lift": 3.1877218934911244,
+      "value_recall": 0.646295912520876,
+      "missed": 38,
+      "true_negatives": 485
+    }
+  },
+  "active": {
+    "n": 493,
+    "churners": 29,
+    "prevalence": 0.058823529411764705,
+    "mean_prediction": 0.05262721062985402,
+    "brier": 0.032184272715005006,
+    "auc": 0.8577586206896552,
+    "average_precision": 0.6220985120142943,
+    "campaign20": {
+      "contacts": 98,
+      "caught": 21,
+      "false_positives": 77,
+      "caught_value": 4106.565,
+      "mean_value": 515.6429081632651,
+      "inactive": 0,
+      "complaints": 22,
+      "predicted_risk": 0.1566961103387141,
+      "budget": 0.2,
+      "population": 493,
+      "capacity": 98,
+      "precision": 0.21428571428571427,
+      "recall": 0.7241379310344828,
+      "lift": 3.642857142857143,
+      "value_recall": 0.7140597912366696,
+      "missed": 8,
+      "true_negatives": 387
+    }
+  },
+  "tie_caught_range": [
+    70,
+    77
+  ],
+  "calibration": [
+    {
+      "band": "<10%",
+      "n": 462,
+      "events": 11,
+      "predicted": 0.030693856206472216,
+      "observed": 0.023809523809523808
+    },
+    {
+      "band": "10\u2013<30%",
+      "n": 19,
+      "events": 6,
+      "predicted": 0.20653416549937506,
+      "observed": 0.3157894736842105
+    },
+    {
+      "band": "30\u2013<60%",
+      "n": 150,
+      "events": 70,
+      "predicted": 0.37785467633708714,
+      "observed": 0.4666666666666667
+    },
+    {
+      "band": "60%+",
+      "n": 22,
+      "events": 17,
+      "predicted": 0.7217796610169492,
+      "observed": 0.7727272727272727
+    }
+  ],
+  "scorecard": [
+    {
+      "complaint": 1,
+      "usage": 1,
+      "status": 2,
+      "n": 80,
+      "events": 69,
+      "risk": 0.7217796610169492
+    },
+    {
+      "complaint": 1,
+      "usage": 1,
+      "status": 1,
+      "n": 22,
+      "events": 22,
+      "risk": 0.5994753833736884
+    },
+    {
+      "complaint": 0,
+      "usage": 0,
+      "status": 2,
+      "n": 68,
+      "events": 38,
+      "risk": 0.46793143297380585
+    },
+    {
+      "complaint": 1,
+      "usage": 2,
+      "status": 2,
+      "n": 11,
+      "events": 11,
+      "risk": 0.457353745215965
+    },
+    {
+      "complaint": 1,
+      "usage": 0,
+      "status": 2,
+      "n": 9,
+      "events": 9,
+      "risk": 0.41992986557568673
+    },
+    {
+      "complaint": 0,
+      "usage": 1,
+      "status": 2,
+      "n": 308,
+      "events": 100,
+      "risk": 0.31456696982224064
+    },
+    {
+      "complaint": 0,
+      "usage": 2,
+      "status": 2,
+      "n": 6,
+      "events": 4,
+      "risk": 0.27607561929595825
+    },
+    {
+      "complaint": 1,
+      "usage": 0,
+      "status": 1,
+      "n": 2,
+      "events": 2,
+      "risk": 0.23536209553158705
+    },
+    {
+      "complaint": 1,
+      "usage": 2,
+      "status": 1,
+      "n": 15,
+      "events": 5,
+      "risk": 0.23365617433414043
+    },
+    {
+      "complaint": 0,
+      "usage": 0,
+      "status": 1,
+      "n": 17,
+      "events": 3,
+      "risk": 0.16697205680256527
+    },
+    {
+      "complaint": 0,
+      "usage": 1,
+      "status": 1,
+      "n": 487,
+      "events": 24,
+      "risk": 0.05360545582188346
+    },
+    {
+      "complaint": 0,
+      "usage": 2,
+      "status": 1,
+      "n": 863,
+      "events": 13,
+      "risk": 0.018321592414150524
+    }
+  ],
+  "triage": [
+    {
+      "action": "none",
+      "n": 631,
+      "churners": 87,
+      "rate": 0.13787638668779714,
+      "mean_value": 514.3355150554681,
+      "churn_value": 8493.980000000001
+    },
+    {
+      "action": "service",
+      "n": 22,
+      "churners": 17,
+      "rate": 0.7727272727272727,
+      "mean_value": 282.3029545454546,
+      "churn_value": 3810.6699999999996
+    }
+  ],
+  "offer_trial": {
+    "n": 7,
+    "churners": 5,
+    "mean_value": 661.7007142857143
+  },
+  "headline_by_status": [
+    {
+      "status": 1,
+      "n": 14,
+      "churners": 14
+    },
+    {
+      "status": 2,
+      "n": 116,
+      "churners": 63
+    }
+  ],
+  "expected_ties": {
+    "expected_caught": 74.27272727272728
+  },
+  "row_split": {
+    "n": 626,
+    "churners": 100,
+    "prevalence": 0.1597444089456869,
+    "mean_prediction": 0.13351900574068595,
+    "brier": 0.08847567812436417,
+    "auc": 0.883574144486692,
+    "average_precision": 0.5960967447732177,
+    "campaign20": {
+      "contacts": 125,
+      "caught": 60,
+      "false_positives": 65,
+      "caught_value": 4930.795,
+      "mean_value": 89.07743999999998,
+      "inactive": 118,
+      "complaints": 26,
+      "predicted_risk": 0.4068150453585177,
+      "budget": 0.2,
+      "population": 626,
+      "capacity": 125,
+      "precision": 0.48,
+      "recall": 0.6,
+      "lift": 3.0048,
+      "value_recall": 0.4768257038210014,
+      "missed": 40,
+      "true_negatives": 461
+    },
+    "profiles_shared_with_training": 69
+  },
+  "reconciliation": {
+    "direct": [
+      {
+        "n": 3150,
+        "churners": 495
+      }
+    ],
+    "grouped": [
+      {
+        "n": 3150,
+        "churners": 495
+      }
+    ]
+  }
+}

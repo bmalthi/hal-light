@@ -1,0 +1,104 @@
+[
+  {
+    "id": "weekly-tasks",
+    "form": "bar",
+    "title": "Synthetic completed tasks",
+    "categories": [
+      "Week 1",
+      "Week 2",
+      "Week 3",
+      "Week 4"
+    ],
+    "series": [
+      {
+        "name": "Completed",
+        "values": [
+          90,
+          110,
+          120,
+          130
+        ]
+      }
+    ],
+    "value_format": "{:.0f}"
+  },
+  {
+    "id": "trend",
+    "form": "line",
+    "title": "Synthetic weekly trend",
+    "x": [
+      "Week 1",
+      "Week 2",
+      "Week 3"
+    ],
+    "series": [
+      {
+        "name": "Completed",
+        "values": [
+          90,
+          110,
+          120
+        ]
+      }
+    ]
+  },
+  {
+    "id": "teams",
+    "form": "hbar",
+    "title": "Synthetic team totals",
+    "rows": [
+      {
+        "label": "Team A",
+        "value": 30
+      },
+      {
+        "label": "Team B",
+        "value": 20
+      }
+    ]
+  },
+  {
+    "id": "bridge",
+    "form": "waterfall",
+    "title": "Synthetic change bridge",
+    "start_label": "Start",
+    "start_value": 100,
+    "steps": [
+      {
+        "label": "Added",
+        "delta": 30
+      },
+      {
+        "label": "Removed",
+        "delta": -10
+      }
+    ],
+    "end_label": "End"
+  },
+  {
+    "id": "activity",
+    "form": "combo",
+    "title": "Synthetic activity and completion rate",
+    "categories": [
+      "Week 1",
+      "Week 2",
+      "Week 3"
+    ],
+    "bar_series": {
+      "name": "Tasks",
+      "values": [
+        100,
+        120,
+        140
+      ]
+    },
+    "line_series": {
+      "name": "Rate",
+      "values": [
+        0.6,
+        0.7,
+        0.75
+      ]
+    }
+  }
+]

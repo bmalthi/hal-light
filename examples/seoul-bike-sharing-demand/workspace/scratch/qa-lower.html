@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seoul bike demand — planning brief</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5f6b7a;
+    --accent: #1f6feb;
+    --accent-soft: #f5f8ff;
+    --rule: #e3e8ee;
+    --page: #ffffff;
+    --canvas: #f0f2f5;
+    --good: #1d7a3a;
+    --good-soft: #f6fbf6;
+    --good-rule: #cfe8cf;
+    --bad: #b42318;
+    --warn: #8a5a00;
+    --warn-rule: #d0a000;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .page {
+    max-width: 780px;
+    margin: 32px auto;
+    background: var(--page);
+    padding: 46px 56px 52px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+  }
+  .kicker {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 6px 0 4px;
+    font-size: 25px;
+    line-height: 1.25;
+  }
+  .byline {
+    margin: 0 0 22px;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .bottomline {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+  }
+  .bottomline b { color: #000; }
+  h2 {
+    margin: 24px 0 11px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  h3 {
+    margin: 22px 0 5px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin: 0 0 7px; }
+  .num {
+    color: #000;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .caveat {
+    color: var(--warn);
+    border-bottom: 1px dotted var(--warn-rule);
+  }
+  .finding { margin: 0 0 6px; }
+  .fig {
+    margin: 10px 0 16px;
+    text-align: center;
+  }
+  .fig svg,
+  .fig img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .fig figcaption {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+  table.bridge {
+    width: 100%;
+    margin: 10px 0 12px;
+    border-collapse: collapse;
+    font-size: 15.5px;
+  }
+  table.bridge th,
+  table.bridge td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.bridge th {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+  .up { color: var(--good); font-weight: 700; }
+  .down { color: var(--bad); font-weight: 700; }
+  .rec {
+    margin: 8px 0 16px;
+    padding: 14px 18px;
+    background: var(--good-soft);
+    border: 1px solid var(--good-rule);
+    border-radius: 6px;
+  }
+  .rec h2 {
+    margin-top: 0;
+    border: 0;
+    color: var(--good);
+  }
+  .method {
+    color: #3d4654;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .foot {
+    margin-top: 20px;
+    color: #9aa4b1;
+    font-size: 12.5px;
+  }
+  em { color: #000; }
+  code {
+    padding: 1px 4px;
+    background: #f6f8fa;
+    border-radius: 4px;
+    font: .92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media screen and (max-width: 680px) {
+    body { font-size: 16px; }
+    .page { margin: 0; padding: 28px 22px 34px; border-radius: 0; }
+    table.bridge { font-size: 14px; }
+    table.bridge th,
+    table.bridge td { padding: 7px 6px; }
+    .num { white-space: normal; }
+  }
+  /* ── Print / PDF ──────────────────────────────────────────────────────────
+     The on-screen "card" is a screen affordance; on paper the sheet IS the card.
+     The print rules preserve the document layout during browser export. */
+  @media print {
+    :root { color-scheme: light; }
+    @page { margin: 12mm; }
+    html, body { background: #fff !important; }
+    body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important; /* keep callout & chart fills, not white */
+    }
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: #fff;
+    }
+    /* never split a finding, chart, table row, or callout across a page fold */
+    .finding, .fig, figure, table.bridge, tr, img, svg,
+    .rec, .bottomline { break-inside: avoid; page-break-inside: avoid; }
+    /* don't strand a heading at the foot of a page */
+    h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    /* opt-in hard page break: <div class="new-page"></div> */
+    .new-page { break-before: page; page-break-before: always; }
+  }
+</style>
+</head>
+<body><main class="page"><h2>A simple forecast wins an honest chronological comparison</h2><p><b>Daily rule:</b> at midnight, predict each operating hour with the mean rental count at the same clock hour and same work/off-day type over the preceding 28 calendar days, excluding closed hours. Never use the target day’s actual rentals or observed weather. This is a rolling local-average model, updated daily; it is not a single three-month-ahead forecast.</p><p>Select the window by June–August mean absolute error (MAE), then evaluate the locked choice in September–November. Earlier December–May history is available for initialization. Both validation and final test favor 28 days. The comparison uses exactly the same operating hours for all models; last-week forecasts fall back to the 28-day rule when the prior week’s hour was closed.</p><figure class="fig"><svg class="viz-errors" viewBox="0 0 680 186" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Recent matching hours beat last week"><style>
+  .viz-errors {
+    --surface: #fcfcfb; --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --c-blue: #2a78d6;
+  }
+  .viz-errors text { font-family: system-ui,-apple-system,'Segoe UI',sans-serif; }
+</style><rect x="0" y="0" width="680" height="186" fill="var(--surface)"/><text x="16" y="20" fill="var(--ink-primary)" font-size="14.5" font-weight="700">Recent matching hours beat last week</text><text x="16" y="37" fill="var(--ink-secondary)" font-size="12">September–November hourly MAE; lower is better</text><path d="M150.0,50.0 L463.7,50.0 Q467.7,50.0 467.7,54.0 L467.7,62.0 Q467.7,66.0 463.7,66.0 L150.0,66.0 Z" fill="var(--c-blue)"/><text x="142" y="63.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Past 28d matching hour</text><text x="473.7" y="63.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">228</text><path d="M150.0,80.0 L506.1,80.0 Q510.1,80.0 510.1,84.0 L510.1,92.0 Q510.1,96.0 506.1,96.0 L150.0,96.0 Z" fill="var(--c-blue)"/><text x="142" y="93.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Past 7d hour</text><text x="516.1" y="93.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">258</text><path d="M150.0,110.0 L509.7,110.0 Q513.7,110.0 513.7,114.0 L513.7,122.0 Q513.7,126.0 509.7,126.0 L150.0,126.0 Z" fill="var(--c-blue)"/><text x="142" y="123.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Past 56d matching hour</text><text x="519.7" y="123.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">261</text><path d="M150.0,140.0 L554.7,140.0 Q558.7,140.0 558.7,144.0 L558.7,152.0 Q558.7,156.0 554.7,156.0 L150.0,156.0 Z" fill="var(--c-blue)"/><text x="142" y="153.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Last week</text><text x="564.7" y="153.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">293</text></svg></figure><table class="bridge"><thead><tr><th>Model</th><th>Validation MAE</th><th>Test MAE</th><th>Test RMSE</th><th>Test WAPE</th></tr></thead><tbody><tr><td>Past 28d hour/daytype</td><td>254.3</td><td>227.9</td><td>364.0</td><td>24.7%</td></tr><tr><td>Past 7d hour</td><td>281.6</td><td>258.4</td><td>401.6</td><td>28.0%</td></tr><tr><td>Past 56d hour/daytype</td><td>297.1</td><td>260.9</td><td>384.8</td><td>28.2%</td></tr><tr><td>Last week</td><td>308.2</td><td>293.2</td><td>508.9</td><td>31.7%</td></tr></tbody></table><p>Final test: 1,937 operating hours, <b>227.9 rentals/hour MAE</b>, 24.7% weighted absolute percentage error, and 2.8% aggregate overprediction. WAPE is total absolute error divided by total observed rentals; it is not an average percentage error per hour.</p><table class="bridge"><thead><tr><th>Month</th><th>Operating hours</th><th>MAE</th><th>WAPE</th><th>Forecast bias</th></tr></thead><tbody><tr><td>2018-06</td><td>720</td><td>308.3</td><td>24.7%</td><td>-5.8%</td></tr><tr><td>2018-07</td><td>744</td><td>245.5</td><td>24.9%</td><td>9.8%</td></tr><tr><td>2018-08</td><td>744</td><td>210.9</td><td>24.1%</td><td>7.1%</td></tr><tr><td>2018-09</td><td>624</td><td>322.8</td><td>29.9%</td><td>-10.2%</td></tr><tr><td>2018-10</td><td>665</td><td>212.7</td><td>21.7%</td><td>5.1%</td></tr><tr><td>2018-11</td><td>648</td><td>152.3</td><td>21.2%</td><td>18.3%</td></tr></tbody></table><p>Rain exposes the limitation of calendar-only predictions. Retrospective weather slicing is diagnostic, not a deployment input:</p><table class="bridge"><thead><tr><th>Final-test weather</th><th>Hours</th><th>MAE</th><th>WAPE</th></tr></thead><tbody><tr><td>Dry</td><td>1850</td><td>199.5</td><td>20.8%</td></tr><tr><td>Rain</td><td>87</td><td>833.4</td><td>504.2%</td></tr></tbody></table><h3>What is actually available before the day starts?</h3><table class="bridge"><thead><tr><th>Input</th><th>Deployment status</th></tr></thead><tbody><tr><td>Clock hour, date, weekend</td><td>Known in advance.</td></tr><tr><td>Holiday calendar</td><td>Known if supplied by the operator; classification assumes the published schedule is available.</td></tr><tr><td>Previous rentals and operation flags</td><td>Known only after daily data arrives; refresh must fail closed when feeds are late.</td></tr><tr><td>Target functioning status</td><td>Use a planned closure schedule, not the future observed flag. Reported main errors exclude closures; all-hour gated scores assume the schedule was known.</td></tr><tr><td>Temperature, rain, snow, wind, humidity, solar, visibility, dew point</td><td>The supplied values are realized observations. They are excluded from the forecast. A weather-enhanced model needs archived, timestamped forecasts and a new chronological backtest.</td></tr></tbody></table><h2>A planning envelope is useful, but it is not a fleet guarantee</h2><p>The preceding 28-day matching-hour 90th percentile covers only <b>83.5%</b> of validation hours and <b>87.9%</b> of final-test hours. Calling it a “90% service level” would be misleading.</p><p>Add <b>52.46 rentals/hour</b>, the validation-only 90th percentile of actual-minus-historical-p90. Freeze that correction before the final test. The resulting upper planning envelope covers <b>92.8%</b> of September–November operating hours (93.3% workdays; 91.7% off days). It leaves an average 339.3 rentals/hour of headroom and 8.7 rentals/hour above the envelope, averaged across all test hours.</p><p>Those are volume-proxy tradeoffs, <b>not actual idle bikes or unmet trips</b>. The correction has no statistical guarantee under seasonal drift; test rows are serially dependent and the holdout covers autumn only. It is a starting point for a service-planning pilot, not a staffing or stock procurement target.</p><h2>The model produces a full next-day planning curve</h2><p>Illustration at the dataset boundary: <b>1 December 2018</b>, treated as an off day with scheduled operation. No actual outcomes for that day are used or supplied. Each hour has seven matching operating observations in the preceding 28 days. Transition into winter may invalidate this November-based curve; it must be reviewed against recent bias and weather forecasts before use.</p><figure class="fig"><svg class="viz-forecast" viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Next-day example: midday and afternoon lead"><style>
+  .viz-forecast {
+    --surface: #fcfcfb; --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --c-blue: #2a78d6;
+  }
+  .viz-forecast text { font-family: system-ui,-apple-system,'Segoe UI',sans-serif; }
+</style><rect x="0" y="0" width="680" height="330" fill="var(--surface)"/><text x="52" y="20" fill="var(--ink-primary)" font-size="14.5" font-weight="700">Next-day example: midday and afternoon lead</text><text x="52" y="37" fill="var(--ink-secondary)" font-size="12">1 December 2018; assumes scheduled operation, calendar only</text><line x1="52" y1="290.0" x2="550.6" y2="290.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="293.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">38</text><line x1="52" y1="229.0" x2="550.6" y2="229.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="232.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">295</text><line x1="52" y1="168.0" x2="550.6" y2="168.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="171.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">551</text><line x1="52" y1="107.0" x2="550.6" y2="107.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="110.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">808</text><line x1="52" y1="46.0" x2="550.6" y2="46.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="49.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">1,064</text><text x="52.0" y="308.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">00</text><text x="182.1" y="308.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">06</text><text x="312.1" y="308.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">12</text><text x="442.2" y="308.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">18</text><text x="550.6" y="308.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">23</text><path d="M 52.0,154.2 L 73.7,175.7 L 95.4,206.5 L 117.0,231.7 L 138.7,256.7 L 160.4,273.2 L 182.1,270.5 L 203.7,249.0 L 225.4,209.1 L 247.1,186.5 L 268.8,169.4 L 290.5,148.9 L 312.1,109.3 L 333.8,93.0 L 355.5,77.1 L 377.2,65.3 L 398.9,65.4 L 420.5,62.8 L 442.2,89.1 L 463.9,117.2 L 485.6,131.0 L 507.2,134.6 L 528.9,140.6 L 550.6,171.4" fill="none" stroke="var(--c-blue)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="154.2" r="4" fill="var(--c-blue)" stroke="var(--surface)" stroke-width="2"/><circle cx="550.6" cy="171.4" r="4" fill="var(--c-blue)" stroke="var(--surface)" stroke-width="2"/><text x="558.6" y="174.9" fill="var(--ink-secondary)" font-size="11" font-weight="600">Predicted rentals</text></svg></figure><table class="bridge"><thead><tr><th>Hour</th><th>Point forecast</th><th>Planning envelope</th></tr></thead><tbody><tr><td>00:00</td><td>609.4</td><td>786.1</td></tr><tr><td>01:00</td><td>518.7</td><td>682.3</td></tr><tr><td>02:00</td><td>389.6</td><td>553.3</td></tr><tr><td>03:00</td><td>283.4</td><td>389.7</td></tr><tr><td>04:00</td><td>178.4</td><td>258.7</td></tr><tr><td>05:00</td><td>109.1</td><td>184.7</td></tr><tr><td>06:00</td><td>120.6</td><td>209.9</td></tr><tr><td>07:00</td><td>210.6</td><td>363.9</td></tr><tr><td>08:00</td><td>378.4</td><td>606.1</td></tr><tr><td>09:00</td><td>473.4</td><td>689.3</td></tr><tr><td>10:00</td><td>545.3</td><td>791.1</td></tr><tr><td>11:00</td><td>631.4</td><td>935.7</td></tr><tr><td>12:00</td><td>797.9</td><td>1,130.9</td></tr><tr><td>13:00</td><td>866.4</td><td>1,250.9</td></tr><tr><td>14:00</td><td>933.1</td><td>1,324.7</td></tr><tr><td>15:00</td><td>983.0</td><td>1,421.5</td></tr><tr><td>16:00</td><td>982.4</td><td>1,486.3</td></tr><tr><td>17:00</td><td>993.3</td><td>1,518.3</td></tr><tr><td>18:00</td><td>883.0</td><td>1,322.1</td></tr><tr><td>19:00</td><td>764.6</td><td>1,098.7</td></tr><tr><td>20:00</td><td>706.7</td><td>1,009.5</td></tr><tr><td>21:00</td><td>691.7</td><td>961.1</td></tr><tr><td>22:00</td><td>666.6</td><td>948.3</td></tr><tr><td>23:00</td><td>537.0</td><td>716.5</td></tr></tbody></table><section class="rec"><h2>Recommendation</h2><p><b>Pilot daily capacity scheduling with a seasonal override.</b> Stage rebalancing before the 18:00 workday peak in spring–autumn, and before 08:00 in winter. On off days, follow the local afternoon/evening curve rather than copying commute shifts. Reserve 01:00–05:00 as a candidate maintenance window: its historical mean is 249 rentals/hour versus 1,207 during 16:00–20:00; keep a service floor because demand remains nonzero.</p><p><b>Keep rain-day staffing flexible.</b> Review next-day forecast alerts and use cancellable/redeployable capacity; do not automate a weather discount from realized-weather associations. Pair the forecast with the operator’s planned closure calendar and reopen with a conservative manual plan when recent matching history is sparse.</p><p><b>Size trucks and bikes only after adding station flows.</b> Obtain origin/destination trips, journey duration, station inventory, empty/full events, unsuccessful rental attempts, maintenance availability and truck turnaround. Then simulate inventory paths and test station-level service targets. Network rentals per hour cannot determine required bikes, staff counts or which station needs a truck.</p></section><h2>Watch items and drift controls</h2><ul><li><b>Forecast failure:</b> monitor rolling weekly MAE/WAPE and signed error by hour, day type, weather alert and season. Compare with the last-week baseline at the same timestamps. Investigate persistent signed bias or a model that no longer beats baseline; the November holdout already overpredicts by 18.3%.</li><li><b>Service envelope:</b> track actual coverage and headroom by hour and day type. If coverage falls below the intended operating target, recalibrate from a recent completed window and retest before changing capacity. The current correction is not validated through a fresh winter.</li><li><b>Data and closure drift:</b> alert on missing/duplicate hours, late feeds, changed unit definitions, and scheduled-versus-actual closure mismatches. Never train closed-hour zeros into the operating-demand baseline.</li><li><b>Suppressed demand:</b> low rentals may mean empty docks or poor availability, not weak demand. Add stockouts and failed attempts before reducing supply based on the forecast.</li><li><b>Structural change:</b> one year cannot identify multi-year growth, network expansion or recurring seasonality separately. New stations, fares or mobility patterns require a fresh backtest. The supplied historical exercise does not describe current Seoul operations.</li></ul><h2>Methodology</h2><div class="method"><p>Read-only source: supplied <code>seoul-bike-sharing-demand-local/data.csv</code>. Dates parsed explicitly as day/month/year. SOURCE.txt attributes the dataset to UCI Seoul Bike Sharing Demand, DOI 10.24432/C5F62R, CC BY 4.0; the exercise is a local adaptation, not a verified company take-home. No external data or realized future outcomes were used.</p><p>Quality: 365 complete calendar days, no duplicate date/hour keys, no missing modeled or diagnostic fields, no negative rentals or invalid hours. All 295 non-functioning hours have zero rentals. The total 6,172,314 rentals independently reconciles through season/hour groups; holdout MAE and WAPE independently reconcile from hourly error aggregates. Raw hours stay inside an in-memory DuckDB session; saved SQL and JSON contain calculations and aggregate outputs only.</p><p>Reproduce from the repository root with <code>uv run workspaces/2026-11-04-seoul-bike-demand/scratch/analyze.py</code>, then <code>supplement.py</code> and <code>build_brief.py</code> from the same scratch directory. Full commands, metric definitions, instruments and assumptions are in methodology.md. Charts use inline SVG and all plotted values appear in adjacent tables.</p></div></main></body></html>

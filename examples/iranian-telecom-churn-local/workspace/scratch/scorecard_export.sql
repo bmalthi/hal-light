@@ -1,0 +1,1 @@
+SELECT * FROM main.fit_complaint_usage WHERE n>=20 ORDER BY probability DESC

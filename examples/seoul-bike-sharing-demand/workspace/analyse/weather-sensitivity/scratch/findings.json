@@ -1,0 +1,607 @@
+{
+  "rain": {
+    "season_hour_daytype": {
+      "common_cells": 144,
+      "total_exposed_hours": 516,
+      "total_reference_hours": 7949,
+      "total_exposed_dates": 100,
+      "total_reference_dates": 353,
+      "exposed_hours": 516,
+      "reference_hours": 6087,
+      "exposed_dates": 100,
+      "reference_dates": 353,
+      "standardized_exposed_mean": 153.64200435588438,
+      "standardized_reference_mean": 884.3935923588782,
+      "relative_difference_pct": -82.62741773760635,
+      "exposed_mean_at_exposed_mix": 167.2577519379845,
+      "reference_mean_at_exposed_mix": 874.4009502823121,
+      "exposed_mix_difference_pct": -80.8717325977307,
+      "exposed_retained_pct": 100.0,
+      "reference_retained_pct": 76.57566989558435,
+      "axes": [
+        "season",
+        "hour",
+        "weekend"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": false
+    },
+    "season_hour_daytype_temp5": {
+      "common_cells": 311,
+      "total_exposed_hours": 516,
+      "total_reference_hours": 7949,
+      "total_exposed_dates": 100,
+      "total_reference_dates": 353,
+      "exposed_hours": 509,
+      "reference_hours": 3400,
+      "exposed_dates": 100,
+      "reference_dates": 332,
+      "standardized_exposed_mean": 200.98268251531871,
+      "standardized_reference_mean": 938.2767820135263,
+      "relative_difference_pct": -78.57959544900885,
+      "exposed_mean_at_exposed_mix": 165.7033398821218,
+      "reference_mean_at_exposed_mix": 917.608921200147,
+      "exposed_mix_difference_pct": -81.9418342549027,
+      "exposed_retained_pct": 98.64341085271317,
+      "reference_retained_pct": 42.77267580827777,
+      "axes": [
+        "season",
+        "hour",
+        "weekend",
+        "temp5"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": false
+    },
+    "month_hour_daytype_temp5": {
+      "common_cells": 357,
+      "total_exposed_hours": 516,
+      "total_reference_hours": 7949,
+      "total_exposed_dates": 100,
+      "total_reference_dates": 353,
+      "exposed_hours": 458,
+      "reference_hours": 1882,
+      "exposed_dates": 98,
+      "reference_dates": 301,
+      "standardized_exposed_mean": 181.78792735042734,
+      "standardized_reference_mean": 937.2277938949773,
+      "relative_difference_pct": -80.6036559591405,
+      "exposed_mean_at_exposed_mix": 168.22270742358077,
+      "reference_mean_at_exposed_mix": 890.7511740485734,
+      "exposed_mix_difference_pct": -81.11451184970232,
+      "exposed_retained_pct": 88.75968992248062,
+      "reference_retained_pct": 23.67593407975846,
+      "axes": [
+        "month",
+        "hour",
+        "weekend",
+        "temp5"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": false
+    },
+    "season_hour_daytype_temp5_min3": {
+      "common_cells": 40,
+      "total_exposed_hours": 516,
+      "total_reference_hours": 7949,
+      "total_exposed_dates": 100,
+      "total_reference_dates": 353,
+      "exposed_hours": 171,
+      "reference_hours": 613,
+      "exposed_dates": 48,
+      "reference_dates": 164,
+      "standardized_exposed_mean": 163.13176779640426,
+      "standardized_reference_mean": 966.0383436082919,
+      "relative_difference_pct": -83.11332372304356,
+      "exposed_mean_at_exposed_mix": 157.96491228070175,
+      "reference_mean_at_exposed_mix": 995.5793063678411,
+      "exposed_mix_difference_pct": -84.13336724956618,
+      "exposed_retained_pct": 33.13953488372093,
+      "reference_retained_pct": 7.711661844257139,
+      "axes": [
+        "season",
+        "hour",
+        "weekend",
+        "temp5"
+      ],
+      "minimum_hours_per_arm": 3,
+      "zero_humidity_excluded": false
+    },
+    "month_hour_daytype_temp5_min3": {
+      "common_cells": 15,
+      "total_exposed_hours": 516,
+      "total_reference_hours": 7949,
+      "total_exposed_dates": 100,
+      "total_reference_dates": 353,
+      "exposed_hours": 47,
+      "reference_hours": 98,
+      "exposed_dates": 22,
+      "reference_dates": 49,
+      "standardized_exposed_mean": 106.64080459770115,
+      "standardized_reference_mean": 536.131288998358,
+      "relative_difference_pct": -80.10919959606615,
+      "exposed_mean_at_exposed_mix": 105.8936170212766,
+      "reference_mean_at_exposed_mix": 555.5539766970618,
+      "exposed_mix_difference_pct": -80.93909476612038,
+      "exposed_retained_pct": 9.108527131782946,
+      "reference_retained_pct": 1.2328594791797711,
+      "axes": [
+        "month",
+        "hour",
+        "weekend",
+        "temp5"
+      ],
+      "minimum_hours_per_arm": 3,
+      "zero_humidity_excluded": false
+    },
+    "season_hour_daytype_temp5_humid20": {
+      "common_cells": 222,
+      "total_exposed_hours": 516,
+      "total_reference_hours": 7949,
+      "total_exposed_dates": 100,
+      "total_reference_dates": 353,
+      "exposed_hours": 365,
+      "reference_hours": 735,
+      "exposed_dates": 91,
+      "reference_dates": 195,
+      "standardized_exposed_mean": 208.97207683982685,
+      "standardized_reference_mean": 704.7371240450725,
+      "relative_difference_pct": -70.34751402900955,
+      "exposed_mean_at_exposed_mix": 169.45205479452054,
+      "reference_mean_at_exposed_mix": 670.9392779440542,
+      "exposed_mix_difference_pct": -74.74405503374776,
+      "exposed_retained_pct": 70.73643410852713,
+      "reference_retained_pct": 9.246446093848283,
+      "axes": [
+        "season",
+        "hour",
+        "weekend",
+        "temp5",
+        "humid20"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": false
+    },
+    "season_hour_daytype_temp5_humid20_nozero": {
+      "common_cells": 222,
+      "total_exposed_hours": 516,
+      "total_reference_hours": 7932,
+      "total_exposed_dates": 100,
+      "total_reference_dates": 353,
+      "exposed_hours": 365,
+      "reference_hours": 735,
+      "exposed_dates": 91,
+      "reference_dates": 195,
+      "standardized_exposed_mean": 208.97207683982683,
+      "standardized_reference_mean": 704.7371240450727,
+      "relative_difference_pct": -70.34751402900955,
+      "exposed_mean_at_exposed_mix": 169.45205479452054,
+      "reference_mean_at_exposed_mix": 670.9392779440543,
+      "exposed_mix_difference_pct": -74.74405503374776,
+      "exposed_retained_pct": 70.73643410852713,
+      "reference_retained_pct": 9.266263237518912,
+      "axes": [
+        "season",
+        "hour",
+        "weekend",
+        "temp5",
+        "humid20"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": true
+    }
+  },
+  "holiday": {
+    "season_hour_daytype": {
+      "common_cells": 144,
+      "total_exposed_hours": 408,
+      "total_reference_hours": 8057,
+      "total_exposed_dates": 17,
+      "total_reference_dates": 336,
+      "exposed_hours": 408,
+      "reference_hours": 6809,
+      "exposed_dates": 17,
+      "reference_dates": 284,
+      "standardized_exposed_mean": 661.1212784628884,
+      "standardized_reference_mean": 713.4103713384332,
+      "relative_difference_pct": -7.329455104142168,
+      "exposed_mean_at_exposed_mix": 529.1544117647059,
+      "reference_mean_at_exposed_mix": 585.6707106604699,
+      "exposed_mix_difference_pct": -9.649842115551554,
+      "exposed_retained_pct": 100.0,
+      "reference_retained_pct": 84.51036365893012,
+      "axes": [
+        "season",
+        "hour",
+        "weekend"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": false
+    },
+    "month_hour_daytype": {
+      "common_cells": 288,
+      "total_exposed_hours": 408,
+      "total_reference_hours": 8057,
+      "total_exposed_dates": 17,
+      "total_reference_dates": 336,
+      "exposed_hours": 408,
+      "reference_hours": 4776,
+      "exposed_dates": 17,
+      "reference_dates": 199,
+      "standardized_exposed_mean": 595.7576195987655,
+      "standardized_reference_mean": 687.2460162935689,
+      "relative_difference_pct": -13.31232113766413,
+      "exposed_mean_at_exposed_mix": 529.1544117647059,
+      "reference_mean_at_exposed_mix": 642.123403102602,
+      "exposed_mix_difference_pct": -17.593034421741084,
+      "exposed_retained_pct": 100.0,
+      "reference_retained_pct": 59.277646766786646,
+      "axes": [
+        "month",
+        "hour",
+        "weekend"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": false
+    },
+    "season_hour_daytype_temp5_wet": {
+      "common_cells": 253,
+      "total_exposed_hours": 408,
+      "total_reference_hours": 8057,
+      "total_exposed_dates": 17,
+      "total_reference_dates": 336,
+      "exposed_hours": 393,
+      "reference_hours": 2636,
+      "exposed_dates": 17,
+      "reference_dates": 221,
+      "standardized_exposed_mean": 650.6355782986684,
+      "standardized_reference_mean": 739.547230104596,
+      "relative_difference_pct": -12.022444028808321,
+      "exposed_mean_at_exposed_mix": 542.6793893129772,
+      "reference_mean_at_exposed_mix": 641.1311958952191,
+      "exposed_mix_difference_pct": -15.355953229630714,
+      "exposed_retained_pct": 96.32352941176471,
+      "reference_retained_pct": 32.71689214347772,
+      "axes": [
+        "season",
+        "hour",
+        "weekend",
+        "temp5",
+        "wet"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": false
+    },
+    "month_hour_daytype_temp5_wet": {
+      "common_cells": 307,
+      "total_exposed_hours": 408,
+      "total_reference_hours": 8057,
+      "total_exposed_dates": 17,
+      "total_reference_dates": 336,
+      "exposed_hours": 372,
+      "reference_hours": 1677,
+      "exposed_dates": 17,
+      "reference_dates": 161,
+      "standardized_exposed_mean": 649.3211322596388,
+      "standardized_reference_mean": 752.6027162479686,
+      "relative_difference_pct": -13.723254216146108,
+      "exposed_mean_at_exposed_mix": 536.3118279569892,
+      "reference_mean_at_exposed_mix": 643.5536709464723,
+      "exposed_mix_difference_pct": -16.6640092087056,
+      "exposed_retained_pct": 91.17647058823529,
+      "reference_retained_pct": 20.81419883331265,
+      "axes": [
+        "month",
+        "hour",
+        "weekend",
+        "temp5",
+        "wet"
+      ],
+      "minimum_hours_per_arm": 1,
+      "zero_humidity_excluded": false
+    }
+  },
+  "holiday_leave_one_date_out": {
+    "season_hour_daytype": {
+      "recomputed_support": {
+        "omissions": 17,
+        "runnable": 17,
+        "difference_min_pct": -14.921808073034892,
+        "difference_median_pct": -7.21769943522207,
+        "difference_max_pct": 0.2172389515319395,
+        "negative_count": 16,
+        "positive_count": 1,
+        "common_cells_range": [
+          120,
+          144
+        ],
+        "exposed_hours_range": [
+          384,
+          384
+        ],
+        "reference_hours_range": [
+          6264,
+          6809
+        ]
+      },
+      "fixed_common_support_full": {
+        "common_cells": 120,
+        "total_exposed_hours": 408,
+        "total_reference_hours": 8057,
+        "total_exposed_dates": 17,
+        "total_reference_dates": 336,
+        "exposed_hours": 384,
+        "reference_hours": 6264,
+        "exposed_dates": 16,
+        "reference_dates": 261,
+        "standardized_exposed_mean": 645.7086742880064,
+        "standardized_reference_mean": 698.9957979797285,
+        "relative_difference_pct": -7.623382550472391,
+        "exposed_mean_at_exposed_mix": 509.9869791666667,
+        "reference_mean_at_exposed_mix": 567.5105858573818,
+        "exposed_mix_difference_pct": -10.136129285378859,
+        "exposed_retained_pct": 94.11764705882354,
+        "reference_retained_pct": 77.74605932729304,
+        "axes": [
+          "season",
+          "hour",
+          "weekend"
+        ],
+        "minimum_hours_per_arm": 1,
+        "zero_humidity_excluded": false
+      },
+      "fixed_common_support_omissions": {
+        "omissions": 17,
+        "runnable": 17,
+        "difference_min_pct": -16.041606105406625,
+        "difference_median_pct": -7.500934971542462,
+        "difference_max_pct": 0.7410186020606613,
+        "negative_count": 16,
+        "positive_count": 1,
+        "common_cells_range": [
+          120,
+          120
+        ],
+        "exposed_hours_range": [
+          360,
+          384
+        ],
+        "reference_hours_range": [
+          6264,
+          6264
+        ]
+      }
+    },
+    "month_hour_daytype": {
+      "recomputed_support": {
+        "omissions": 17,
+        "runnable": 17,
+        "difference_min_pct": -19.73627696954374,
+        "difference_median_pct": -13.229456933088812,
+        "difference_max_pct": -9.33002897485007,
+        "negative_count": 17,
+        "positive_count": 0,
+        "common_cells_range": [
+          264,
+          288
+        ],
+        "exposed_hours_range": [
+          384,
+          384
+        ],
+        "reference_hours_range": [
+          4248,
+          4776
+        ]
+      },
+      "fixed_common_support_full": {
+        "common_cells": 120,
+        "total_exposed_hours": 408,
+        "total_reference_hours": 8057,
+        "total_exposed_dates": 17,
+        "total_reference_dates": 336,
+        "exposed_hours": 240,
+        "reference_hours": 1920,
+        "exposed_dates": 10,
+        "reference_dates": 80,
+        "standardized_exposed_mean": 461.53541666666666,
+        "standardized_reference_mean": 604.8039711934157,
+        "relative_difference_pct": -23.688428209895495,
+        "exposed_mean_at_exposed_mix": 432.84583333333336,
+        "reference_mean_at_exposed_mix": 578.9732407407408,
+        "exposed_mix_difference_pct": -25.23906065510927,
+        "exposed_retained_pct": 58.8235294117647,
+        "reference_retained_pct": 23.83020975549212,
+        "axes": [
+          "month",
+          "hour",
+          "weekend"
+        ],
+        "minimum_hours_per_arm": 1,
+        "zero_humidity_excluded": false
+      },
+      "fixed_common_support_omissions": {
+        "omissions": 17,
+        "runnable": 17,
+        "difference_min_pct": -34.50807412396005,
+        "difference_median_pct": -23.68842820989544,
+        "difference_max_pct": -13.168909603197243,
+        "negative_count": 17,
+        "positive_count": 0,
+        "common_cells_range": [
+          120,
+          120
+        ],
+        "exposed_hours_range": [
+          216,
+          240
+        ],
+        "reference_hours_range": [
+          1920,
+          1920
+        ]
+      }
+    },
+    "season_hour_daytype_temp5_wet": {
+      "recomputed_support": {
+        "omissions": 17,
+        "runnable": 17,
+        "difference_min_pct": -17.690819020223902,
+        "difference_median_pct": -11.74553271022507,
+        "difference_max_pct": -9.264945852072549,
+        "negative_count": 17,
+        "positive_count": 0,
+        "common_cells_range": [
+          229,
+          253
+        ],
+        "exposed_hours_range": [
+          369,
+          376
+        ],
+        "reference_hours_range": [
+          2180,
+          2636
+        ]
+      },
+      "fixed_common_support_full": {
+        "common_cells": 75,
+        "total_exposed_hours": 408,
+        "total_reference_hours": 8057,
+        "total_exposed_dates": 17,
+        "total_reference_dates": 336,
+        "exposed_hours": 215,
+        "reference_hours": 871,
+        "exposed_dates": 13,
+        "reference_dates": 118,
+        "standardized_exposed_mean": 483.6493247391038,
+        "standardized_reference_mean": 541.8626911978415,
+        "relative_difference_pct": -10.743195168143306,
+        "exposed_mean_at_exposed_mix": 509.6139534883721,
+        "reference_mean_at_exposed_mix": 593.7948029807258,
+        "exposed_mix_difference_pct": -14.176757538089479,
+        "exposed_retained_pct": 52.69607843137255,
+        "reference_retained_pct": 10.810475363038352,
+        "axes": [
+          "season",
+          "hour",
+          "weekend",
+          "temp5",
+          "wet"
+        ],
+        "minimum_hours_per_arm": 1,
+        "zero_humidity_excluded": false
+      },
+      "fixed_common_support_omissions": {
+        "omissions": 17,
+        "runnable": 17,
+        "difference_min_pct": -16.43290178390755,
+        "difference_median_pct": -10.743195168143282,
+        "difference_max_pct": -7.279999967300332,
+        "negative_count": 17,
+        "positive_count": 0,
+        "common_cells_range": [
+          75,
+          75
+        ],
+        "exposed_hours_range": [
+          191,
+          215
+        ],
+        "reference_hours_range": [
+          871,
+          871
+        ]
+      }
+    },
+    "month_hour_daytype_temp5_wet": {
+      "recomputed_support": {
+        "omissions": 17,
+        "runnable": 17,
+        "difference_min_pct": -16.7714526568138,
+        "difference_median_pct": -13.492293105175213,
+        "difference_max_pct": -12.208002358910742,
+        "negative_count": 17,
+        "positive_count": 0,
+        "common_cells_range": [
+          283,
+          304
+        ],
+        "exposed_hours_range": [
+          348,
+          355
+        ],
+        "reference_hours_range": [
+          1370,
+          1665
+        ]
+      },
+      "fixed_common_support_full": {
+        "common_cells": 65,
+        "total_exposed_hours": 408,
+        "total_reference_hours": 8057,
+        "total_exposed_dates": 17,
+        "total_reference_dates": 336,
+        "exposed_hours": 130,
+        "reference_hours": 355,
+        "exposed_dates": 10,
+        "reference_dates": 55,
+        "standardized_exposed_mean": 542.2948453608248,
+        "standardized_reference_mean": 623.9893183677721,
+        "relative_difference_pct": -13.09228709565785,
+        "exposed_mean_at_exposed_mix": 503.89230769230767,
+        "reference_mean_at_exposed_mix": 629.1447646797646,
+        "exposed_mix_difference_pct": -19.90836831507461,
+        "exposed_retained_pct": 31.862745098039216,
+        "reference_retained_pct": 4.406106491249845,
+        "axes": [
+          "month",
+          "hour",
+          "weekend",
+          "temp5",
+          "wet"
+        ],
+        "minimum_hours_per_arm": 1,
+        "zero_humidity_excluded": false
+      },
+      "fixed_common_support_omissions": {
+        "omissions": 17,
+        "runnable": 17,
+        "difference_min_pct": -16.70941616934015,
+        "difference_median_pct": -13.092287095657863,
+        "difference_max_pct": -7.375538357940902,
+        "negative_count": 17,
+        "positive_count": 0,
+        "common_cells_range": [
+          65,
+          65
+        ],
+        "exposed_hours_range": [
+          111,
+          130
+        ],
+        "reference_hours_range": [
+          355,
+          355
+        ]
+      }
+    }
+  },
+  "holiday_dates": 17,
+  "independent_rain_rebuild": {
+    "wet_mean": 200.98268251531874,
+    "dry_mean": 938.2767820135263
+  },
+  "interpretation": {
+    "support": "Conditional matched associations on retained common support, not all operating hours.",
+    "dependence": "Distinct dates are counts, not proof of independent observations; rain and holidays cluster.",
+    "humidity": "Humidity adjustment can absorb weather pathways; it is a descriptive sensitivity, not a causal identification improvement.",
+    "leave_one_out": "Ranges reflect dropping one holiday date and reweighting. Fixed common support removes cell disappearance but pooled weights can still change.",
+    "missing_data": [
+      "Multiple years and event-specific holiday calendars",
+      "Archived weather forecasts as issued before each rental day",
+      "Station inventories, trip duration/flows and unsuccessful rental attempts",
+      "Sensor-quality metadata for zero humidity readings"
+    ]
+  }
+}

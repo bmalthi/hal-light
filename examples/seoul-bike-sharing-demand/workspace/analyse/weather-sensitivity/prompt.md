@@ -1,0 +1,11 @@
+# Weather and holiday sensitivity (user-authorized check 3)
+
+Own this subfolder in analyse subrun mode; summary only, no brief. Authorized input absolute path /hal-light/examples/seoul-bike-sharing-demand/question/data.csv. Parent helper /hal-light/workspaces/2026-11-04-seoul-bike-demand/scratch/forecast_common.py available for memory-only load_source if useful. Use DuckDB absolute source, uv, no raw rows/extracts in artifacts or conversation. Save executable script, aggregate JSON, methodology, run_log (framing before computation).
+
+Check existing strong rain association under tighter matching: operating only; wet vs dry in season/hour/daytype cells, add temperature bins 5°C then month/hour/daytype/5°C; optionally humidity bands or wind as secondary sensitivity, explaining possible overcontrol and common-support attrition. Report category hours and independent dates, standardized means, percent difference, retained shares and sparse-cell sensitivity minimum3 per arm if feasible. Weight both arms by pooled common-support cell count as initial analysis; also report exposure-weighted contrast if useful. No causal claims.
+
+Holiday stability: reproduce season/hour/daytype and month/hour/daytype standardized means, then leave each operating holiday DATE out in turn and recompute common-support standardization. Return aggregate range/median/sign stability and number of holiday dates, NOT date-specific rows. Add weather-adjusted holiday comparison (month or season/hour/daytype/temp5/rain) with support warning. Prefer reliable summary to overfit. Flag autocorrelation and weather-confounding limits. Assess zero-humidity exclusion as sensitivity to weather-adjusted results if humidity used. Need not fetch external data.
+
+Output compact findings.json and methodology so parent integrates all final answers; specify what would require additional data (holiday/events multiple years, issued weather archives, demand suppressed by inventory) and avoid turning observed rain discount into forecast multiplier.
+
+Relocation note: the parent workspace is now `examples/seoul-bike-sharing-demand/workspace`; replace the historical `workspaces/2026-11-04-seoul-bike-demand` prefix in helper paths with that current path.

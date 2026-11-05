@@ -1,0 +1,1 @@
+SELECT h,count(*) n,avg(abs(y-pred)) mae,sqrt(avg((y-pred)^2)) rmse,sum(abs(y-pred))/sum(y) wape,sum(pred-y)/sum(y) bias,avg(y) actual,avg(pred) predicted FROM scored WHERE functioning AND d>=DATE '2018-09-01' AND model='Past 28d hour/daytype' GROUP BY 1 ORDER BY 1;

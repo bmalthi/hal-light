@@ -1,0 +1,1 @@
+CREATE TEMP VIEW main.unique_scores AS SELECT DISTINCT * FROM main.score_complaint_usage

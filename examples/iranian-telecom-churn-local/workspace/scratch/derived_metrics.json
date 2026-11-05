@@ -1,0 +1,16 @@
+{
+  "constant_training_prior_brier": 0.1338997472276761,
+  "precision_wilson95": [
+    0.5063645493259251,
+    0.6729520855304875
+  ],
+  "random_caught": 20.704441041347625,
+  "random_value_share": 0.1990811638591118,
+  "trial_n_per_arm": 470,
+  "trial_assumptions": {
+    "p0": 0.6,
+    "p1": 0.5,
+    "alpha_per_comparison": 0.025,
+    "power": 0.8
+  }
+}

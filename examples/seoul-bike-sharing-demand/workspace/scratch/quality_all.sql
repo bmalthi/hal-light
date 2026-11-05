@@ -1,0 +1,1 @@
+SELECT count(*) n,sum(CASE WHEN humidity IS NULL OR wind IS NULL OR visibility IS NULL OR dew IS NULL OR solar IS NULL OR snow IS NULL OR season IS NULL OR holiday IS NULL THEN 1 ELSE 0 END) other_nulls, min(y) min_rental,max(y) max_rental FROM hours;

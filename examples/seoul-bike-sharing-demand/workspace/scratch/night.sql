@@ -1,0 +1,1 @@
+SELECT CASE WHEN h BETWEEN 1 AND 5 THEN '01–05' WHEN h BETWEEN 7 AND 9 THEN '07–09' WHEN h BETWEEN 16 AND 20 THEN '16–20' ELSE 'Other hours' END band,count(*) n,avg(y) mean,sum(y) total FROM hours WHERE functioning GROUP BY 1;

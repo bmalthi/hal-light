@@ -1,0 +1,1 @@
+SELECT strftime(d,'%Y-%m') period,count(*) n,avg(abs(y-pred)) mae,sqrt(avg((y-pred)^2)) rmse,sum(abs(y-pred))/sum(y) wape,sum(pred-y)/sum(y) bias FROM scored WHERE functioning AND model='Past 28d hour/daytype' GROUP BY 1 ORDER BY 1;

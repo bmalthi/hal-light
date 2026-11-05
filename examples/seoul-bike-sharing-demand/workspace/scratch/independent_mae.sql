@@ -1,0 +1,1 @@
+SELECT sum(ae)/sum(n) mae,sum(ae)/sum(rentals) wape FROM (SELECT h,count(*) n,sum(abs(y-pred)) ae,sum(y) rentals FROM scored WHERE functioning AND d>=DATE '2018-09-01' AND model='Past 28d hour/daytype' GROUP BY 1);

@@ -1,0 +1,370 @@
+{
+  "scope": {
+    "start": "2018-04-01",
+    "end": "2018-11-30",
+    "n": 5561,
+    "post_closure_n": 288,
+    "normal_n": 5273,
+    "reopening_events_in_evaluation": 12,
+    "post_closure_dates": 13,
+    "normal_dates": 220
+  },
+  "overall": [
+    {
+      "delay_hours": 0,
+      "model": "recent7",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 951.9976006370899,
+      "mae": 292.23033284524024,
+      "rmse": 445.72354520647855,
+      "wape_pct": 30.63582348350277,
+      "bias_pct": -0.1977988873543274
+    },
+    {
+      "delay_hours": 0,
+      "model": "daytype28",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 945.6758353129721,
+      "mae": 274.05013284283484,
+      "rmse": 420.6419154449945,
+      "wape_pct": 28.729911141188094,
+      "bias_pct": -0.8605380516571789
+    },
+    {
+      "delay_hours": 0,
+      "model": "weekday4",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 942.0552808247916,
+      "mae": 309.4292543307559,
+      "rmse": 461.82294876009416,
+      "wape_pct": 32.4388639742239,
+      "bias_pct": -1.2400971040401594
+    },
+    {
+      "delay_hours": 0,
+      "model": "hgb_unadapted",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 951.4063223164504,
+      "mae": 290.36697940023515,
+      "rmse": 456.75293844793333,
+      "wape_pct": 30.440479739844285,
+      "bias_pct": -0.2597852598310117
+    },
+    {
+      "delay_hours": 0,
+      "model": "hgb_latency_trained",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 951.4063223164504,
+      "mae": 290.36697940023515,
+      "rmse": 456.75293844793333,
+      "wape_pct": 30.440479739844285,
+      "bias_pct": -0.2597852598310117
+    },
+    {
+      "delay_hours": 1,
+      "model": "recent7",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 952.0180054974696,
+      "mae": 292.68227108861885,
+      "rmse": 446.12539848686805,
+      "wape_pct": 30.683202207383992,
+      "bias_pct": -0.19565975383348008
+    },
+    {
+      "delay_hours": 1,
+      "model": "daytype28",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 945.5979967681633,
+      "mae": 274.2003812143645,
+      "rmse": 420.79122324944973,
+      "wape_pct": 28.74566235545819,
+      "bias_pct": -0.8686982172900954
+    },
+    {
+      "delay_hours": 1,
+      "model": "weekday4",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 942.0552808247916,
+      "mae": 309.4292543307559,
+      "rmse": 461.82294876009416,
+      "wape_pct": 32.4388639742239,
+      "bias_pct": -1.2400971040401594
+    },
+    {
+      "delay_hours": 1,
+      "model": "hgb_unadapted",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 950.9578088586239,
+      "mae": 299.0889196480047,
+      "rmse": 467.4052105660716,
+      "wape_pct": 31.354840063985705,
+      "bias_pct": -0.3068049480001707
+    },
+    {
+      "delay_hours": 1,
+      "model": "hgb_latency_trained",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 959.899330767381,
+      "mae": 288.02906308766546,
+      "rmse": 452.47465983095634,
+      "wape_pct": 30.195385430934827,
+      "bias_pct": 0.6305751117748981
+    },
+    {
+      "delay_hours": 6,
+      "model": "recent7",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 952.3655787328419,
+      "mae": 296.9660437057398,
+      "rmse": 453.1722374586946,
+      "wape_pct": 31.132289406730543,
+      "bias_pct": -0.15922208433223967
+    },
+    {
+      "delay_hours": 6,
+      "model": "daytype28",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 945.4758734313081,
+      "mae": 275.70713846382813,
+      "rmse": 423.46074626119025,
+      "wape_pct": 28.90362251201559,
+      "bias_pct": -0.8815009573571013
+    },
+    {
+      "delay_hours": 6,
+      "model": "weekday4",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 942.0552808247916,
+      "mae": 309.4292543307559,
+      "rmse": 461.82294876009416,
+      "wape_pct": 32.4388639742239,
+      "bias_pct": -1.2400971040401594
+    },
+    {
+      "delay_hours": 6,
+      "model": "hgb_unadapted",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 989.3364364359028,
+      "mae": 287.43593408613134,
+      "rmse": 457.9034931543058,
+      "wape_pct": 30.13320504323507,
+      "bias_pct": 3.716599633410178
+    },
+    {
+      "delay_hours": 6,
+      "model": "hgb_latency_trained",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 964.631679924599,
+      "mae": 292.08033150531605,
+      "rmse": 454.51166011713013,
+      "wape_pct": 30.62009816666976,
+      "bias_pct": 1.1266886124894522
+    },
+    {
+      "delay_hours": 24,
+      "model": "recent7",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 952.7794671222204,
+      "mae": 304.9559761433795,
+      "rmse": 462.8475782736154,
+      "wape_pct": 31.96991005145079,
+      "bias_pct": -0.11583229821587807
+    },
+    {
+      "delay_hours": 24,
+      "model": "daytype28",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 944.7586326430445,
+      "mae": 278.69334008621945,
+      "rmse": 426.6067746373516,
+      "wape_pct": 29.21667949312706,
+      "bias_pct": -0.9566925432902664
+    },
+    {
+      "delay_hours": 24,
+      "model": "weekday4",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 942.0552808247916,
+      "mae": 309.4292543307559,
+      "rmse": 461.82294876009416,
+      "wape_pct": 32.4388639742239,
+      "bias_pct": -1.2400971040401594
+    },
+    {
+      "delay_hours": 24,
+      "model": "hgb_unadapted",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 963.6013256019054,
+      "mae": 317.4548330791712,
+      "rmse": 479.20843840240684,
+      "wape_pct": 33.28022158243499,
+      "bias_pct": 1.0186719228865233
+    },
+    {
+      "delay_hours": 24,
+      "model": "hgb_latency_trained",
+      "n": 5561,
+      "actual_mean": 953.8843733141522,
+      "predicted_mean": 944.0953124060569,
+      "mae": 312.725436268857,
+      "rmse": 487.1057225166623,
+      "wape_pct": 32.784417589558736,
+      "bias_pct": -1.0262313947008437
+    }
+  ],
+  "matched_closure": [
+    {
+      "model": "recent7",
+      "matching": "season+hour+weekend",
+      "matched_post_hours": 288,
+      "matched_normal_hours": 2657,
+      "post_mae": 369.25266203703706,
+      "normal_mae_at_post_mix": 267.08384963634575,
+      "post_rentals_mean": 892.7777777777778,
+      "normal_rentals_at_post_mix": 915.7698255288958
+    },
+    {
+      "model": "recent7",
+      "matching": "season+hour+weekend+wet",
+      "matched_post_hours": 283,
+      "matched_normal_hours": 2532,
+      "post_mae": 361.96207302709075,
+      "normal_mae_at_post_mix": 301.0535095990534,
+      "post_rentals_mean": 906.565371024735,
+      "normal_rentals_at_post_mix": 863.3568971868733
+    },
+    {
+      "model": "daytype28",
+      "matching": "season+hour+weekend",
+      "matched_post_hours": 288,
+      "matched_normal_hours": 2657,
+      "post_mae": 319.79752724250034,
+      "normal_mae_at_post_mix": 242.70493570412202,
+      "post_rentals_mean": 892.7777777777778,
+      "normal_rentals_at_post_mix": 915.7698255288958
+    },
+    {
+      "model": "daytype28",
+      "matching": "season+hour+weekend+wet",
+      "matched_post_hours": 283,
+      "matched_normal_hours": 2532,
+      "post_mae": 311.87875563901093,
+      "normal_mae_at_post_mix": 287.68033561111594,
+      "post_rentals_mean": 906.565371024735,
+      "normal_rentals_at_post_mix": 863.3568971868733
+    },
+    {
+      "model": "weekday4",
+      "matching": "season+hour+weekend",
+      "matched_post_hours": 288,
+      "matched_normal_hours": 2657,
+      "post_mae": 348.6417824074074,
+      "normal_mae_at_post_mix": 279.4712886369826,
+      "post_rentals_mean": 892.7777777777778,
+      "normal_rentals_at_post_mix": 915.7698255288958
+    },
+    {
+      "model": "weekday4",
+      "matching": "season+hour+weekend+wet",
+      "matched_post_hours": 283,
+      "matched_normal_hours": 2532,
+      "post_mae": 339.14163722025916,
+      "normal_mae_at_post_mix": 320.4366061431395,
+      "post_rentals_mean": 906.565371024735,
+      "normal_rentals_at_post_mix": 863.3568971868733
+    },
+    {
+      "model": "hgb_unadapted",
+      "matching": "season+hour+weekend",
+      "matched_post_hours": 288,
+      "matched_normal_hours": 2657,
+      "post_mae": 350.8018186050392,
+      "normal_mae_at_post_mix": 247.06430751599157,
+      "post_rentals_mean": 892.7777777777778,
+      "normal_rentals_at_post_mix": 915.7698255288958
+    },
+    {
+      "model": "hgb_unadapted",
+      "matching": "season+hour+weekend+wet",
+      "matched_post_hours": 283,
+      "matched_normal_hours": 2532,
+      "post_mae": 348.44075617876587,
+      "normal_mae_at_post_mix": 280.74070840762437,
+      "post_rentals_mean": 906.565371024735,
+      "normal_rentals_at_post_mix": 863.3568971868733
+    },
+    {
+      "model": "hgb_latency_trained",
+      "matching": "season+hour+weekend",
+      "matched_post_hours": 288,
+      "matched_normal_hours": 2657,
+      "post_mae": 350.8018186050392,
+      "normal_mae_at_post_mix": 247.06430751599157,
+      "post_rentals_mean": 892.7777777777778,
+      "normal_rentals_at_post_mix": 915.7698255288958
+    },
+    {
+      "model": "hgb_latency_trained",
+      "matching": "season+hour+weekend+wet",
+      "matched_post_hours": 283,
+      "matched_normal_hours": 2532,
+      "post_mae": 348.44075617876587,
+      "normal_mae_at_post_mix": 280.74070840762437,
+      "post_rentals_mean": 906.565371024735,
+      "normal_rentals_at_post_mix": 863.3568971868733
+    }
+  ],
+  "missing_history": [
+    {
+      "delay_hours": 0,
+      "lag24_missing_pct": 4.873224240244561,
+      "lag48_missing_pct": 3.8841934903794284,
+      "prior_day_mean_missing_pct": 4.747347599352635,
+      "all_baseline_predictions_finite": true
+    },
+    {
+      "delay_hours": 1,
+      "lag24_missing_pct": 8.847329616975363,
+      "lag48_missing_pct": 3.8841934903794284,
+      "prior_day_mean_missing_pct": 4.747347599352635,
+      "all_baseline_predictions_finite": true
+    },
+    {
+      "delay_hours": 6,
+      "lag24_missing_pct": 28.717856500629384,
+      "lag48_missing_pct": 3.8841934903794284,
+      "prior_day_mean_missing_pct": 4.747347599352635,
+      "all_baseline_predictions_finite": true
+    },
+    {
+      "delay_hours": 24,
+      "lag24_missing_pct": 100.0,
+      "lag48_missing_pct": 3.8841934903794284,
+      "prior_day_mean_missing_pct": 100.0,
+      "all_baseline_predictions_finite": true
+    }
+  ],
+  "independent_check": {
+    "mae": 290.36697940023515,
+    "wape_pct": 30.440479739844292
+  }
+}

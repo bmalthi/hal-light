@@ -1,0 +1,1 @@
+SELECT 'sms_frequency' dimension,CASE WHEN sms=0 THEN '0' WHEN sms<100 THEN '1–99' ELSE '100+' END bin_label,count(*) n,sum(churn) churners,avg(churn) rate,avg(customer_value) mean_value FROM main.features GROUP BY 1,2 HAVING count(*)>=10 ORDER BY 2

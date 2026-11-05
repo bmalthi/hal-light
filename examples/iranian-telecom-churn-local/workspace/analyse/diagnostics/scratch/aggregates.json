@@ -1,0 +1,2143 @@
+{
+  "source": "/hal-light/examples/iranian-telecom-churn-local/question/data.csv",
+  "note": "All outputs are aggregates. Joint strata with n < 10 suppress churn counts/rates. Percentiles define bins on the full sample. Descriptive associations only.",
+  "quality": {
+    "total": {
+      "n": 3150,
+      "churns": 495,
+      "churn_rate": 0.15714285714285714
+    },
+    "exact_duplicates": {
+      "distinct_full_rows": 2850,
+      "duplicate_excess_rows": 300,
+      "repeated_groups": 165,
+      "rows_in_repeated_groups": 465,
+      "largest_group": 6
+    },
+    "feature_duplicates": {
+      "distinct_feature_rows": 2836,
+      "duplicate_excess_rows": 314,
+      "conflicting_label_groups": 14,
+      "rows_in_conflicting_label_groups": 64
+    },
+    "deduplicated_total": {
+      "n": 2850,
+      "churns": 446,
+      "churn_rate": 0.15649122807017543
+    },
+    "consistency": {
+      "zero_calls": 154,
+      "zero_seconds": 154,
+      "zero_calls_positive_seconds": 0,
+      "positive_calls_zero_seconds": 0,
+      "zero_calls_positive_failure": 0,
+      "failures_exceed_calls": 3,
+      "charge_outside_documented_0_to_9": 7,
+      "invalid_binary_codes": 0
+    }
+  },
+  "profile": [
+    {
+      "field": "failure",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 37,
+      "minimum": 0,
+      "q25": 1.0,
+      "median": 6.0,
+      "q75": 12.0,
+      "maximum": 36,
+      "mean": 7.627936507936508,
+      "standard_deviation": 7.263885566996695
+    },
+    {
+      "field": "complaint",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 2,
+      "minimum": 0,
+      "q25": 0.0,
+      "median": 0.0,
+      "q75": 0.0,
+      "maximum": 1,
+      "mean": 0.07650793650793651,
+      "standard_deviation": 0.2658512916524746
+    },
+    {
+      "field": "tenure",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 45,
+      "minimum": 3,
+      "q25": 30.0,
+      "median": 35.0,
+      "q75": 38.0,
+      "maximum": 47,
+      "mean": 32.54190476190476,
+      "standard_deviation": 8.57348206132722
+    },
+    {
+      "field": "charge",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 11,
+      "minimum": 0,
+      "q25": 0.0,
+      "median": 0.0,
+      "q75": 1.0,
+      "maximum": 10,
+      "mean": 0.9428571428571428,
+      "standard_deviation": 1.521071880352745
+    },
+    {
+      "field": "seconds",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 1756,
+      "minimum": 0,
+      "q25": 1391.25,
+      "median": 2990.0,
+      "q75": 6478.25,
+      "maximum": 17090,
+      "mean": 4472.459682539683,
+      "standard_deviation": 4197.9086865043355
+    },
+    {
+      "field": "calls",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 242,
+      "minimum": 0,
+      "q25": 27.0,
+      "median": 54.0,
+      "q75": 95.0,
+      "maximum": 255,
+      "mean": 69.46063492063492,
+      "standard_deviation": 57.413307750632974
+    },
+    {
+      "field": "sms",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 405,
+      "minimum": 0,
+      "q25": 6.0,
+      "median": 21.0,
+      "q75": 87.0,
+      "maximum": 522,
+      "mean": 73.17492063492064,
+      "standard_deviation": 112.23755969319922
+    },
+    {
+      "field": "numbers",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 92,
+      "minimum": 0,
+      "q25": 10.0,
+      "median": 21.0,
+      "q75": 34.0,
+      "maximum": 97,
+      "mean": 23.50984126984127,
+      "standard_deviation": 17.217337437991915
+    },
+    {
+      "field": "age_group",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 5,
+      "minimum": 1,
+      "q25": 2.0,
+      "median": 3.0,
+      "q75": 3.0,
+      "maximum": 5,
+      "mean": 2.826031746031746,
+      "standard_deviation": 0.8925551072658298
+    },
+    {
+      "field": "tariff",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 2,
+      "minimum": 1,
+      "q25": 1.0,
+      "median": 1.0,
+      "q75": 1.0,
+      "maximum": 2,
+      "mean": 1.0777777777777777,
+      "standard_deviation": 0.26786409466734173
+    },
+    {
+      "field": "status",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 2,
+      "minimum": 1,
+      "q25": 1.0,
+      "median": 1.0,
+      "q75": 1.0,
+      "maximum": 2,
+      "mean": 1.2482539682539682,
+      "standard_deviation": 0.43206851309493083
+    },
+    {
+      "field": "age",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 5,
+      "minimum": 15,
+      "q25": 25.0,
+      "median": 30.0,
+      "q75": 30.0,
+      "maximum": 55,
+      "mean": 30.998412698412697,
+      "standard_deviation": 8.831095499304958
+    },
+    {
+      "field": "value",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 2654,
+      "minimum": 0.0,
+      "q25": 113.80125,
+      "median": 228.48,
+      "q75": 788.3887500000001,
+      "maximum": 2165.28,
+      "mean": 470.97291587301663,
+      "standard_deviation": 517.0154327987635
+    },
+    {
+      "field": "churn",
+      "n": 3150,
+      "missing": 0,
+      "distinct_values": 2,
+      "minimum": 0,
+      "q25": 0.0,
+      "median": 0.0,
+      "q75": 0.0,
+      "maximum": 1,
+      "mean": 0.15714285714285714,
+      "standard_deviation": 0.363993187078456
+    }
+  ],
+  "category_rates": {
+    "complaint": [
+      {
+        "complaint": 0,
+        "n": 2909,
+        "churns": 295,
+        "churn_rate": 0.10140941904434514
+      },
+      {
+        "complaint": 1,
+        "n": 241,
+        "churns": 200,
+        "churn_rate": 0.8298755186721992
+      }
+    ],
+    "status": [
+      {
+        "status": 1,
+        "n": 2368,
+        "churns": 125,
+        "churn_rate": 0.052787162162162164
+      },
+      {
+        "status": 2,
+        "n": 782,
+        "churns": 370,
+        "churn_rate": 0.4731457800511509
+      }
+    ],
+    "tariff": [
+      {
+        "tariff": 1,
+        "n": 2905,
+        "churns": 489,
+        "churn_rate": 0.16833046471600688
+      },
+      {
+        "tariff": 2,
+        "n": 245,
+        "churns": 6,
+        "churn_rate": 0.024489795918367346
+      }
+    ],
+    "age_group": [
+      {
+        "age_group": 1,
+        "n": 123,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "age_group": 2,
+        "n": 1037,
+        "churns": 184,
+        "churn_rate": 0.17743490838958534
+      },
+      {
+        "age_group": 3,
+        "n": 1425,
+        "churns": 230,
+        "churn_rate": 0.16140350877192983
+      },
+      {
+        "age_group": 4,
+        "n": 395,
+        "churns": 79,
+        "churn_rate": 0.2
+      },
+      {
+        "age_group": 5,
+        "n": 170,
+        "churns": 2,
+        "churn_rate": 0.011764705882352941
+      }
+    ],
+    "charge": [
+      {
+        "charge": 0,
+        "n": 1768,
+        "churns": 421,
+        "churn_rate": 0.23812217194570134
+      },
+      {
+        "charge": 1,
+        "n": 617,
+        "churns": 43,
+        "churn_rate": 0.06969205834683954
+      },
+      {
+        "charge": 2,
+        "n": 395,
+        "churns": 23,
+        "churn_rate": 0.05822784810126582
+      },
+      {
+        "charge": 3,
+        "n": 199,
+        "churns": 7,
+        "churn_rate": 0.035175879396984924
+      },
+      {
+        "charge": 4,
+        "n": 76,
+        "churns": 1,
+        "churn_rate": 0.013157894736842105
+      },
+      {
+        "charge": 5,
+        "n": 30,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "charge": 6,
+        "n": 11,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "charge": 7,
+        "n": 14,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "charge": 8,
+        "n": 19,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "charge": 9,
+        "n": 14,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "charge": 10,
+        "n": 7,
+        "churns": null,
+        "churn_rate": null
+      }
+    ],
+    "age": [
+      {
+        "age": 15,
+        "n": 123,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "age": 25,
+        "n": 1037,
+        "churns": 184,
+        "churn_rate": 0.17743490838958534
+      },
+      {
+        "age": 30,
+        "n": 1425,
+        "churns": 230,
+        "churn_rate": 0.16140350877192983
+      },
+      {
+        "age": 45,
+        "n": 395,
+        "churns": 79,
+        "churn_rate": 0.2
+      },
+      {
+        "age": 55,
+        "n": 170,
+        "churns": 2,
+        "churn_rate": 0.011764705882352941
+      }
+    ]
+  },
+  "quantile_rates": {
+    "failure": [
+      {
+        "failure_bin": "1: <= 1",
+        "n": 823,
+        "churns": 152,
+        "churn_rate": 0.18469015795868773
+      },
+      {
+        "failure_bin": "2: > 1 to <= 6",
+        "n": 816,
+        "churns": 125,
+        "churn_rate": 0.15318627450980393
+      },
+      {
+        "failure_bin": "3: > 6 to <= 12",
+        "n": 817,
+        "churns": 109,
+        "churn_rate": 0.13341493268053856
+      },
+      {
+        "failure_bin": "4: > 12",
+        "n": 694,
+        "churns": 109,
+        "churn_rate": 0.15706051873198848
+      }
+    ],
+    "tenure": [
+      {
+        "tenure_bin": "1: <= 30",
+        "n": 867,
+        "churns": 109,
+        "churn_rate": 0.12572087658592848
+      },
+      {
+        "tenure_bin": "2: > 30 to <= 35",
+        "n": 806,
+        "churns": 180,
+        "churn_rate": 0.22332506203473945
+      },
+      {
+        "tenure_bin": "3: > 35 to <= 38",
+        "n": 763,
+        "churns": 129,
+        "churn_rate": 0.1690694626474443
+      },
+      {
+        "tenure_bin": "4: > 38",
+        "n": 714,
+        "churns": 77,
+        "churn_rate": 0.10784313725490197
+      }
+    ],
+    "charge": [
+      {
+        "charge_bin": "1: <= 0",
+        "n": 1768,
+        "churns": 421,
+        "churn_rate": 0.23812217194570134
+      },
+      {
+        "charge_bin": "2: > 0 to <= 1",
+        "n": 617,
+        "churns": 43,
+        "churn_rate": 0.06969205834683954
+      },
+      {
+        "charge_bin": "3: > 1",
+        "n": 765,
+        "churns": 31,
+        "churn_rate": 0.040522875816993466
+      }
+    ],
+    "seconds": [
+      {
+        "seconds_bin": "1: <= 1391.25",
+        "n": 788,
+        "churns": 281,
+        "churn_rate": 0.3565989847715736
+      },
+      {
+        "seconds_bin": "2: > 1391.25 to <= 2990",
+        "n": 788,
+        "churns": 145,
+        "churn_rate": 0.18401015228426396
+      },
+      {
+        "seconds_bin": "3: > 2990 to <= 6478.25",
+        "n": 786,
+        "churns": 69,
+        "churn_rate": 0.08778625954198473
+      },
+      {
+        "seconds_bin": "4: > 6478.25",
+        "n": 788,
+        "churns": 0,
+        "churn_rate": 0.0
+      }
+    ],
+    "calls": [
+      {
+        "calls_bin": "1: <= 27",
+        "n": 795,
+        "churns": 256,
+        "churn_rate": 0.3220125786163522
+      },
+      {
+        "calls_bin": "2: > 27 to <= 54",
+        "n": 801,
+        "churns": 177,
+        "churn_rate": 0.2209737827715356
+      },
+      {
+        "calls_bin": "3: > 54 to <= 95",
+        "n": 776,
+        "churns": 49,
+        "churn_rate": 0.06314432989690721
+      },
+      {
+        "calls_bin": "4: > 95",
+        "n": 778,
+        "churns": 13,
+        "churn_rate": 0.016709511568123392
+      }
+    ],
+    "sms": [
+      {
+        "sms_bin": "1: <= 6",
+        "n": 800,
+        "churns": 176,
+        "churn_rate": 0.22
+      },
+      {
+        "sms_bin": "2: > 6 to <= 21",
+        "n": 785,
+        "churns": 185,
+        "churn_rate": 0.2356687898089172
+      },
+      {
+        "sms_bin": "3: > 21 to <= 87",
+        "n": 778,
+        "churns": 129,
+        "churn_rate": 0.16580976863753213
+      },
+      {
+        "sms_bin": "4: > 87",
+        "n": 787,
+        "churns": 5,
+        "churn_rate": 0.0063532401524777635
+      }
+    ],
+    "numbers": [
+      {
+        "numbers_bin": "1: <= 10",
+        "n": 803,
+        "churns": 251,
+        "churn_rate": 0.3125778331257783
+      },
+      {
+        "numbers_bin": "2: > 10 to <= 21",
+        "n": 808,
+        "churns": 140,
+        "churn_rate": 0.17326732673267325
+      },
+      {
+        "numbers_bin": "3: > 21 to <= 34",
+        "n": 793,
+        "churns": 88,
+        "churn_rate": 0.11097099621689786
+      },
+      {
+        "numbers_bin": "4: > 34",
+        "n": 746,
+        "churns": 16,
+        "churn_rate": 0.021447721179624665
+      }
+    ],
+    "age": [
+      {
+        "age_bin": "1: <= 25",
+        "n": 1160,
+        "churns": 184,
+        "churn_rate": 0.15862068965517243
+      },
+      {
+        "age_bin": "2: > 25 to <= 30",
+        "n": 1425,
+        "churns": 230,
+        "churn_rate": 0.16140350877192983
+      },
+      {
+        "age_bin": "3: > 30",
+        "n": 565,
+        "churns": 81,
+        "churn_rate": 0.1433628318584071
+      }
+    ],
+    "value": [
+      {
+        "value_bin": "1: <= 113.801",
+        "n": 788,
+        "churns": 276,
+        "churn_rate": 0.350253807106599
+      },
+      {
+        "value_bin": "2: > 113.801 to <= 228.48",
+        "n": 788,
+        "churns": 142,
+        "churn_rate": 0.1802030456852792
+      },
+      {
+        "value_bin": "3: > 228.48 to <= 788.389",
+        "n": 786,
+        "churns": 72,
+        "churn_rate": 0.0916030534351145
+      },
+      {
+        "value_bin": "4: > 788.389",
+        "n": 788,
+        "churns": 5,
+        "churn_rate": 0.006345177664974619
+      }
+    ]
+  },
+  "status_complaint": [
+    {
+      "status": 1,
+      "complaint": 0,
+      "n": 2285,
+      "churns": 66,
+      "churn_rate": 0.02888402625820569
+    },
+    {
+      "status": 1,
+      "complaint": 1,
+      "n": 83,
+      "churns": 59,
+      "churn_rate": 0.7108433734939759
+    },
+    {
+      "status": 2,
+      "complaint": 0,
+      "n": 624,
+      "churns": 229,
+      "churn_rate": 0.36698717948717946
+    },
+    {
+      "status": 2,
+      "complaint": 1,
+      "n": 158,
+      "churns": 141,
+      "churn_rate": 0.8924050632911392
+    }
+  ],
+  "status_stratified": {
+    "failure": [
+      {
+        "status": 1,
+        "failure_bin": "1: <= 1",
+        "n": 540,
+        "churns": 29,
+        "churn_rate": 0.053703703703703705
+      },
+      {
+        "status": 1,
+        "failure_bin": "2: > 1 to <= 6",
+        "n": 604,
+        "churns": 36,
+        "churn_rate": 0.059602649006622516
+      },
+      {
+        "status": 1,
+        "failure_bin": "3: > 6 to <= 12",
+        "n": 662,
+        "churns": 42,
+        "churn_rate": 0.0634441087613293
+      },
+      {
+        "status": 1,
+        "failure_bin": "4: > 12",
+        "n": 562,
+        "churns": 18,
+        "churn_rate": 0.03202846975088968
+      },
+      {
+        "status": 2,
+        "failure_bin": "1: <= 1",
+        "n": 283,
+        "churns": 123,
+        "churn_rate": 0.43462897526501765
+      },
+      {
+        "status": 2,
+        "failure_bin": "2: > 1 to <= 6",
+        "n": 212,
+        "churns": 89,
+        "churn_rate": 0.419811320754717
+      },
+      {
+        "status": 2,
+        "failure_bin": "3: > 6 to <= 12",
+        "n": 155,
+        "churns": 67,
+        "churn_rate": 0.432258064516129
+      },
+      {
+        "status": 2,
+        "failure_bin": "4: > 12",
+        "n": 132,
+        "churns": 91,
+        "churn_rate": 0.6893939393939394
+      }
+    ],
+    "tenure": [
+      {
+        "status": 1,
+        "tenure_bin": "1: <= 30",
+        "n": 716,
+        "churns": 71,
+        "churn_rate": 0.09916201117318436
+      },
+      {
+        "status": 1,
+        "tenure_bin": "2: > 30 to <= 35",
+        "n": 557,
+        "churns": 25,
+        "churn_rate": 0.04488330341113106
+      },
+      {
+        "status": 1,
+        "tenure_bin": "3: > 35 to <= 38",
+        "n": 560,
+        "churns": 21,
+        "churn_rate": 0.0375
+      },
+      {
+        "status": 1,
+        "tenure_bin": "4: > 38",
+        "n": 535,
+        "churns": 8,
+        "churn_rate": 0.014953271028037384
+      },
+      {
+        "status": 2,
+        "tenure_bin": "1: <= 30",
+        "n": 151,
+        "churns": 38,
+        "churn_rate": 0.25165562913907286
+      },
+      {
+        "status": 2,
+        "tenure_bin": "2: > 30 to <= 35",
+        "n": 249,
+        "churns": 155,
+        "churn_rate": 0.6224899598393574
+      },
+      {
+        "status": 2,
+        "tenure_bin": "3: > 35 to <= 38",
+        "n": 203,
+        "churns": 108,
+        "churn_rate": 0.5320197044334976
+      },
+      {
+        "status": 2,
+        "tenure_bin": "4: > 38",
+        "n": 179,
+        "churns": 69,
+        "churn_rate": 0.3854748603351955
+      }
+    ],
+    "charge": [
+      {
+        "status": 1,
+        "charge_bin": "1: <= 0",
+        "n": 986,
+        "churns": 51,
+        "churn_rate": 0.05172413793103448
+      },
+      {
+        "status": 1,
+        "charge_bin": "2: > 0 to <= 1",
+        "n": 617,
+        "churns": 43,
+        "churn_rate": 0.06969205834683954
+      },
+      {
+        "status": 1,
+        "charge_bin": "3: > 1",
+        "n": 765,
+        "churns": 31,
+        "churn_rate": 0.040522875816993466
+      },
+      {
+        "status": 2,
+        "charge_bin": "1: <= 0",
+        "n": 782,
+        "churns": 370,
+        "churn_rate": 0.4731457800511509
+      }
+    ],
+    "seconds": [
+      {
+        "status": 1,
+        "seconds_bin": "1: <= 1391.25",
+        "n": 249,
+        "churns": 42,
+        "churn_rate": 0.1686746987951807
+      },
+      {
+        "status": 1,
+        "seconds_bin": "2: > 1391.25 to <= 2990",
+        "n": 576,
+        "churns": 43,
+        "churn_rate": 0.07465277777777778
+      },
+      {
+        "status": 1,
+        "seconds_bin": "3: > 2990 to <= 6478.25",
+        "n": 755,
+        "churns": 40,
+        "churn_rate": 0.052980132450331126
+      },
+      {
+        "status": 1,
+        "seconds_bin": "4: > 6478.25",
+        "n": 788,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "status": 2,
+        "seconds_bin": "1: <= 1391.25",
+        "n": 539,
+        "churns": 239,
+        "churn_rate": 0.44341372912801486
+      },
+      {
+        "status": 2,
+        "seconds_bin": "2: > 1391.25 to <= 2990",
+        "n": 212,
+        "churns": 102,
+        "churn_rate": 0.4811320754716981
+      },
+      {
+        "status": 2,
+        "seconds_bin": "3: > 2990 to <= 6478.25",
+        "n": 31,
+        "churns": 29,
+        "churn_rate": 0.9354838709677419
+      }
+    ],
+    "calls": [
+      {
+        "status": 1,
+        "calls_bin": "1: <= 27",
+        "n": 336,
+        "churns": 63,
+        "churn_rate": 0.1875
+      },
+      {
+        "status": 1,
+        "calls_bin": "2: > 27 to <= 54",
+        "n": 533,
+        "churns": 23,
+        "churn_rate": 0.043151969981238276
+      },
+      {
+        "status": 1,
+        "calls_bin": "3: > 54 to <= 95",
+        "n": 721,
+        "churns": 26,
+        "churn_rate": 0.036061026352288486
+      },
+      {
+        "status": 1,
+        "calls_bin": "4: > 95",
+        "n": 778,
+        "churns": 13,
+        "churn_rate": 0.016709511568123392
+      },
+      {
+        "status": 2,
+        "calls_bin": "1: <= 27",
+        "n": 459,
+        "churns": 193,
+        "churn_rate": 0.420479302832244
+      },
+      {
+        "status": 2,
+        "calls_bin": "2: > 27 to <= 54",
+        "n": 268,
+        "churns": 154,
+        "churn_rate": 0.5746268656716418
+      },
+      {
+        "status": 2,
+        "calls_bin": "3: > 54 to <= 95",
+        "n": 55,
+        "churns": 23,
+        "churn_rate": 0.41818181818181815
+      }
+    ],
+    "sms": [
+      {
+        "status": 1,
+        "sms_bin": "1: <= 6",
+        "n": 532,
+        "churns": 45,
+        "churn_rate": 0.08458646616541353
+      },
+      {
+        "status": 1,
+        "sms_bin": "2: > 6 to <= 21",
+        "n": 510,
+        "churns": 53,
+        "churn_rate": 0.10392156862745099
+      },
+      {
+        "status": 1,
+        "sms_bin": "3: > 21 to <= 87",
+        "n": 539,
+        "churns": 22,
+        "churn_rate": 0.04081632653061224
+      },
+      {
+        "status": 1,
+        "sms_bin": "4: > 87",
+        "n": 787,
+        "churns": 5,
+        "churn_rate": 0.0063532401524777635
+      },
+      {
+        "status": 2,
+        "sms_bin": "1: <= 6",
+        "n": 268,
+        "churns": 131,
+        "churn_rate": 0.48880597014925375
+      },
+      {
+        "status": 2,
+        "sms_bin": "2: > 6 to <= 21",
+        "n": 275,
+        "churns": 132,
+        "churn_rate": 0.48
+      },
+      {
+        "status": 2,
+        "sms_bin": "3: > 21 to <= 87",
+        "n": 239,
+        "churns": 107,
+        "churn_rate": 0.4476987447698745
+      }
+    ],
+    "numbers": [
+      {
+        "status": 1,
+        "numbers_bin": "1: <= 10",
+        "n": 380,
+        "churns": 62,
+        "churn_rate": 0.1631578947368421
+      },
+      {
+        "status": 1,
+        "numbers_bin": "2: > 10 to <= 21",
+        "n": 564,
+        "churns": 37,
+        "churn_rate": 0.06560283687943262
+      },
+      {
+        "status": 1,
+        "numbers_bin": "3: > 21 to <= 34",
+        "n": 693,
+        "churns": 25,
+        "churn_rate": 0.03607503607503607
+      },
+      {
+        "status": 1,
+        "numbers_bin": "4: > 34",
+        "n": 731,
+        "churns": 1,
+        "churn_rate": 0.0013679890560875513
+      },
+      {
+        "status": 2,
+        "numbers_bin": "1: <= 10",
+        "n": 423,
+        "churns": 189,
+        "churn_rate": 0.44680851063829785
+      },
+      {
+        "status": 2,
+        "numbers_bin": "2: > 10 to <= 21",
+        "n": 244,
+        "churns": 103,
+        "churn_rate": 0.42213114754098363
+      },
+      {
+        "status": 2,
+        "numbers_bin": "3: > 21 to <= 34",
+        "n": 100,
+        "churns": 63,
+        "churn_rate": 0.63
+      },
+      {
+        "status": 2,
+        "numbers_bin": "4: > 34",
+        "n": 15,
+        "churns": 15,
+        "churn_rate": 1.0
+      }
+    ],
+    "age": [
+      {
+        "status": 1,
+        "age_bin": "1: <= 25",
+        "n": 884,
+        "churns": 60,
+        "churn_rate": 0.06787330316742081
+      },
+      {
+        "status": 1,
+        "age_bin": "2: > 25 to <= 30",
+        "n": 1062,
+        "churns": 58,
+        "churn_rate": 0.054613935969868174
+      },
+      {
+        "status": 1,
+        "age_bin": "3: > 30",
+        "n": 422,
+        "churns": 7,
+        "churn_rate": 0.016587677725118485
+      },
+      {
+        "status": 2,
+        "age_bin": "1: <= 25",
+        "n": 276,
+        "churns": 124,
+        "churn_rate": 0.4492753623188406
+      },
+      {
+        "status": 2,
+        "age_bin": "2: > 25 to <= 30",
+        "n": 363,
+        "churns": 172,
+        "churn_rate": 0.4738292011019284
+      },
+      {
+        "status": 2,
+        "age_bin": "3: > 30",
+        "n": 143,
+        "churns": 74,
+        "churn_rate": 0.5174825174825175
+      }
+    ],
+    "value": [
+      {
+        "status": 1,
+        "value_bin": "1: <= 113.801",
+        "n": 318,
+        "churns": 59,
+        "churn_rate": 0.18553459119496854
+      },
+      {
+        "status": 1,
+        "value_bin": "2: > 113.801 to <= 228.48",
+        "n": 533,
+        "churns": 23,
+        "churn_rate": 0.043151969981238276
+      },
+      {
+        "status": 1,
+        "value_bin": "3: > 228.48 to <= 788.389",
+        "n": 729,
+        "churns": 38,
+        "churn_rate": 0.05212620027434842
+      },
+      {
+        "status": 1,
+        "value_bin": "4: > 788.389",
+        "n": 788,
+        "churns": 5,
+        "churn_rate": 0.006345177664974619
+      },
+      {
+        "status": 2,
+        "value_bin": "1: <= 113.801",
+        "n": 470,
+        "churns": 217,
+        "churn_rate": 0.46170212765957447
+      },
+      {
+        "status": 2,
+        "value_bin": "2: > 113.801 to <= 228.48",
+        "n": 255,
+        "churns": 119,
+        "churn_rate": 0.4666666666666667
+      },
+      {
+        "status": 2,
+        "value_bin": "3: > 228.48 to <= 788.389",
+        "n": 57,
+        "churns": 34,
+        "churn_rate": 0.5964912280701754
+      }
+    ]
+  },
+  "complaint_status_stratified": {
+    "failure": [
+      {
+        "status": 1,
+        "complaint": 0,
+        "failure_bin": "1: <= 1",
+        "n": 529,
+        "churns": 18,
+        "churn_rate": 0.034026465028355386
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "failure_bin": "2: > 1 to <= 6",
+        "n": 584,
+        "churns": 17,
+        "churn_rate": 0.02910958904109589
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "failure_bin": "3: > 6 to <= 12",
+        "n": 637,
+        "churns": 21,
+        "churn_rate": 0.03296703296703297
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "failure_bin": "4: > 12",
+        "n": 535,
+        "churns": 10,
+        "churn_rate": 0.018691588785046728
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "failure_bin": "1: <= 1",
+        "n": 11,
+        "churns": 11,
+        "churn_rate": 1.0
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "failure_bin": "2: > 1 to <= 6",
+        "n": 20,
+        "churns": 19,
+        "churn_rate": 0.95
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "failure_bin": "3: > 6 to <= 12",
+        "n": 25,
+        "churns": 21,
+        "churn_rate": 0.84
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "failure_bin": "4: > 12",
+        "n": 27,
+        "churns": 8,
+        "churn_rate": 0.2962962962962963
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "failure_bin": "1: <= 1",
+        "n": 254,
+        "churns": 94,
+        "churn_rate": 0.3700787401574803
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "failure_bin": "2: > 1 to <= 6",
+        "n": 187,
+        "churns": 66,
+        "churn_rate": 0.35294117647058826
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "failure_bin": "3: > 6 to <= 12",
+        "n": 118,
+        "churns": 39,
+        "churn_rate": 0.3305084745762712
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "failure_bin": "4: > 12",
+        "n": 65,
+        "churns": 30,
+        "churn_rate": 0.46153846153846156
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "failure_bin": "1: <= 1",
+        "n": 29,
+        "churns": 29,
+        "churn_rate": 1.0
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "failure_bin": "2: > 1 to <= 6",
+        "n": 25,
+        "churns": 23,
+        "churn_rate": 0.92
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "failure_bin": "3: > 6 to <= 12",
+        "n": 37,
+        "churns": 28,
+        "churn_rate": 0.7567567567567568
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "failure_bin": "4: > 12",
+        "n": 67,
+        "churns": 61,
+        "churn_rate": 0.9104477611940298
+      }
+    ],
+    "seconds": [
+      {
+        "status": 1,
+        "complaint": 0,
+        "seconds_bin": "1: <= 1391.25",
+        "n": 227,
+        "churns": 21,
+        "churn_rate": 0.09251101321585903
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "seconds_bin": "2: > 1391.25 to <= 2990",
+        "n": 552,
+        "churns": 19,
+        "churn_rate": 0.034420289855072464
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "seconds_bin": "3: > 2990 to <= 6478.25",
+        "n": 740,
+        "churns": 26,
+        "churn_rate": 0.03513513513513514
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "seconds_bin": "4: > 6478.25",
+        "n": 766,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "seconds_bin": "1: <= 1391.25",
+        "n": 22,
+        "churns": 21,
+        "churn_rate": 0.9545454545454546
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "seconds_bin": "2: > 1391.25 to <= 2990",
+        "n": 24,
+        "churns": 24,
+        "churn_rate": 1.0
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "seconds_bin": "3: > 2990 to <= 6478.25",
+        "n": 15,
+        "churns": 14,
+        "churn_rate": 0.9333333333333333
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "seconds_bin": "4: > 6478.25",
+        "n": 22,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "seconds_bin": "1: <= 1391.25",
+        "n": 476,
+        "churns": 176,
+        "churn_rate": 0.3697478991596639
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "seconds_bin": "2: > 1391.25 to <= 2990",
+        "n": 137,
+        "churns": 44,
+        "churn_rate": 0.32116788321167883
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "seconds_bin": "3: > 2990 to <= 6478.25",
+        "n": 11,
+        "churns": 9,
+        "churn_rate": 0.8181818181818182
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "seconds_bin": "1: <= 1391.25",
+        "n": 63,
+        "churns": 63,
+        "churn_rate": 1.0
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "seconds_bin": "2: > 1391.25 to <= 2990",
+        "n": 75,
+        "churns": 58,
+        "churn_rate": 0.7733333333333333
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "seconds_bin": "3: > 2990 to <= 6478.25",
+        "n": 20,
+        "churns": 20,
+        "churn_rate": 1.0
+      }
+    ],
+    "calls": [
+      {
+        "status": 1,
+        "complaint": 0,
+        "calls_bin": "1: <= 27",
+        "n": 307,
+        "churns": 34,
+        "churn_rate": 0.11074918566775244
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "calls_bin": "2: > 27 to <= 54",
+        "n": 516,
+        "churns": 7,
+        "churn_rate": 0.013565891472868217
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "calls_bin": "3: > 54 to <= 95",
+        "n": 708,
+        "churns": 16,
+        "churn_rate": 0.022598870056497175
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "calls_bin": "4: > 95",
+        "n": 754,
+        "churns": 9,
+        "churn_rate": 0.011936339522546418
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "calls_bin": "1: <= 27",
+        "n": 29,
+        "churns": 29,
+        "churn_rate": 1.0
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "calls_bin": "2: > 27 to <= 54",
+        "n": 17,
+        "churns": 16,
+        "churn_rate": 0.9411764705882353
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "calls_bin": "3: > 54 to <= 95",
+        "n": 13,
+        "churns": 10,
+        "churn_rate": 0.7692307692307693
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "calls_bin": "4: > 95",
+        "n": 24,
+        "churns": 4,
+        "churn_rate": 0.16666666666666666
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "calls_bin": "1: <= 27",
+        "n": 422,
+        "churns": 156,
+        "churn_rate": 0.3696682464454976
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "calls_bin": "2: > 27 to <= 54",
+        "n": 178,
+        "churns": 71,
+        "churn_rate": 0.398876404494382
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "calls_bin": "3: > 54 to <= 95",
+        "n": 24,
+        "churns": 2,
+        "churn_rate": 0.08333333333333333
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "calls_bin": "1: <= 27",
+        "n": 37,
+        "churns": 37,
+        "churn_rate": 1.0
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "calls_bin": "2: > 27 to <= 54",
+        "n": 90,
+        "churns": 83,
+        "churn_rate": 0.9222222222222223
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "calls_bin": "3: > 54 to <= 95",
+        "n": 31,
+        "churns": 21,
+        "churn_rate": 0.6774193548387096
+      }
+    ],
+    "sms": [
+      {
+        "status": 1,
+        "complaint": 0,
+        "sms_bin": "1: <= 6",
+        "n": 509,
+        "churns": 27,
+        "churn_rate": 0.05304518664047151
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "sms_bin": "2: > 6 to <= 21",
+        "n": 477,
+        "churns": 27,
+        "churn_rate": 0.05660377358490566
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "sms_bin": "3: > 21 to <= 87",
+        "n": 524,
+        "churns": 12,
+        "churn_rate": 0.022900763358778626
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "sms_bin": "4: > 87",
+        "n": 775,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "sms_bin": "1: <= 6",
+        "n": 23,
+        "churns": 18,
+        "churn_rate": 0.782608695652174
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "sms_bin": "2: > 6 to <= 21",
+        "n": 33,
+        "churns": 26,
+        "churn_rate": 0.7878787878787878
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "sms_bin": "3: > 21 to <= 87",
+        "n": 15,
+        "churns": 10,
+        "churn_rate": 0.6666666666666666
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "sms_bin": "4: > 87",
+        "n": 12,
+        "churns": 5,
+        "churn_rate": 0.4166666666666667
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "sms_bin": "1: <= 6",
+        "n": 230,
+        "churns": 96,
+        "churn_rate": 0.41739130434782606
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "sms_bin": "2: > 6 to <= 21",
+        "n": 225,
+        "churns": 90,
+        "churn_rate": 0.4
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "sms_bin": "3: > 21 to <= 87",
+        "n": 169,
+        "churns": 43,
+        "churn_rate": 0.25443786982248523
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "sms_bin": "1: <= 6",
+        "n": 38,
+        "churns": 35,
+        "churn_rate": 0.9210526315789473
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "sms_bin": "2: > 6 to <= 21",
+        "n": 50,
+        "churns": 42,
+        "churn_rate": 0.84
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "sms_bin": "3: > 21 to <= 87",
+        "n": 70,
+        "churns": 64,
+        "churn_rate": 0.9142857142857143
+      }
+    ],
+    "value": [
+      {
+        "status": 1,
+        "complaint": 0,
+        "value_bin": "1: <= 113.801",
+        "n": 292,
+        "churns": 33,
+        "churn_rate": 0.11301369863013698
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "value_bin": "2: > 113.801 to <= 228.48",
+        "n": 513,
+        "churns": 9,
+        "churn_rate": 0.017543859649122806
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "value_bin": "3: > 228.48 to <= 788.389",
+        "n": 713,
+        "churns": 24,
+        "churn_rate": 0.033660589060308554
+      },
+      {
+        "status": 1,
+        "complaint": 0,
+        "value_bin": "4: > 788.389",
+        "n": 767,
+        "churns": 0,
+        "churn_rate": 0.0
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "value_bin": "1: <= 113.801",
+        "n": 26,
+        "churns": 26,
+        "churn_rate": 1.0
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "value_bin": "2: > 113.801 to <= 228.48",
+        "n": 20,
+        "churns": 14,
+        "churn_rate": 0.7
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "value_bin": "3: > 228.48 to <= 788.389",
+        "n": 16,
+        "churns": 14,
+        "churn_rate": 0.875
+      },
+      {
+        "status": 1,
+        "complaint": 1,
+        "value_bin": "4: > 788.389",
+        "n": 21,
+        "churns": 5,
+        "churn_rate": 0.23809523809523808
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "value_bin": "1: <= 113.801",
+        "n": 419,
+        "churns": 168,
+        "churn_rate": 0.4009546539379475
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "value_bin": "2: > 113.801 to <= 228.48",
+        "n": 176,
+        "churns": 54,
+        "churn_rate": 0.3068181818181818
+      },
+      {
+        "status": 2,
+        "complaint": 0,
+        "value_bin": "3: > 228.48 to <= 788.389",
+        "n": 29,
+        "churns": 7,
+        "churn_rate": 0.2413793103448276
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "value_bin": "1: <= 113.801",
+        "n": 51,
+        "churns": 49,
+        "churn_rate": 0.9607843137254902
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "value_bin": "2: > 113.801 to <= 228.48",
+        "n": 79,
+        "churns": 65,
+        "churn_rate": 0.8227848101265823
+      },
+      {
+        "status": 2,
+        "complaint": 1,
+        "value_bin": "3: > 228.48 to <= 788.389",
+        "n": 28,
+        "churns": 27,
+        "churn_rate": 0.9642857142857143
+      }
+    ]
+  },
+  "relative_failure": [
+    {
+      "failure_relative_bin": "0: no calls",
+      "n": 154,
+      "churns": 81,
+      "churn_rate": 0.525974025974026
+    },
+    {
+      "failure_relative_bin": "1: no failures",
+      "n": 548,
+      "churns": 59,
+      "churn_rate": 0.10766423357664233
+    },
+    {
+      "failure_relative_bin": "2: >0 to 5%",
+      "n": 345,
+      "churns": 6,
+      "churn_rate": 0.017391304347826087
+    },
+    {
+      "failure_relative_bin": "3: >5 to 15%",
+      "n": 1066,
+      "churns": 79,
+      "churn_rate": 0.07410881801125703
+    },
+    {
+      "failure_relative_bin": "4: >15%",
+      "n": 1037,
+      "churns": 270,
+      "churn_rate": 0.26036644165863065
+    }
+  ],
+  "relative_failure_status_complaint": [
+    {
+      "status": 1,
+      "complaint": 0,
+      "failure_relative_bin": "0: no calls",
+      "n": 31,
+      "churns": 4,
+      "churn_rate": 0.12903225806451613
+    },
+    {
+      "status": 1,
+      "complaint": 0,
+      "failure_relative_bin": "1: no failures",
+      "n": 398,
+      "churns": 11,
+      "churn_rate": 0.02763819095477387
+    },
+    {
+      "status": 1,
+      "complaint": 0,
+      "failure_relative_bin": "2: >0 to 5%",
+      "n": 333,
+      "churns": 2,
+      "churn_rate": 0.006006006006006006
+    },
+    {
+      "status": 1,
+      "complaint": 0,
+      "failure_relative_bin": "3: >5 to 15%",
+      "n": 938,
+      "churns": 25,
+      "churn_rate": 0.026652452025586353
+    },
+    {
+      "status": 1,
+      "complaint": 0,
+      "failure_relative_bin": "4: >15%",
+      "n": 585,
+      "churns": 24,
+      "churn_rate": 0.041025641025641026
+    },
+    {
+      "status": 1,
+      "complaint": 1,
+      "failure_relative_bin": "0: no calls",
+      "n": 2,
+      "churns": null,
+      "churn_rate": null
+    },
+    {
+      "status": 1,
+      "complaint": 1,
+      "failure_relative_bin": "1: no failures",
+      "n": 8,
+      "churns": null,
+      "churn_rate": null
+    },
+    {
+      "status": 1,
+      "complaint": 1,
+      "failure_relative_bin": "2: >0 to 5%",
+      "n": 1,
+      "churns": null,
+      "churn_rate": null
+    },
+    {
+      "status": 1,
+      "complaint": 1,
+      "failure_relative_bin": "3: >5 to 15%",
+      "n": 35,
+      "churns": 18,
+      "churn_rate": 0.5142857142857142
+    },
+    {
+      "status": 1,
+      "complaint": 1,
+      "failure_relative_bin": "4: >15%",
+      "n": 37,
+      "churns": 30,
+      "churn_rate": 0.8108108108108109
+    },
+    {
+      "status": 2,
+      "complaint": 0,
+      "failure_relative_bin": "0: no calls",
+      "n": 107,
+      "churns": 61,
+      "churn_rate": 0.5700934579439252
+    },
+    {
+      "status": 2,
+      "complaint": 0,
+      "failure_relative_bin": "1: no failures",
+      "n": 130,
+      "churns": 28,
+      "churn_rate": 0.2153846153846154
+    },
+    {
+      "status": 2,
+      "complaint": 0,
+      "failure_relative_bin": "2: >0 to 5%",
+      "n": 9,
+      "churns": null,
+      "churn_rate": null
+    },
+    {
+      "status": 2,
+      "complaint": 0,
+      "failure_relative_bin": "3: >5 to 15%",
+      "n": 72,
+      "churns": 19,
+      "churn_rate": 0.2638888888888889
+    },
+    {
+      "status": 2,
+      "complaint": 0,
+      "failure_relative_bin": "4: >15%",
+      "n": 306,
+      "churns": 120,
+      "churn_rate": 0.39215686274509803
+    },
+    {
+      "status": 2,
+      "complaint": 1,
+      "failure_relative_bin": "0: no calls",
+      "n": 14,
+      "churns": 14,
+      "churn_rate": 1.0
+    },
+    {
+      "status": 2,
+      "complaint": 1,
+      "failure_relative_bin": "1: no failures",
+      "n": 12,
+      "churns": 12,
+      "churn_rate": 1.0
+    },
+    {
+      "status": 2,
+      "complaint": 1,
+      "failure_relative_bin": "2: >0 to 5%",
+      "n": 2,
+      "churns": null,
+      "churn_rate": null
+    },
+    {
+      "status": 2,
+      "complaint": 1,
+      "failure_relative_bin": "3: >5 to 15%",
+      "n": 21,
+      "churns": 17,
+      "churn_rate": 0.8095238095238095
+    },
+    {
+      "status": 2,
+      "complaint": 1,
+      "failure_relative_bin": "4: >15%",
+      "n": 109,
+      "churns": 96,
+      "churn_rate": 0.8807339449541285
+    }
+  ],
+  "zero_usage": [
+    {
+      "status": 1,
+      "zero_usage": "No calls/seconds",
+      "n": 33,
+      "churns": 6,
+      "churn_rate": 0.18181818181818182
+    },
+    {
+      "status": 1,
+      "zero_usage": "Some calls/seconds",
+      "n": 2335,
+      "churns": 119,
+      "churn_rate": 0.050963597430406855
+    },
+    {
+      "status": 2,
+      "zero_usage": "No calls/seconds",
+      "n": 121,
+      "churns": 75,
+      "churn_rate": 0.6198347107438017
+    },
+    {
+      "status": 2,
+      "zero_usage": "Some calls/seconds",
+      "n": 661,
+      "churns": 295,
+      "churn_rate": 0.4462934947049924
+    }
+  ],
+  "status_tariff": [
+    {
+      "status": 1,
+      "tariff": 1,
+      "n": 2124,
+      "churns": 120,
+      "churn_rate": 0.05649717514124294
+    },
+    {
+      "status": 1,
+      "tariff": 2,
+      "n": 244,
+      "churns": 5,
+      "churn_rate": 0.020491803278688523
+    },
+    {
+      "status": 2,
+      "tariff": 1,
+      "n": 781,
+      "churns": 369,
+      "churn_rate": 0.47247119078104993
+    },
+    {
+      "status": 2,
+      "tariff": 2,
+      "n": 1,
+      "churns": null,
+      "churn_rate": null
+    }
+  ],
+  "status_age_group": [
+    {
+      "status": 1,
+      "age_group": 1,
+      "n": 123,
+      "churns": 0,
+      "churn_rate": 0.0
+    },
+    {
+      "status": 1,
+      "age_group": 2,
+      "n": 761,
+      "churns": 60,
+      "churn_rate": 0.07884362680683311
+    },
+    {
+      "status": 1,
+      "age_group": 3,
+      "n": 1062,
+      "churns": 58,
+      "churn_rate": 0.054613935969868174
+    },
+    {
+      "status": 1,
+      "age_group": 4,
+      "n": 252,
+      "churns": 5,
+      "churn_rate": 0.01984126984126984
+    },
+    {
+      "status": 1,
+      "age_group": 5,
+      "n": 170,
+      "churns": 2,
+      "churn_rate": 0.011764705882352941
+    },
+    {
+      "status": 2,
+      "age_group": 2,
+      "n": 276,
+      "churns": 124,
+      "churn_rate": 0.4492753623188406
+    },
+    {
+      "status": 2,
+      "age_group": 3,
+      "n": 363,
+      "churns": 172,
+      "churn_rate": 0.4738292011019284
+    },
+    {
+      "status": 2,
+      "age_group": 4,
+      "n": 143,
+      "churns": 74,
+      "churn_rate": 0.5174825174825175
+    }
+  ],
+  "churn_group_means": [
+    {
+      "churn": 0,
+      "n": 2655,
+      "mean_failure": 7.656120527306968,
+      "mean_tenure": 32.662523540489644,
+      "mean_charge": 1.0757062146892655,
+      "mean_seconds": 5014.224105461393,
+      "mean_calls": 76.97928436911488,
+      "mean_sms": 83.87156308851225,
+      "mean_numbers": 25.58267419962335,
+      "mean_age": 31.065913370998118,
+      "mean_value": 535.5115009416203
+    },
+    {
+      "churn": 1,
+      "n": 495,
+      "mean_failure": 7.476767676767677,
+      "mean_tenure": 31.894949494949493,
+      "mean_charge": 0.23030303030303031,
+      "mean_seconds": 1566.6323232323232,
+      "mean_calls": 29.133333333333333,
+      "mean_sms": 15.802020202020202,
+      "mean_numbers": 12.391919191919191,
+      "mean_age": 30.636363636363637,
+      "mean_value": 124.81141414141412
+    }
+  ],
+  "age_group_mapping": [
+    {
+      "age_group": 1,
+      "n": 123,
+      "minimum_age": 15,
+      "maximum_age": 15,
+      "distinct_ages": 1
+    },
+    {
+      "age_group": 2,
+      "n": 1037,
+      "minimum_age": 25,
+      "maximum_age": 25,
+      "distinct_ages": 1
+    },
+    {
+      "age_group": 3,
+      "n": 1425,
+      "minimum_age": 30,
+      "maximum_age": 30,
+      "distinct_ages": 1
+    },
+    {
+      "age_group": 4,
+      "n": 395,
+      "minimum_age": 45,
+      "maximum_age": 45,
+      "distinct_ages": 1
+    },
+    {
+      "age_group": 5,
+      "n": 170,
+      "minimum_age": 55,
+      "maximum_age": 55,
+      "distinct_ages": 1
+    }
+  ],
+  "value_correlations": {
+    "value_seconds": 0.4150872449805452,
+    "value_calls": 0.4015724637117215,
+    "value_sms": 0.9248774260038473,
+    "value_numbers": 0.28480742645481816,
+    "value_age": -0.22036171179913033,
+    "value_charge": 0.16942770681800298
+  },
+  "independent_total_check": [
+    {
+      "status": 1,
+      "n": 2368,
+      "churns": 125,
+      "churn_rate": 0.052787162162162164
+    },
+    {
+      "status": 2,
+      "n": 782,
+      "churns": 370,
+      "churn_rate": 0.4731457800511509
+    }
+  ],
+  "complaint_deduplicated": [
+    {
+      "complaint": 0,
+      "n": 2620,
+      "churns": 256,
+      "churn_rate": 0.09770992366412214
+    },
+    {
+      "complaint": 1,
+      "n": 230,
+      "churns": 190,
+      "churn_rate": 0.8260869565217391
+    }
+  ],
+  "status_complaint_deduplicated": [
+    {
+      "status": 1,
+      "complaint": 0,
+      "n": 2085,
+      "churns": 64,
+      "churn_rate": 0.030695443645083934
+    },
+    {
+      "status": 1,
+      "complaint": 1,
+      "n": 81,
+      "churns": 57,
+      "churn_rate": 0.7037037037037037
+    },
+    {
+      "status": 2,
+      "complaint": 0,
+      "n": 535,
+      "churns": 192,
+      "churn_rate": 0.35887850467289717
+    },
+    {
+      "status": 2,
+      "complaint": 1,
+      "n": 149,
+      "churns": 133,
+      "churn_rate": 0.8926174496644296
+    }
+  ],
+  "validation": {
+    "status_total_reconciles": true,
+    "quantile_tables_reconcile": true,
+    "status_complaint_reconciles": true
+  }
+}

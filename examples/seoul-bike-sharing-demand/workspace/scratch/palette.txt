@@ -1,0 +1,10 @@
+
+Palette (light, surface #fcfcfb, categorical): 1 slots
+  [PASS] Lightness band         all 1 inside L 0.43–0.77
+  [PASS] Chroma floor           all 1 >= 0.1
+  [PASS] CVD separation         n/a
+  [PASS] Contrast vs surface    all 1 >= 3.0:1
+
+  → ALL CHECKS PASS  (CVD in the 8–12 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+  scope: categorical palettes only. For a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity.
+

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--
+  Brief shell. Copy this to <run>/brief.html and fill the body.
+  Keep the CSS self-contained; cut unused sections; never ship placeholders.
+  Any responsive collapse breakpoint you add MUST be `@media screen and (max-width: …)`
+  — an unscoped `max-width` query also fires when printing to a narrow page and will
+  collapse multi-column layouts in the PDF. For a faithful PDF use headless Chrome
+  (`--headless --print-to-pdf=... file://...brief.html`); plain Cmd-P / Ctrl-P
+  also works because of the print rules at the end of this <style>.
+
+  This page is light-scheme only, on purpose (it prints, mails, and archives as a
+  document). Charts inlined into it must therefore be pinned to light: render via
+  dataviz's `render.py --single-mode light` (or set "single_mode": "light" per spec)
+  so no prefers-color-scheme block flips a chart dark on a white page.
+
+  The page-chrome tokens below (accent/good/bad/warn) are the DOCUMENT's palette —
+  intentionally separate from the dataviz chart tokens (palette.md), which live
+  inside each chart's own <style>. Don't "reconcile" them: page chrome styles prose
+  and callouts; chart marks keep the validated dataviz palette.
+
+  data-claim: optional slug on a finding section tying it to its instrument
+  (e.g. data-claim="scratch/04_main_metrics.py"). Fill it or delete the attribute.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><!-- SUBJECT --> - brief</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5f6b7a;
+    --accent: #1f6feb;
+    --accent-soft: #f5f8ff;
+    --rule: #e3e8ee;
+    --page: #ffffff;
+    --canvas: #f0f2f5;
+    --good: #1d7a3a;
+    --good-soft: #f6fbf6;
+    --good-rule: #cfe8cf;
+    --bad: #b42318;
+    --warn: #8a5a00;
+    --warn-rule: #d0a000;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .page {
+    max-width: 780px;
+    margin: 32px auto;
+    background: var(--page);
+    padding: 46px 56px 52px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+  }
+  .kicker {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 6px 0 4px;
+    font-size: 25px;
+    line-height: 1.25;
+  }
+  .byline {
+    margin: 0 0 22px;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .bottomline {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+  }
+  .bottomline b { color: #000; }
+  h2 {
+    margin: 24px 0 11px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  h3 {
+    margin: 22px 0 5px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin: 0 0 7px; }
+  .num {
+    color: #000;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .caveat {
+    color: var(--warn);
+    border-bottom: 1px dotted var(--warn-rule);
+  }
+  .finding { margin: 0 0 6px; }
+  .fig {
+    margin: 10px 0 16px;
+    text-align: center;
+  }
+  .fig svg,
+  .fig img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .fig figcaption {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+  table.bridge {
+    width: 100%;
+    margin: 10px 0 12px;
+    border-collapse: collapse;
+    font-size: 15.5px;
+  }
+  table.bridge th,
+  table.bridge td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.bridge th {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+  .up { color: var(--good); font-weight: 700; }
+  .down { color: var(--bad); font-weight: 700; }
+  .rec {
+    margin: 8px 0 16px;
+    padding: 14px 18px;
+    background: var(--good-soft);
+    border: 1px solid var(--good-rule);
+    border-radius: 6px;
+  }
+  .rec h2 {
+    margin-top: 0;
+    border: 0;
+    color: var(--good);
+  }
+  .method {
+    color: #3d4654;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .foot {
+    margin-top: 20px;
+    color: #9aa4b1;
+    font-size: 12.5px;
+  }
+  em { color: #000; }
+  code {
+    padding: 1px 4px;
+    background: #f6f8fa;
+    border-radius: 4px;
+    font: .92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media screen and (max-width: 680px) {
+    body { font-size: 16px; }
+    .page { margin: 0; padding: 28px 22px 34px; border-radius: 0; }
+    table.bridge { font-size: 14px; }
+    table.bridge th,
+    table.bridge td { padding: 7px 6px; }
+    .num { white-space: normal; }
+  }
+  /* ── Print / PDF ──────────────────────────────────────────────────────────
+     The on-screen "card" is a screen affordance; on paper the sheet IS the card.
+     The print rules preserve the document layout during browser export. */
+  @media print {
+    :root { color-scheme: light; }
+    @page { margin: 12mm; }
+    html, body { background: #fff !important; }
+    body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important; /* keep callout & chart fills, not white */
+    }
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: #fff;
+    }
+    /* never split a finding, chart, table row, or callout across a page fold */
+    .finding, .fig, figure, table.bridge, tr, img, svg,
+    .rec, .bottomline { break-inside: avoid; page-break-inside: avoid; }
+    /* don't strand a heading at the foot of a page */
+    h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    /* opt-in hard page break: <div class="new-page"></div> */
+    .new-page { break-before: page; page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <div class="kicker"><!-- DOMAIN / RUN TYPE --></div>
+  <h1><!-- HEADLINE: the answer in plain words --></h1>
+  <div class="byline"><!-- scope, window, date --></div>
+
+  <section class="bottomline">
+    <!-- The call in 1-2 plain sentences. Bold the decision words. Include the one
+         decision number only when it changes the call. -->
+  </section>
+
+  <section class="finding" data-claim="">
+    <h2><!-- Finding heading: conclusion, not method --></h2>
+    <p><!-- Plain-English conclusion with <span class="num">one key number</span>. --></p>
+    <figure class="fig">
+      <!-- Inline SVG or img goes here when the finding needs a visual. -->
+      <figcaption><!-- One-line takeaway, not a legend dump. --></figcaption>
+    </figure>
+  </section>
+
+  <section class="finding" data-claim="">
+    <h2><!-- Optional bridge / decomposition heading --></h2>
+    <table class="bridge">
+      <tr><th>Factor</th><th>Change</th><th>What it means</th></tr>
+      <tr><td><!-- factor --></td><td class="up"><!-- +x --></td><td><!-- conclusion --></td></tr>
+      <tr><td><!-- factor --></td><td class="down"><!-- -x --></td><td><!-- conclusion --></td></tr>
+    </table>
+  </section>
+
+  <section class="rec">
+    <h2>Recommendation</h2>
+    <p><!-- The call and the trade-off. --></p>
+  </section>
+
+  <h2>Watch Items</h2>
+  <ul>
+    <li><!-- What could change the call or what to monitor. --></li>
+  </ul>
+
+  <h2>Methodology</h2>
+  <div class="method">
+    <p><!-- Sources, scope, window, filters, and metric definitions. --></p>
+    <p><!-- Tests/checks/confounds/derivations needed to verify or rerun. --></p>
+  </div>
+
+  <h2>Question &amp; Framing</h2>
+  <div class="method">
+    <!-- The run's own scoping, lifted from prompt.md — so the brief documents what
+         was asked and how it was read. Cut this block only for a run with no
+         meaningful framing to show. -->
+    <p><b>As asked:</b> <!-- the user's question, verbatim or lightly condensed, from prompt.md --></p>
+    <table class="bridge">
+      <thead><tr><th>Framing decision</th><th>Resolved as</th></tr></thead>
+      <tr><td>Period</td><td><!-- resolved window(s), pinned/default, any partial-window flag --></td></tr>
+      <tr><td>Metrics</td><td><!-- named metric(s) --></td></tr>
+      <tr><td>Deliverable</td><td><!-- form, incl. any named reporting segmentation --></td></tr>
+    </table>
+    <p><b>Key steers applied (from the request):</b></p>
+    <ul>
+      <li><!-- each dated steer from prompt.md that shaped the analysis; omit the block if none --></li>
+    </ul>
+  </div>
+
+  <div class="foot"><!-- 1-3 run-level limits; point to run_log.md for full ledger. --></div>
+
+</main>
+</body>
+</html>

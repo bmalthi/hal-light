@@ -1,0 +1,1 @@
+SELECT CASE WHEN bucket<6 THEN 'train' WHEN bucket<8 THEN 'validation' ELSE 'test' END split,count(*) n,sum(churn) churners FROM main.features GROUP BY 1

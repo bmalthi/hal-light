@@ -1,0 +1,38 @@
+.venv/
+/.ruff_cache/
+/.pytest_cache/
+__pycache__/
+*.py[cod]
+/workspaces/
+# Example analysis workspaces are tracked; local tool caches are not.
+/examples/**/uv-cache/
+/examples/**/uv-*.lock
+/examples/**/chrome-profile/
+/output/
+/dist/
+*.egg-info/
+# Publish the product skills; ignore all other local Claude state.
+/.claude/*
+!/.claude/skills/
+/.claude/skills/*
+!/.claude/skills/analyse/
+!/.claude/skills/dataviz/
+!/.claude/skills/live-prep/
+/.codex/
+/.cursor/
+# Codex discovers the same product skills through symlinks.
+/.agents/*
+!/.agents/skills/
+/.agents/skills/*
+!/.agents/skills/analyse
+!/.agents/skills/dataviz
+!/.agents/skills/live-prep
+.env*
+!.env.example
+*.sqlite*
+*.db
+*.log
+*.bak
+*.orig
+*~
+.DS_Store

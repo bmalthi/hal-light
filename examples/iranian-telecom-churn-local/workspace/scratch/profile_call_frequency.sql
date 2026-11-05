@@ -1,0 +1,1 @@
+SELECT 'call_frequency' dimension,CASE WHEN calls<100 THEN '<100' WHEN calls<250 THEN '100–249' ELSE '250+' END bin_label,count(*) n,sum(churn) churners,avg(churn) rate,avg(customer_value) mean_value FROM main.features GROUP BY 1,2 HAVING count(*)>=10 ORDER BY 2

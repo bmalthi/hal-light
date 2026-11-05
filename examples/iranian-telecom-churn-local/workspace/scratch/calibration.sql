@@ -1,0 +1,1 @@
+SELECT p,count(*) n,sum(churn) churners,avg(churn) rate FROM main.score_complaint_usage WHERE bucket>=8 GROUP BY p HAVING count(*)>=10 ORDER BY p DESC

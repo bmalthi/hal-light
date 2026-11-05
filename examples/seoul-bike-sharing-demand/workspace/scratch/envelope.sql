@@ -1,0 +1,1 @@
+SELECT split,count(*) n,avg((y<=q28)::INT) coverage28,avg((y<=q56)::INT) coverage56,avg(greatest(y-q28,0)) exceedance28,avg(greatest(q28-y,0)) slack28,avg(n28) history28,min(n28) min_history28 FROM forecasts WHERE functioning GROUP BY 1 ORDER BY 1;

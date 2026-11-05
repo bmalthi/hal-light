@@ -1,0 +1,13 @@
+Seoul Bike Sharing Demand dataset
+
+Seoul Bike Sharing Demand [Dataset]. (2020). UCI Machine Learning Repository.
+https://doi.org/10.24432/C5F62R
+Source: https://archive.ics.uci.edu/dataset/560/seoul+bike+sharing+demand
+
+The dataset in question/data.csv is licensed under Creative Commons Attribution
+4.0 International (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+The dataset retains its own license and is not covered by HAL Light's
+Apache-2.0 license. The question and analysis workspace are HAL Light example
+material, separate from the original UCI dataset.

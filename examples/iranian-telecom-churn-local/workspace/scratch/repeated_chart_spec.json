@@ -1,0 +1,35 @@
+{
+  "id": "repeated_precision",
+  "form": "hbar",
+  "width": 700,
+  "pad_l": 190,
+  "title": "Richer models improve predictive precision",
+  "subtitle": "Mean across 30 grouped splits \u2022 20% of all test records contacted \u2022 uniform tie expectation",
+  "value_format": "{:.1%}",
+  "x_domain": [
+    0,
+    0.8
+  ],
+  "rows": [
+    {
+      "label": "Scorecard",
+      "value": 0.5425390358008677
+    },
+    {
+      "label": "Logistic: 3 inputs",
+      "value": 0.5691191026442239
+    },
+    {
+      "label": "Shallow tree: 3 inputs",
+      "value": 0.5848414230560152
+    },
+    {
+      "label": "Logistic: 10 inputs",
+      "value": 0.5989928603040984
+    },
+    {
+      "label": "Shallow tree: 10 inputs",
+      "value": 0.5963468709075513
+    }
+  ]
+}

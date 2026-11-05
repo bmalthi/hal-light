@@ -1,0 +1,1 @@
+SELECT CASE WHEN rain>0 THEN 'Rain' ELSE 'Dry' END weather,count(*) n,avg(abs(y-pred)) mae,sqrt(avg((y-pred)^2)) rmse,sum(abs(y-pred))/sum(y) wape,sum(pred-y)/sum(y) bias FROM scored WHERE functioning AND d>=DATE '2018-09-01' AND model='Past 28d hour/daytype' GROUP BY 1 ORDER BY 1;

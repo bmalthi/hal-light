@@ -1,0 +1,1 @@
+SELECT count(*) n,avg((y<=q28+52.460000000000065)::INT) coverage,avg(greatest(y-q28-52.460000000000065,0)) unmet_proxy,avg(greatest(q28+52.460000000000065-y,0)) slack FROM forecasts WHERE functioning AND d>=DATE '2018-09-01';

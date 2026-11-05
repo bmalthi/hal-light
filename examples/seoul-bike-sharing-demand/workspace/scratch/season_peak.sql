@@ -1,0 +1,1 @@
+WITH g AS (SELECT season,daytype,h,avg(y) mean,count(*) n FROM hours WHERE functioning GROUP BY ALL), ranked AS (SELECT *,row_number() over(partition by season,daytype order by mean desc) r FROM g) SELECT season,daytype,h,mean,n FROM ranked WHERE r=1 ORDER BY 1,2;

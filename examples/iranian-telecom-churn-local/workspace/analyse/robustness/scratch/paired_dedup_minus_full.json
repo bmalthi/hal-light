@@ -1,0 +1,1052 @@
+[
+  {
+    "seed": 20261105,
+    "test": {
+      "auc": 0.0034178118908497757,
+      "brier": -0.002222983819622243,
+      "prevalence": -0.0020678753366582814
+    },
+    "test_campaign20": {
+      "precision": -0.002190333437401437,
+      "recall": 0.005645404318470049,
+      "value_recall": 0.05837461508795827
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.00040775045012128586,
+        "recall": -0.003058220087661767,
+        "value_recall": 0.0031524453430058497
+      },
+      "low_seconds": {
+        "precision": 0.0159090909090909,
+        "recall": 0.05303030303030298,
+        "value_recall": 0.06115673607740085
+      },
+      "scorecard": {
+        "precision": 0.0050018780518342465,
+        "recall": 0.01291350338239039,
+        "value_recall": 0.009032954257096049
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.009090909090909094,
+        "recall": 0.026515151515151603,
+        "value_recall": 0.017204715742425436
+      }
+    }
+  },
+  {
+    "seed": 20261106,
+    "test": {
+      "auc": -0.004477920693377269,
+      "brier": 0.0010538718281073722,
+      "prevalence": -0.0014201441992571506
+    },
+    "test_campaign20": {
+      "precision": -0.010797268226012902,
+      "recall": -0.006776799290749924,
+      "value_recall": 0.00233363494560479
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.007947495313254102,
+        "recall": -0.0006112423168922465,
+        "value_recall": -0.00044289576755507376
+      },
+      "low_seconds": {
+        "precision": 0.014620278868282127,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.010922290911461102,
+        "recall": -0.0016049382716049054,
+        "value_recall": -0.0007681891259497808
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.015432516583186673,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261107,
+    "test": {
+      "auc": 0.001131354690286912,
+      "brier": -0.0006158766904718338,
+      "prevalence": -0.0027702499247214685
+    },
+    "test_campaign20": {
+      "precision": -0.005129798217178294,
+      "recall": 0.0023099582512132733,
+      "value_recall": 0.0034794350612731284
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.006122295349937634,
+        "recall": 0.0201810244703432,
+        "value_recall": 0.020972163783812225
+      },
+      "low_seconds": {
+        "precision": 0.0015873015873015817,
+        "recall": 0.0063856960408684715,
+        "value_recall": 0.01604891813997089
+      },
+      "scorecard": {
+        "precision": 0.005683469969184257,
+        "recall": 0.01893721433951312,
+        "value_recall": 0.02415731338472299
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.0031746031746031633,
+        "recall": 0.011494252873563204,
+        "value_recall": 0.02242366386109268
+      }
+    }
+  },
+  {
+    "seed": 20261108,
+    "test": {
+      "auc": -0.014349943060995907,
+      "brier": 0.0006523548480270869,
+      "prevalence": -0.0010671840892553797
+    },
+    "test_campaign20": {
+      "precision": -0.04454850071970906,
+      "recall": -0.051085214350045316,
+      "value_recall": 0.02248911269483611
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.02458272754229998,
+        "recall": -0.002029440838285157,
+        "value_recall": -0.001934028957062739
+      },
+      "low_seconds": {
+        "precision": 0.02370689655172417,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.027780710615183724,
+        "recall": -0.0005277482490068097,
+        "value_recall": -0.0002740073189336778
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.05316091954022989,
+        "recall": 0.052631578947368474,
+        "value_recall": 0.026804745390160645
+      }
+    }
+  },
+  {
+    "seed": 20261109,
+    "test": {
+      "auc": -0.007946042186465552,
+      "brier": -0.0010450604233892269,
+      "prevalence": -0.005652266728768812
+    },
+    "test_campaign20": {
+      "precision": -0.01964305501406083,
+      "recall": -0.0016187226045928371,
+      "value_recall": 0.014000034507126613
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.01242189704692842,
+        "recall": -0.0005477572224672489,
+        "value_recall": -0.0005275311965174945
+      },
+      "low_seconds": {
+        "precision": 0.015096015096015103,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.014061112271500753,
+        "recall": -0.001806168063938407,
+        "value_recall": -0.0009545742045894978
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.016872016872016893,
+        "recall": 0.0,
+        "value_recall": 0.0
+      }
+    }
+  },
+  {
+    "seed": 20261110,
+    "test": {
+      "auc": -0.005360230268183663,
+      "brier": 0.00011740113335108326,
+      "prevalence": -0.003709410489071502
+    },
+    "test_campaign20": {
+      "precision": -0.016675608661153307,
+      "recall": -0.006029789465842428,
+      "value_recall": 0.02565325275280772
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.010275741218164713,
+        "recall": -0.0010557589789195188,
+        "value_recall": -0.0011050733778521504
+      },
+      "low_seconds": {
+        "precision": 0.010650749063670417,
+        "recall": 0.0,
+        "value_recall": -2.7755575615628914e-17
+      },
+      "scorecard": {
+        "precision": 0.012158247608563627,
+        "recall": -0.0011517199017199165,
+        "value_recall": -0.000822076743924316
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.013927902621722832,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261111,
+    "test": {
+      "auc": -0.00432846912333873,
+      "brier": 0.0014719450070110607,
+      "prevalence": 0.0030646046079838007
+    },
+    "test_campaign20": {
+      "precision": 0.0006385748337291997,
+      "recall": -0.01637452888729707,
+      "value_recall": -0.003152466525307651
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.009351400198307186,
+        "recall": -0.017254517233393996,
+        "value_recall": -0.022356557117340192
+      },
+      "low_seconds": {
+        "precision": 0.02669929914339747,
+        "recall": 0.026455026455026398,
+        "value_recall": 0.04136489132786392
+      },
+      "scorecard": {
+        "precision": 0.015247467737498438,
+        "recall": -0.007516439563419408,
+        "value_recall": -0.019426436700038074
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.01946823895872732,
+        "recall": -0.006613756613756627,
+        "value_recall": -0.017714093128946562
+      }
+    }
+  },
+  {
+    "seed": 20261112,
+    "test": {
+      "auc": 0.001678174883892658,
+      "brier": 0.0017333140576322736,
+      "prevalence": 0.0046923041622688455
+    },
+    "test_campaign20": {
+      "precision": 0.016280907656499977,
+      "recall": -0.0008630885784610687,
+      "value_recall": 0.005171989889910411
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.009129514521487511,
+        "recall": -0.0016369047619047006,
+        "value_recall": -0.0011156216447201217
+      },
+      "low_seconds": {
+        "precision": 0.02388097024256064,
+        "recall": 0.050000000000000044,
+        "value_recall": 0.05416661983658155
+      },
+      "scorecard": {
+        "precision": 0.015264896167940994,
+        "recall": 0.015184665731650338,
+        "value_recall": 0.007488057281210159
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.014878719679919966,
+        "recall": 0.0,
+        "value_recall": -2.220446049250313e-16
+      }
+    }
+  },
+  {
+    "seed": 20261113,
+    "test": {
+      "auc": -0.00030478009091505776,
+      "brier": -0.0025861869533345405,
+      "prevalence": -0.004441300402915738
+    },
+    "test_campaign20": {
+      "precision": -0.0021298219256771223,
+      "recall": 0.01147918104439849,
+      "value_recall": 0.004535365876152109
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.016251931785982915,
+        "recall": -0.002170217602097013,
+        "value_recall": -0.00216356621435132
+      },
+      "low_seconds": {
+        "precision": 0.018567639257294433,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.018457536237708655,
+        "recall": -0.0008567821067821946,
+        "value_recall": -0.0005211942011730253
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.02122015915119363,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261114,
+    "test": {
+      "auc": -0.0056100622168364644,
+      "brier": 0.0016411225397107154,
+      "prevalence": 0.0023121662852784164
+    },
+    "test_campaign20": {
+      "precision": -0.0016093667538996104,
+      "recall": -0.01408504244199793,
+      "value_recall": -0.0017272839230608739
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.012557334928222558,
+        "recall": 0.01523415400067385,
+        "value_recall": 0.0031997610027180157
+      },
+      "low_seconds": {
+        "precision": 0.004559270516717312,
+        "recall": -0.019480519480519543,
+        "value_recall": -0.007275391561426592
+      },
+      "scorecard": {
+        "precision": 0.009648938052213923,
+        "recall": -0.0011740265334191369,
+        "value_recall": -0.001637755940946839
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.008358662613981771,
+        "recall": -0.012987012987012991,
+        "value_recall": -0.004835830718830314
+      }
+    }
+  },
+  {
+    "seed": 20261115,
+    "test": {
+      "auc": -0.004310656540238655,
+      "brier": 0.0016214434613785467,
+      "prevalence": 0.0019879825057539657
+    },
+    "test_campaign20": {
+      "precision": 0.0057023516396002005,
+      "recall": -0.00143140031822786,
+      "value_recall": -0.010766886240212603
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.013871704652286238,
+        "recall": -0.0018656113713454436,
+        "value_recall": -0.001851734300656438
+      },
+      "low_seconds": {
+        "precision": 0.013824884792626724,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.014383623254591,
+        "recall": 0.0011395323895324605,
+        "value_recall": 0.00039039735824170085
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.016129032258064502,
+        "recall": 0.0,
+        "value_recall": 0.0
+      }
+    }
+  },
+  {
+    "seed": 20261116,
+    "test": {
+      "auc": -0.003355908751751846,
+      "brier": -0.0020239149477516427,
+      "prevalence": -0.006428832077618213
+    },
+    "test_campaign20": {
+      "precision": -0.020541235764332866,
+      "recall": 0.005442237728872201,
+      "value_recall": 0.01643777632596055
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.010767384088419873,
+        "recall": -0.0010778021127685333,
+        "value_recall": -0.0009500899108285665
+      },
+      "low_seconds": {
+        "precision": 0.009516256938937373,
+        "recall": 0.0,
+        "value_recall": 5.551115123125783e-17
+      },
+      "scorecard": {
+        "precision": 0.010585871448945655,
+        "recall": -0.0059729430783628246,
+        "value_recall": -0.002583205588107096
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.013594652769910509,
+        "recall": 0.0,
+        "value_recall": 1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261117,
+    "test": {
+      "auc": -0.002838174607204369,
+      "brier": 0.004971825633215285,
+      "prevalence": 0.006202097620008062
+    },
+    "test_campaign20": {
+      "precision": 0.017786658554158064,
+      "recall": -0.005535481458054492,
+      "value_recall": -0.0022983145495864
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": -0.0020881594919682778,
+        "recall": -0.02759633082213725,
+        "value_recall": -0.011217260292265385
+      },
+      "low_seconds": {
+        "precision": 0.0006619886137958497,
+        "recall": -0.021428571428571352,
+        "value_recall": -0.013172137899913672
+      },
+      "scorecard": {
+        "precision": 0.0008792012724250231,
+        "recall": -0.018148549742477704,
+        "value_recall": -0.009028024309218785
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.0027803521779425355,
+        "recall": -0.016666666666666607,
+        "value_recall": -0.010356443415729166
+      }
+    }
+  },
+  {
+    "seed": 20261118,
+    "test": {
+      "auc": -0.0037232220259698634,
+      "brier": 0.0009171249115161456,
+      "prevalence": 0.0003509747649144135
+    },
+    "test_campaign20": {
+      "precision": -0.005663141889556966,
+      "recall": -0.01114563830901305,
+      "value_recall": 0.0011062661907098592
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.007668592460256668,
+        "recall": -0.0016635680971761602,
+        "value_recall": -0.000979390441793515
+      },
+      "low_seconds": {
+        "precision": 0.008373205741626796,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.009112140911474373,
+        "recall": -0.0013976994357707273,
+        "value_recall": -0.0005147957093588618
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.010047846889952139,
+        "recall": 0.0,
+        "value_recall": 0.0
+      }
+    }
+  },
+  {
+    "seed": 20261119,
+    "test": {
+      "auc": 0.00509074318290359,
+      "brier": -0.0027397408100917203,
+      "prevalence": -0.005033214244300033
+    },
+    "test_campaign20": {
+      "precision": 0.01733324908910927,
+      "recall": 0.03132315803922825,
+      "value_recall": 0.013870657739962877
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.012588574536870234,
+        "recall": 0.011938157146959782,
+        "value_recall": 0.0023987379442518275
+      },
+      "low_seconds": {
+        "precision": 0.006693440428380187,
+        "recall": -0.011083743842364546,
+        "value_recall": -0.00573617611878402
+      },
+      "scorecard": {
+        "precision": 0.01060878544375951,
+        "recall": 0.0036656555653312717,
+        "value_recall": -0.0002345869692277347
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.00856760374832663,
+        "recall": -0.008620689655172376,
+        "value_recall": -0.004589004302980593
+      }
+    }
+  },
+  {
+    "seed": 20261120,
+    "test": {
+      "auc": -0.0027702887174937407,
+      "brier": -0.0014044062961859893,
+      "prevalence": -0.005631357984821589
+    },
+    "test_campaign20": {
+      "precision": -0.0181117125342376,
+      "recall": -0.00026928953399540934,
+      "value_recall": 0.0020427293399787327
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.0005781724934338928,
+        "recall": -0.018343797821586127,
+        "value_recall": -0.006067387002713143
+      },
+      "low_seconds": {
+        "precision": 0.005001250312578143,
+        "recall": -0.009057971014492683,
+        "value_recall": -0.006753321372552135
+      },
+      "scorecard": {
+        "precision": 0.004880609784553153,
+        "recall": -0.005266649701904935,
+        "value_recall": -0.002819407644388927
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.006751687921980498,
+        "recall": -0.005434782608695676,
+        "value_recall": -0.004385920418964129
+      }
+    }
+  },
+  {
+    "seed": 20261121,
+    "test": {
+      "auc": -0.004535515545421975,
+      "brier": 0.002075694877412354,
+      "prevalence": 0.0014290444572245264
+    },
+    "test_campaign20": {
+      "precision": 0.0007454598559333281,
+      "recall": -0.00725541052541423,
+      "value_recall": -0.0003360890929696714
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.01806176326642603,
+        "recall": -0.002639315532008246,
+        "value_recall": -0.002531570126089955
+      },
+      "low_seconds": {
+        "precision": 0.01872705018359852,
+        "recall": 0.0,
+        "value_recall": -5.551115123125783e-17
+      },
+      "scorecard": {
+        "precision": 0.020361022346720575,
+        "recall": 0.0030760626398209645,
+        "value_recall": 0.0011203219132903675
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.033659730722154224,
+        "recall": 0.03448275862068961,
+        "value_recall": 0.016343702333162624
+      }
+    }
+  },
+  {
+    "seed": 20261122,
+    "test": {
+      "auc": -0.005555242342430322,
+      "brier": 0.004443030878084328,
+      "prevalence": 0.008975317875841438
+    },
+    "test_campaign20": {
+      "precision": -0.0040186772439979035,
+      "recall": -0.045584511252552695,
+      "value_recall": 0.002221424989411358
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.011092860234543006,
+        "recall": -0.0013159417414736474,
+        "value_recall": -0.0012367618512919565
+      },
+      "low_seconds": {
+        "precision": 0.016098484848484834,
+        "recall": 0.0,
+        "value_recall": -5.551115123125783e-17
+      },
+      "scorecard": {
+        "precision": 0.017061420314844977,
+        "recall": 0.009073878936892599,
+        "value_recall": 0.004664713038968593
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.030303030303030304,
+        "recall": 0.03703703703703709,
+        "value_recall": 0.038280459267310274
+      }
+    }
+  },
+  {
+    "seed": 20261123,
+    "test": {
+      "auc": 0.009087152201513127,
+      "brier": 0.003240620055342175,
+      "prevalence": 0.010430937940864221
+    },
+    "test_campaign20": {
+      "precision": 0.03727113052794545,
+      "recall": -0.0008233267467193661,
+      "value_recall": 0.009344592363028648
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.014863877768701184,
+        "recall": 0.01370582889701677,
+        "value_recall": 0.021831004724569114
+      },
+      "low_seconds": {
+        "precision": 0.013516896120150196,
+        "recall": 0.017094017094017144,
+        "value_recall": 0.011735956040759693
+      },
+      "scorecard": {
+        "precision": 0.018694937720587695,
+        "recall": 0.02441202003208176,
+        "value_recall": 0.03179686522746944
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.019148936170212766,
+        "recall": 0.024216524216524205,
+        "value_recall": 0.031230722657137444
+      }
+    }
+  },
+  {
+    "seed": 20261124,
+    "test": {
+      "auc": -0.004197939859704625,
+      "brier": 0.00021709900402973326,
+      "prevalence": -0.0028622862286228623
+    },
+    "test_campaign20": {
+      "precision": -0.016020172398471533,
+      "recall": -0.006269070903795693,
+      "value_recall": 0.018136907437373506
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.009944257128427184,
+        "recall": -0.0010043203394251021,
+        "value_recall": -0.000985997265412375
+      },
+      "low_seconds": {
+        "precision": 0.016305837215675523,
+        "recall": 0.0,
+        "value_recall": -1.6653345369377348e-16
+      },
+      "scorecard": {
+        "precision": 0.01329942054417943,
+        "recall": -0.0015244111319694387,
+        "value_recall": -0.0008895870649410775
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.01726500411071527,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261125,
+    "test": {
+      "auc": -0.0041588866287660675,
+      "brier": 0.0008387202800845955,
+      "prevalence": -0.0005687450666680971
+    },
+    "test_campaign20": {
+      "precision": -0.006250817301153844,
+      "recall": -0.007142071183303456,
+      "value_recall": -0.00763073792408131
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.0013295308674880768,
+        "recall": -0.01810020905352039,
+        "value_recall": -0.01579746047723074
+      },
+      "low_seconds": {
+        "precision": 0.002874480996486739,
+        "recall": -0.015000000000000013,
+        "value_recall": -0.020439049248164975
+      },
+      "scorecard": {
+        "precision": 0.004342486870781148,
+        "recall": -0.008742170306416108,
+        "value_recall": -0.013178969449332667
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.004577877142552977,
+        "recall": -0.011666666666666603,
+        "value_recall": -0.0167823631418198
+      }
+    }
+  },
+  {
+    "seed": 20261126,
+    "test": {
+      "auc": -0.004228427707175686,
+      "brier": -0.0024121996975071253,
+      "prevalence": -0.003376820341396247
+    },
+    "test_campaign20": {
+      "precision": -0.022911352115925654,
+      "recall": -0.018733499443011947,
+      "value_recall": 0.022322506721869084
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.006490214250667828,
+        "recall": -0.001036953242835592,
+        "value_recall": -0.0007429941183857425
+      },
+      "low_seconds": {
+        "precision": 0.006559571619812576,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      },
+      "scorecard": {
+        "precision": 0.0078077912869132515,
+        "recall": -0.001310671401995589,
+        "value_recall": -0.0006886013387590317
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.008433734939759033,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261127,
+    "test": {
+      "auc": -0.005039081631092901,
+      "brier": 0.0045121101826572085,
+      "prevalence": 0.004846131067629461
+    },
+    "test_campaign20": {
+      "precision": -0.0012613210260417063,
+      "recall": -0.020019710511269717,
+      "value_recall": -0.013931068832101712
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.00836250453877127,
+        "recall": -0.0002403363652690449,
+        "value_recall": -0.0002384237585608684
+      },
+      "low_seconds": {
+        "precision": 0.010741687979539644,
+        "recall": 0.0,
+        "value_recall": -5.551115123125783e-17
+      },
+      "scorecard": {
+        "precision": 0.01027544083995155,
+        "recall": -0.0025822368421053454,
+        "value_recall": -0.0016419168737272227
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.012531969309462904,
+        "recall": 0.0,
+        "value_recall": -5.551115123125783e-17
+      }
+    }
+  },
+  {
+    "seed": 20261128,
+    "test": {
+      "auc": -0.004590272819430696,
+      "brier": -0.0031455838086683063,
+      "prevalence": -0.005612237872967357
+    },
+    "test_campaign20": {
+      "precision": -0.008338367059297358,
+      "recall": 0.012398651629868751,
+      "value_recall": 0.03370011323323541
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.01257500511722931,
+        "recall": -0.001803358186336923,
+        "value_recall": -0.0018476813506609346
+      },
+      "low_seconds": {
+        "precision": 0.013706654170571708,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.014423832554715577,
+        "recall": -0.0010451505016723095,
+        "value_recall": -0.00047617468592403567
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.015815370196813477,
+        "recall": 0.0,
+        "value_recall": 0.0
+      }
+    }
+  },
+  {
+    "seed": 20261129,
+    "test": {
+      "auc": 0.0004720748564843724,
+      "brier": -0.00043491668124777394,
+      "prevalence": 0.002543301093433842
+    },
+    "test_campaign20": {
+      "precision": 0.00908421439045426,
+      "recall": 0.0028636161482239464,
+      "value_recall": 0.016999978290008877
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.015210873424350735,
+        "recall": -0.0008789023662755246,
+        "value_recall": -0.0005869310737288691
+      },
+      "low_seconds": {
+        "precision": 0.0157535039962933,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.016836610330218382,
+        "recall": -0.0018531358335958092,
+        "value_recall": -0.0005681062874570708
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.020386887524614844,
+        "recall": 0.0,
+        "value_recall": 1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261130,
+    "test": {
+      "auc": -0.008162930691213988,
+      "brier": 0.004360803652304471,
+      "prevalence": 0.006967168411867369
+    },
+    "test_campaign20": {
+      "precision": -0.002025895430767588,
+      "recall": -0.03359895682410896,
+      "value_recall": -0.08770446190886816
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.016181971259803085,
+        "recall": -0.0017345153142297454,
+        "value_recall": -0.001311156223404386
+      },
+      "low_seconds": {
+        "precision": 0.02180232558139536,
+        "recall": 0.0,
+        "value_recall": 0.0
+      },
+      "scorecard": {
+        "precision": 0.017439937611273354,
+        "recall": -0.009600231330875508,
+        "value_recall": -0.003951131487888393
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.026647286821705446,
+        "recall": 0.0,
+        "value_recall": 0.0
+      }
+    }
+  },
+  {
+    "seed": 20261131,
+    "test": {
+      "auc": -0.003191227506534222,
+      "brier": 0.0018902011653771644,
+      "prevalence": 0.003030303030303022
+    },
+    "test_campaign20": {
+      "precision": 0.003865875836714716,
+      "recall": -0.003618139330747394,
+      "value_recall": -0.004190449505581451
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.007802074606288012,
+        "recall": -0.001023766169720386,
+        "value_recall": -0.0009869315698720627
+      },
+      "low_seconds": {
+        "precision": 0.019358332205225398,
+        "recall": 0.041666666666666685,
+        "value_recall": 0.04725395234128271
+      },
+      "scorecard": {
+        "precision": 0.009518975547918668,
+        "recall": -0.00029955494693595375,
+        "value_recall": -0.00012190276778839548
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.010559090293759316,
+        "recall": 0.0,
+        "value_recall": -5.551115123125783e-17
+      }
+    }
+  },
+  {
+    "seed": 20261132,
+    "test": {
+      "auc": -0.004590232217150492,
+      "brier": -0.0016096877217972594,
+      "prevalence": -0.005469794260254207
+    },
+    "test_campaign20": {
+      "precision": -0.024171826660040363,
+      "recall": -0.008368562105031785,
+      "value_recall": 0.007784786137507216
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.011862794471490135,
+        "recall": -0.0003597208566152865,
+        "value_recall": -0.00031954989133353706
+      },
+      "low_seconds": {
+        "precision": 0.01613965744400525,
+        "recall": 0.0,
+        "value_recall": -5.551115123125783e-17
+      },
+      "scorecard": {
+        "precision": 0.015325344277484304,
+        "recall": 0.0007717948970448196,
+        "value_recall": 0.0004708995611906186
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.019213877909530053,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261133,
+    "test": {
+      "auc": -0.0009677625156969683,
+      "brier": -0.004821116409236298,
+      "prevalence": -0.009968847352024912
+    },
+    "test_campaign20": {
+      "precision": -0.02773322572736192,
+      "recall": 0.01650866296175224,
+      "value_recall": 0.04528348493538059
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.010724803944893307,
+        "recall": -0.0008179523457345628,
+        "value_recall": -0.0006689069966118177
+      },
+      "low_seconds": {
+        "precision": 0.010885700148441368,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      },
+      "scorecard": {
+        "precision": 0.011943365312798465,
+        "recall": 0.000891149365327748,
+        "value_recall": 0.0003309657918730835
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.012864918357248872,
+        "recall": 0.0,
+        "value_recall": -1.1102230246251565e-16
+      }
+    }
+  },
+  {
+    "seed": 20261134,
+    "test": {
+      "auc": -0.0005660577829539326,
+      "brier": -0.0019307194712909759,
+      "prevalence": -0.004448854180002543
+    },
+    "test_campaign20": {
+      "precision": -0.016275992254239757,
+      "recall": -0.003924097177686381,
+      "value_recall": 0.022119815577385182
+    },
+    "active_policies": {
+      "complaint_first": {
+        "precision": 0.008904666189578553,
+        "recall": 0.027661636412237844,
+        "value_recall": 0.023918348223087693
+      },
+      "low_seconds": {
+        "precision": 0.0015873015873015817,
+        "recall": 0.001481481481481528,
+        "value_recall": 0.013782488005553317
+      },
+      "scorecard": {
+        "precision": 0.007064859040542937,
+        "recall": 0.02089834515366429,
+        "value_recall": 0.027623670010177737
+      },
+      "complaint_then_low_seconds": {
+        "precision": 0.005215419501133772,
+        "recall": 0.01333333333333342,
+        "value_recall": 0.0266492535573013
+      }
+    }
+  }
+]

@@ -1,0 +1,1 @@
+SELECT CASE WHEN temperature<0 THEN '<0 C' WHEN temperature<10 THEN '0–<10 C' WHEN temperature<20 THEN '10–<20 C' WHEN temperature<30 THEN '20–<30 C' ELSE '30+ C' END dimension,count(*) n,avg(y) mean FROM hours WHERE functioning GROUP BY 1 ORDER BY 1;

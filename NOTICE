@@ -1,0 +1,32 @@
+HAL Light
+https://github.com/bmalthi/hal-light
+Copyright 2026 bmalthi
+
+Except for the upstream material described below, licensed under the Apache
+License, Version 2.0.
+
+The dataviz skill includes material adapted from Anthropic’s bundled Claude Code
+dataviz skill. That upstream material is excluded from HAL Light’s Apache-2.0
+license. HAL Light does not grant rights to Anthropic’s material. Local
+adaptations include integration with static analysis briefs.
+
+The bundled reference files and palette validator are adapted from Claude Code
+2.1.318. HAL adds its SVG renderer and Python command-line integration. The APCA
+functions retain the Color.js MIT notice in scripts/validate_palette.py within
+the dataviz skill.
+
+The public datasets under examples/ retain their Creative Commons Attribution
+4.0 International (CC BY 4.0) license:
+https://creativecommons.org/licenses/by/4.0/
+
+Iranian Churn [Dataset]. (2020). UCI Machine Learning Repository.
+https://doi.org/10.24432/C5JW3Z
+Source: https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset
+Included in examples/iranian-telecom-churn-local/question/data.csv.
+
+Seoul Bike Sharing Demand [Dataset]. (2020). UCI Machine Learning Repository.
+https://doi.org/10.24432/C5F62R
+Source: https://archive.ics.uci.edu/dataset/560/seoul+bike+sharing+demand
+Included in examples/seoul-bike-sharing-demand/question/data.csv.
+
+Each dataset's question/SOURCE.txt also records its source and license.

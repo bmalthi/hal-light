@@ -1,0 +1,35 @@
+[project]
+name = "hal-analysis"
+version = "1.0.0"
+description = "Local analysis tooling for the hal analyse skill (DuckDB + scientific Python)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{name = "bmalthi"}]
+dependencies = [
+    "duckdb>=1.3",
+    "pandas>=2.2",
+    "numpy>=2.0",
+    "scipy>=1.14",
+    "scikit-learn>=1.5",
+    "tabulate>=0.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/bmalthi/hal-light"
+Repository = "https://github.com/bmalthi/hal-light"
+Issues = "https://github.com/bmalthi/hal-light/issues"
+
+[dependency-groups]
+dev = ["pypdfium2>=5.11.0", "ruff>=0.16.6,<1"]
+
+[tool.ruff]
+target-version = "py312"
+extend-include = [".claude/skills/**/*.py"]
+# Examples preserve recorded analysis artifacts rather than maintained source code.
+extend-exclude = ["examples"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+

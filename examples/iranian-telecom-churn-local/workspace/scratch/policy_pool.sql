@@ -1,0 +1,1 @@
+SELECT action,count(*) n,sum(churn) churners,avg(churn) rate,avg(customer_value) mean_value,sum(cost) cost_units FROM main.policy GROUP BY 1 ORDER BY 1

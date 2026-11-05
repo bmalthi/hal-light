@@ -1,0 +1,1 @@
+SELECT status,complaints,count(*) n,sum(churn) churners,avg(churn) rate FROM main.features GROUP BY 1,2 HAVING count(*)>=10 ORDER BY 1,2

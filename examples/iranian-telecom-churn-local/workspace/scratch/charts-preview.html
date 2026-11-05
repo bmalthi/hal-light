@@ -1,0 +1,208 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Telecom retention targeting</title><style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5f6b7a;
+    --accent: #1f6feb;
+    --accent-soft: #f5f8ff;
+    --rule: #e3e8ee;
+    --page: #ffffff;
+    --canvas: #f0f2f5;
+    --good: #1d7a3a;
+    --good-soft: #f6fbf6;
+    --good-rule: #cfe8cf;
+    --bad: #b42318;
+    --warn: #8a5a00;
+    --warn-rule: #d0a000;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .page {
+    max-width: 780px;
+    margin: 32px auto;
+    background: var(--page);
+    padding: 46px 56px 52px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+  }
+  .kicker {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 6px 0 4px;
+    font-size: 25px;
+    line-height: 1.25;
+  }
+  .byline {
+    margin: 0 0 22px;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .bottomline {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+  }
+  .bottomline b { color: #000; }
+  h2 {
+    margin: 24px 0 11px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  h3 {
+    margin: 22px 0 5px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin: 0 0 7px; }
+  .num {
+    color: #000;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .caveat {
+    color: var(--warn);
+    border-bottom: 1px dotted var(--warn-rule);
+  }
+  .finding { margin: 0 0 6px; }
+  .fig {
+    margin: 10px 0 16px;
+    text-align: center;
+  }
+  .fig svg,
+  .fig img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .fig figcaption {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+  table.bridge {
+    width: 100%;
+    margin: 10px 0 12px;
+    border-collapse: collapse;
+    font-size: 15.5px;
+  }
+  table.bridge th,
+  table.bridge td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.bridge th {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+  .up { color: var(--good); font-weight: 700; }
+  .down { color: var(--bad); font-weight: 700; }
+  .rec {
+    margin: 8px 0 16px;
+    padding: 14px 18px;
+    background: var(--good-soft);
+    border: 1px solid var(--good-rule);
+    border-radius: 6px;
+  }
+  .rec h2 {
+    margin-top: 0;
+    border: 0;
+    color: var(--good);
+  }
+  .method {
+    color: #3d4654;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .foot {
+    margin-top: 20px;
+    color: #9aa4b1;
+    font-size: 12.5px;
+  }
+  em { color: #000; }
+  code {
+    padding: 1px 4px;
+    background: #f6f8fa;
+    border-radius: 4px;
+    font: .92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media screen and (max-width: 680px) {
+    body { font-size: 16px; }
+    .page { margin: 0; padding: 28px 22px 34px; border-radius: 0; }
+    table.bridge { font-size: 14px; }
+    table.bridge th,
+    table.bridge td { padding: 7px 6px; }
+    .num { white-space: normal; }
+  }
+  /* ── Print / PDF ──────────────────────────────────────────────────────────
+     The on-screen "card" is a screen affordance; on paper the sheet IS the card.
+     The print rules preserve the document layout during browser export. */
+  @media print {
+    :root { color-scheme: light; }
+    @page { margin: 12mm; }
+    html, body { background: #fff !important; }
+    body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important; /* keep callout & chart fills, not white */
+    }
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: #fff;
+    }
+    /* never split a finding, chart, table row, or callout across a page fold */
+    .finding, .fig, figure, table.bridge, tr, img, svg,
+    .rec, .bottomline { break-inside: avoid; page-break-inside: avoid; }
+    /* don't strand a heading at the foot of a page */
+    h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    /* opt-in hard page break: <div class="new-page"></div> */
+    .new-page { break-before: page; page-break-before: always; }
+  }
+</style></head><body><main class="page"><section><h2>The scorecard improves capture on held-out records</h2><figure class="fig"><svg class="viz-capture" viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="At 20% capacity, the scorecard captures more churners"><style>
+  .viz-capture {
+    --surface: #fcfcfb; --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --c-blue: #2a78d6;
+    --mark-muted: #c3c2b7;
+  }
+  .viz-capture text { font-family: system-ui,-apple-system,'Segoe UI',sans-serif; }
+</style><rect x="0" y="0" width="680" height="280" fill="var(--surface)"/><text x="16" y="20" fill="var(--ink-primary)" font-size="14.5" font-weight="700">At 20% capacity, the scorecard captures more churners</text><path d="M150.0,50.0 L554.7,50.0 Q558.7,50.0 558.7,54.0 L558.7,62.0 Q558.7,66.0 554.7,66.0 L150.0,66.0 Z" fill="var(--c-blue)"/><text x="142" y="63.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Complaints + usage</text><text x="564.7" y="63.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">58.7%</text><path d="M150.0,80.0 L457.1,80.0 Q461.1,80.0 461.1,84.0 L461.1,92.0 Q461.1,96.0 457.1,96.0 L150.0,96.0 Z" fill="var(--mark-muted)"/><text x="142" y="93.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Complaint-only</text><text x="467.1" y="93.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">44.7%</text><path d="M150.0,110.0 L285.2,110.0 Q289.2,110.0 289.2,114.0 L289.2,122.0 Q289.2,126.0 285.2,126.0 L150.0,126.0 Z" fill="var(--mark-muted)"/><text x="142" y="123.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Random (expected)</text><text x="295.2" y="123.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">20.0%</text></svg><figcaption>Same 120-contact capacity in a 600-record test set; 84 total churners.</figcaption></figure><table class="bridge"><thead><tr><th>Method at 20% capacity</th><th>Expected churners contacted</th><th>Nonchurners contacted</th><th>Precision</th><th>Recall</th></tr></thead><tbody><tr><td>Complaints + usage</td><td>49.3</td><td>70.7</td><td>41.1%</td><td>58.7%</td></tr><tr><td>Complaint only</td><td>37.5</td><td>82.5</td><td>31.3%</td><td>44.7%</td></tr><tr><td>Random allocation</td><td>16.8</td><td>103.2</td><td>14.0%</td><td>20.0%</td></tr></tbody></table><p>Test AUC is <b>0.836</b> and Brier loss is <b>0.0865</b>. The complaint-only scorecard has AUC 0.667 and Brier loss 0.0959. The model ranks risk; its scores are not certified probabilities for future deployments.</p></section><section><h2>Small, explicit rules make the ranking reproducible</h2><p>Four candidate lookup scorecards were fitted on 1,935 training records and selected on 615 validation records by precision at 20% capacity. Complaints + usage won at 53.6% validation precision; adding failures or tenure did not improve it. The 600-record test partition was used only after model selection. Feature-identical records remain in the same partition.</p><table class="bridge"><thead><tr><th>Complaint code</th><th>Seconds of use</th><th>Train n</th><th>Train churners</th><th>Score</th></tr></thead><tbody><tr><td>1</td><td>1–1499</td><td>47</td><td>47</td><td>74.8%</td></tr><tr><td>1</td><td>1500–3999</td><td>70</td><td>61</td><td>71.2%</td></tr><tr><td>0</td><td>0</td><td>85</td><td>40</td><td>41.0%</td></tr><tr><td>0</td><td>1–1499</td><td>359</td><td>79</td><td>21.7%</td></tr><tr><td>0</td><td>1500–3999</td><td>582</td><td>43</td><td>7.7%</td></tr><tr><td>0</td><td>4000+</td><td>766</td><td>14</td><td>2.2%</td></tr></tbody></table><p class="method">Score = (cell churners + 20 × training churn rate) / (cell n + 20). Training churn rate is 15.50%. Cells with fewer than 20 training records, including complaint-coded zero-use and 4,000+ usage, fall back to 15.50%; review these sparse groups manually, rather than treating fallback as evidence of low risk. Status, age, tariff and customer value are excluded from the main ranking.</p><table class="bridge"><thead><tr><th>Validation candidate</th><th>Precision at 20%</th></tr></thead><tbody><tr><td>complaint</td><td>43.7%</td></tr><tr><td>complaint + usage</td><td>53.6%</td></tr><tr><td>complaint + usage + failures</td><td>48.8%</td></tr><tr><td>complaint + usage + tenure</td><td>44.3%</td></tr></tbody></table></section><section><h2>Budget expansion brings many more false positives</h2><figure class="fig"><svg class="viz-capacity" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Precision falls as contact capacity expands"><style>
+  .viz-capacity {
+    --surface: #fcfcfb; --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --c-blue: #2a78d6;
+    --c-violet: #4a3aa7;
+  }
+  .viz-capacity text { font-family: system-ui,-apple-system,'Segoe UI',sans-serif; }
+</style><rect x="0" y="0" width="680" height="340" fill="var(--surface)"/><text x="52" y="20" fill="var(--ink-primary)" font-size="14.5" font-weight="700">Precision falls as contact capacity expands</text><text x="52" y="37" fill="var(--ink-secondary)" font-size="12">Held-out customers; expected outcomes under random tie allocation</text><line x1="52" y1="300.0" x2="569.2" y2="300.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="303.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">19.6%</text><line x1="52" y1="236.5" x2="569.2" y2="236.5" stroke="var(--grid)" stroke-width="1"/><text x="44" y="240.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">35.8%</text><line x1="52" y1="173.0" x2="569.2" y2="173.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="176.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">52.0%</text><line x1="52" y1="109.5" x2="569.2" y2="109.5" stroke="var(--grid)" stroke-width="1"/><text x="44" y="113.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">68.3%</text><line x1="52" y1="46.0" x2="569.2" y2="46.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="49.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">84.5%</text><text x="52.0" y="318.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">5%</text><text x="224.4" y="318.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">10%</text><text x="396.8" y="318.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">20%</text><text x="569.2" y="318.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">30%</text><path d="M 52.0,63.5 L 224.4,141.2 L 396.8,215.8 L 569.2,236.5" fill="none" stroke="var(--c-blue)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="63.5" r="4" fill="var(--c-blue)" stroke="var(--surface)" stroke-width="2"/><circle cx="224.4" cy="141.2" r="4" fill="var(--c-blue)" stroke="var(--surface)" stroke-width="2"/><circle cx="396.8" cy="215.8" r="4" fill="var(--c-blue)" stroke="var(--surface)" stroke-width="2"/><circle cx="569.2" cy="236.5" r="4" fill="var(--c-blue)" stroke="var(--surface)" stroke-width="2"/><text x="577.2" y="240.0" fill="var(--ink-secondary)" font-size="11" font-weight="600">Scorecard</text><path d="M 52.0,97.1 L 224.4,169.6 L 396.8,254.3 L 569.2,282.5" fill="none" stroke="var(--c-violet)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="97.1" r="4" fill="var(--c-violet)" stroke="var(--surface)" stroke-width="2"/><circle cx="224.4" cy="169.6" r="4" fill="var(--c-violet)" stroke="var(--surface)" stroke-width="2"/><circle cx="396.8" cy="254.3" r="4" fill="var(--c-violet)" stroke="var(--surface)" stroke-width="2"/><circle cx="569.2" cy="282.5" r="4" fill="var(--c-violet)" stroke="var(--surface)" stroke-width="2"/><text x="577.2" y="286.0" fill="var(--ink-secondary)" font-size="11" font-weight="600">Complaint-only</text></svg><figcaption>Blue: scorecard; violet: complaint-only. Capacity is a percentage of eligible customers, not an observed monetary budget.</figcaption></figure><table class="bridge"><thead><tr><th>Capacity</th><th>Contacts</th><th>Churners</th><th>Nonchurners</th><th>Precision</th><th>Recall</th><th>Complaint-only precision</th></tr></thead><tbody><tr><td>5.0%</td><td>30</td><td>24</td><td>6</td><td>80.0%</td><td>28.6%</td><td>71.4%</td></tr><tr><td>10.0%</td><td>60</td><td>36.1</td><td>23.9</td><td>60.2%</td><td>43.0%</td><td>52.9%</td></tr><tr><td>20.0%</td><td>120</td><td>49.3</td><td>70.7</td><td>41.1%</td><td>58.7%</td><td>31.3%</td></tr><tr><td>30.0%</td><td>180</td><td>64.5</td><td>115.5</td><td>35.8%</td><td>76.8%</td><td>24.1%</td></tr></tbody></table><p>At 5% capacity, 30 contacts include 24 churners and six nonchurners. Expanding to 20% adds 90 contacts but only 25.3 expected churners. Fractional counts are expectations from random allocation within tied score groups; no individual-level targets are exported. A “false positive” here means a nonchurner was contacted, not proof that service assistance has no value.</p></section><section><h2>Multiplying risk by value does not justify more offers</h2><p>Customer Value has no documented currency or construction. It is used only as a proxy, never as profit. At the same 120-contact capacity, risk × value captures virtually the same observed churn-value as risk alone, while doubling down on people who do not churn.</p><table class="bridge"><thead><tr><th>Ranking</th><th>Churners</th><th>Nonchurners</th><th>Captured churn-value proxy</th><th>Share of total churn-value</th></tr></thead><tbody><tr><td>Risk</td><td>49.3</td><td>70.7</td><td>4,700.6</td><td>44.9%</td></tr><tr><td>Risk × value</td><td>25</td><td>95</td><td>4,731.8</td><td>45.2%</td></tr><tr><td>Complaint-only</td><td>37.5</td><td>82.5</td><td>5,895.9</td><td>56.3%</td></tr></tbody></table><p>The complaint-only comparison captures more value proxy than either ranking at this budget. Thus the best policy depends on the objective; a churn-capture scorecard is not a profit optimizer. No customer-value-based discount policy is supported by these data.</p></section><section><h2>Eligibility changes the apparent targeting performance</h2><p>Status codes have very different prevalence. If the operator confirms that status code 1 is the currently eligible population, overall test precision substantially overstates campaign performance. This is the recommendation’s main flip test.</p><table class="bridge"><thead><tr><th>Test population</th><th>Records</th><th>Churners</th><th>Precision at 20%</th><th>Recall at 20%</th></tr></thead><tbody><tr><td>All</td><td>600</td><td>84</td><td>41.1%</td><td>58.7%</td></tr><tr><td>Status code 1</td><td>459</td><td>24</td><td>18.8%</td><td>72.0%</td></tr><tr><td>Status code 2</td><td>141</td><td>60</td><td>72.1%</td><td>33.9%</td></tr></tbody></table><p>There are 300 excess exact duplicate records (9.5% of the file), with no identifier to establish whether these are errors or indistinguishable customers. Keeping predictor-identical records together prevents train/test leakage. Counting unique test records once gives AUC 0.839 and 59.4% recall at 20% capacity, close to the main results; this is a weight sensitivity, not an independently validated new model.</p></section><section><h2>Prioritize a service experiment and reserve the discount budget</h2><div class="rec"><p><b>Service investigation:</b> contact complaint-coded customers who are still eligible, prioritizing score when capacity is tight. Resolve the actual problem and measure resolution; do not automatically attach a discount.</p><p><b>Offer:</b> no routine offers yet. A proposed rule for noncomplainants with score ≥20% and Customer Value ≥200 selected 10 held-out records, none of whom churned. It adds cost without observed risk concentration. Treat any future offer arm as a bounded randomized experiment after validating pre-period margin and eligibility.</p><p><b>No paid action:</b> remaining customers receive normal service and monitoring. Low usage alone does not justify a subsidy, especially where value is low or zero. Reassess fresh pre-period signals, unresolved complaints and expected contribution margin.</p></div><table class="bridge"><thead><tr><th>Proposed pool (exploratory)</th><th>Records</th><th>Churners</th><th>Churn rate</th><th>Mean value proxy</th></tr></thead><tbody><tr><td>No paid action</td><td>548</td><td>54</td><td>9.9%</td><td>511.9</td></tr><tr><td>Offer experiment</td><td>10</td><td>0</td><td>0.0%</td><td>599.2</td></tr><tr><td>Service investigation</td><td>42</td><td>30</td><td>71.4%</td><td>277.7</td></tr></tbody></table><p>The action rule was examined after seeing diagnostic results and is exploratory; its pool metrics do not constitute a fresh held-out estimate for the final policy. The zero-churn offer pool is small and does not prove zero future risk.</p><table class="bridge"><thead><tr><th>Illustrative total budget</th><th>Service contacts</th><th>Offer contacts recommended</th><th>Spend</th><th>Reserve</th><th>Observed churners in selected service pool</th></tr></thead><tbody><tr><td>30 units</td><td>30</td><td>0</td><td>30</td><td>0</td><td>24</td></tr><tr><td>60 units</td><td>42</td><td>0</td><td>42</td><td>18</td><td>30</td></tr><tr><td>120 units</td><td>42</td><td>0</td><td>42</td><td>78</td><td>30</td></tr><tr><td>240 units</td><td>42</td><td>0</td><td>42</td><td>198</td><td>30</td></tr></tbody></table><p class="method">Scenario assumptions: service investigation costs one budget unit; an offer would cost four. These are illustrative costs, not measurements or a recommended spend level. With no eligibility filter applied, the service pool has 42 records, including 30 churners and 12 nonchurners. The rejected service-plus-offer policy would spend 82 units at a 120-unit budget, reaching the same 30 churners and 22 nonchurners. Verify actual eligibility before operational sizing.</p></section></main></body></html>

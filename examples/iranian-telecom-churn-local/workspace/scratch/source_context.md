@@ -1,0 +1,4 @@
+# Source context retrieved 2026-11-05 UTC
+https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset
+Iranian Churn [Dataset] (2020), UCI Machine Learning Repository, DOI 10.24432/C5JW3Z. CC BY 4.0.
+Metadata paraphrase: attributes summarize first nine months; outcome is customer status at month 12, giving a three-month planning gap. Complaint: 0 no, 1 yes. Status: 1 active, 2 non-active. Tariff: 1 pay as you go, 2 contractual. Subscription Length is months; Seconds of Use is call seconds. Charge Amount is ordinal 0–9. Age Group is ordered 1–5. Customer Value is a calculated value with no monetary unit supplied here. Source is metadata, not empirical evidence; local data.csv supplies all computed findings. Local SOURCE.txt includes an unrelated Seoul-date note, not applicable to this dataset.

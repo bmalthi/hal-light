@@ -1,0 +1,1819 @@
+{
+  "quality": {
+    "rows": 8760,
+    "days": 365,
+    "first_date": "2017-12-01",
+    "last_date": "2018-11-30",
+    "min_hour": 0,
+    "max_hour": 23,
+    "duplicate_date_hours": 0,
+    "bad_dates": 0,
+    "total_rentals": 6172314,
+    "all_hour_mean": 704.6020547945205,
+    "negative_targets": 0,
+    "nonzero_closed_hours": 0,
+    "zero_open_hours": 0,
+    "incomplete_hours": 0
+  },
+  "categories": [
+    {
+      "season": "Autumn",
+      "holiday": "Holiday",
+      "functioning": "No",
+      "hours": 24
+    },
+    {
+      "season": "Autumn",
+      "holiday": "Holiday",
+      "functioning": "Yes",
+      "hours": 96
+    },
+    {
+      "season": "Autumn",
+      "holiday": "No Holiday",
+      "functioning": "No",
+      "hours": 223
+    },
+    {
+      "season": "Autumn",
+      "holiday": "No Holiday",
+      "functioning": "Yes",
+      "hours": 1841
+    },
+    {
+      "season": "Spring",
+      "holiday": "Holiday",
+      "functioning": "Yes",
+      "hours": 72
+    },
+    {
+      "season": "Spring",
+      "holiday": "No Holiday",
+      "functioning": "No",
+      "hours": 48
+    },
+    {
+      "season": "Spring",
+      "holiday": "No Holiday",
+      "functioning": "Yes",
+      "hours": 2088
+    },
+    {
+      "season": "Summer",
+      "holiday": "Holiday",
+      "functioning": "Yes",
+      "hours": 48
+    },
+    {
+      "season": "Summer",
+      "holiday": "No Holiday",
+      "functioning": "Yes",
+      "hours": 2160
+    },
+    {
+      "season": "Winter",
+      "holiday": "Holiday",
+      "functioning": "Yes",
+      "hours": 192
+    },
+    {
+      "season": "Winter",
+      "holiday": "No Holiday",
+      "functioning": "Yes",
+      "hours": 1968
+    }
+  ],
+  "status": [
+    {
+      "functioning": "No",
+      "hours": 295,
+      "rentals": 0,
+      "mean": 0.0,
+      "p90": 0.0
+    },
+    {
+      "functioning": "Yes",
+      "hours": 8465,
+      "rentals": 6172314,
+      "mean": 729.1569994093326,
+      "p90": 1696.6000000000004
+    }
+  ],
+  "closure_dates": {
+    "incomplete_days": 0,
+    "fully_closed_days": 12,
+    "partially_closed_days": 1,
+    "closed_hours": 295
+  },
+  "season_all": [
+    {
+      "season": "Summer",
+      "hours": 2208,
+      "rentals": 2283234,
+      "mean": 1034.0733695652175,
+      "p90": 2094.6,
+      "closed_hours": 0
+    },
+    {
+      "season": "Autumn",
+      "hours": 2184,
+      "rentals": 1790002,
+      "mean": 819.5979853479854,
+      "p90": 1771.8000000000002,
+      "closed_hours": 247
+    },
+    {
+      "season": "Spring",
+      "hours": 2208,
+      "rentals": 1611909,
+      "mean": 730.03125,
+      "p90": 1641.0,
+      "closed_hours": 48
+    },
+    {
+      "season": "Winter",
+      "hours": 2160,
+      "rentals": 487169,
+      "mean": 225.5412037037037,
+      "p90": 412.3000000000004,
+      "closed_hours": 0
+    }
+  ],
+  "season": [
+    {
+      "season": "Summer",
+      "hours": 2208,
+      "rentals": 2283234,
+      "mean": 1034.0733695652175,
+      "p90": 2094.6
+    },
+    {
+      "season": "Autumn",
+      "hours": 1937,
+      "rentals": 1790002,
+      "mean": 924.1104801239029,
+      "p90": 1836.2000000000003
+    },
+    {
+      "season": "Spring",
+      "hours": 2160,
+      "rentals": 1611909,
+      "mean": 746.2541666666667,
+      "p90": 1648.3000000000004
+    },
+    {
+      "season": "Winter",
+      "hours": 2160,
+      "rentals": 487169,
+      "mean": 225.5412037037037,
+      "p90": 412.3000000000004
+    }
+  ],
+  "month": [
+    {
+      "month": "2017-12",
+      "hours": 744,
+      "rentals": 185330,
+      "mean": 249.0994623655914,
+      "p90": 452.4000000000001
+    },
+    {
+      "month": "2018-01",
+      "hours": 744,
+      "rentals": 150006,
+      "mean": 201.6209677419355,
+      "p90": 355.4000000000001
+    },
+    {
+      "month": "2018-02",
+      "hours": 672,
+      "rentals": 151833,
+      "mean": 225.94196428571428,
+      "p90": 439.79999999999995
+    },
+    {
+      "month": "2018-03",
+      "hours": 744,
+      "rentals": 380594,
+      "mean": 511.5510752688172,
+      "p90": 1031.0
+    },
+    {
+      "month": "2018-04",
+      "hours": 696,
+      "rentals": 524227,
+      "mean": 753.1997126436781,
+      "p90": 1591.5
+    },
+    {
+      "month": "2018-05",
+      "hours": 720,
+      "rentals": 707088,
+      "mean": 982.0666666666667,
+      "p90": 2035.6000000000001
+    },
+    {
+      "month": "2018-06",
+      "hours": 720,
+      "rentals": 896887,
+      "mean": 1245.6763888888888,
+      "p90": 2346.2
+    },
+    {
+      "month": "2018-07",
+      "hours": 744,
+      "rentals": 734460,
+      "mean": 987.1774193548387,
+      "p90": 2014.5000000000002
+    },
+    {
+      "month": "2018-08",
+      "hours": 744,
+      "rentals": 651887,
+      "mean": 876.1922043010753,
+      "p90": 1719.8000000000002
+    },
+    {
+      "month": "2018-09",
+      "hours": 624,
+      "rentals": 673612,
+      "mean": 1079.5064102564102,
+      "p90": 2059.0
+    },
+    {
+      "month": "2018-10",
+      "hours": 665,
+      "rentals": 650675,
+      "mean": 978.4586466165414,
+      "p90": 1868.8000000000002
+    },
+    {
+      "month": "2018-11",
+      "hours": 648,
+      "rentals": 465715,
+      "mean": 718.695987654321,
+      "p90": 1300.9
+    }
+  ],
+  "hour": [
+    {
+      "hour": 0,
+      "hours": 352,
+      "rentals": 197633,
+      "mean": 561.4573863636364,
+      "p90": 1036.7000000000003
+    },
+    {
+      "hour": 1,
+      "hours": 352,
+      "rentals": 155557,
+      "mean": 441.92329545454544,
+      "p90": 822.6000000000005
+    },
+    {
+      "hour": 2,
+      "hours": 352,
+      "rentals": 110095,
+      "mean": 312.7698863636364,
+      "p90": 586.9
+    },
+    {
+      "hour": 3,
+      "hours": 352,
+      "rentals": 74216,
+      "mean": 210.8409090909091,
+      "p90": 403.0
+    },
+    {
+      "hour": 4,
+      "hours": 352,
+      "rentals": 48396,
+      "mean": 137.48863636363637,
+      "p90": 264.0
+    },
+    {
+      "hour": 5,
+      "hours": 352,
+      "rentals": 50765,
+      "mean": 144.21875,
+      "p90": 282.90000000000003
+    },
+    {
+      "hour": 6,
+      "hours": 352,
+      "rentals": 104961,
+      "mean": 298.18465909090907,
+      "p90": 646.9
+    },
+    {
+      "hour": 7,
+      "hours": 353,
+      "rentals": 221192,
+      "mean": 626.6062322946176,
+      "p90": 1328.2
+    },
+    {
+      "hour": 8,
+      "hours": 353,
+      "rentals": 370731,
+      "mean": 1050.229461756374,
+      "p90": 2112.6
+    },
+    {
+      "hour": 9,
+      "hours": 353,
+      "rentals": 235784,
+      "mean": 667.943342776204,
+      "p90": 1169.6
+    },
+    {
+      "hour": 10,
+      "hours": 353,
+      "rentals": 192655,
+      "mean": 545.7648725212465,
+      "p90": 932.8
+    },
+    {
+      "hour": 11,
+      "hours": 353,
+      "rentals": 219311,
+      "mean": 621.2776203966006,
+      "p90": 1048.0000000000002
+    },
+    {
+      "hour": 12,
+      "hours": 353,
+      "rentals": 255296,
+      "mean": 723.2181303116147,
+      "p90": 1237.8
+    },
+    {
+      "hour": 13,
+      "hours": 353,
+      "rentals": 267635,
+      "mean": 758.1728045325779,
+      "p90": 1330.2000000000003
+    },
+    {
+      "hour": 14,
+      "hours": 353,
+      "rentals": 276971,
+      "mean": 784.6203966005666,
+      "p90": 1405.4
+    },
+    {
+      "hour": 15,
+      "hours": 353,
+      "rentals": 302653,
+      "mean": 857.3739376770538,
+      "p90": 1548.4
+    },
+    {
+      "hour": 16,
+      "hours": 353,
+      "rentals": 339677,
+      "mean": 962.2577903682719,
+      "p90": 1705.6000000000001
+    },
+    {
+      "hour": 17,
+      "hours": 353,
+      "rentals": 415556,
+      "mean": 1177.2124645892352,
+      "p90": 2121.4
+    },
+    {
+      "hour": 18,
+      "hours": 353,
+      "rentals": 548568,
+      "mean": 1554.0169971671387,
+      "p90": 2913.2000000000003
+    },
+    {
+      "hour": 19,
+      "hours": 353,
+      "rentals": 436229,
+      "mean": 1235.7762039660056,
+      "p90": 2367.4
+    },
+    {
+      "hour": 20,
+      "hours": 353,
+      "rentals": 390172,
+      "mean": 1105.3031161473089,
+      "p90": 2176.4
+    },
+    {
+      "hour": 21,
+      "hours": 353,
+      "rentals": 376479,
+      "mean": 1066.512747875354,
+      "p90": 2065.7999999999997
+    },
+    {
+      "hour": 22,
+      "hours": 353,
+      "rentals": 336821,
+      "mean": 954.1671388101983,
+      "p90": 1851.2000000000003
+    },
+    {
+      "hour": 23,
+      "hours": 353,
+      "rentals": 244961,
+      "mean": 693.9405099150142,
+      "p90": 1329.0
+    }
+  ],
+  "hour_daytype": [
+    {
+      "daytype": "Weekday",
+      "hour": 0,
+      "hours": 251,
+      "rentals": 129908,
+      "mean": 517.5617529880478,
+      "p90": 968.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 1,
+      "hours": 251,
+      "rentals": 100230,
+      "mean": 399.3227091633466,
+      "p90": 747.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 2,
+      "hours": 251,
+      "rentals": 68627,
+      "mean": 273.41434262948206,
+      "p90": 517.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 3,
+      "hours": 251,
+      "rentals": 45559,
+      "mean": 181.50996015936255,
+      "p90": 349.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 4,
+      "hours": 251,
+      "rentals": 30774,
+      "mean": 122.60557768924303,
+      "p90": 223.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 5,
+      "hours": 251,
+      "rentals": 38095,
+      "mean": 151.77290836653387,
+      "p90": 299.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 6,
+      "hours": 251,
+      "rentals": 88425,
+      "mean": 352.29083665338646,
+      "p90": 672.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 7,
+      "hours": 251,
+      "rentals": 195173,
+      "mean": 777.5816733067729,
+      "p90": 1427.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 8,
+      "hours": 251,
+      "rentals": 327810,
+      "mean": 1306.01593625498,
+      "p90": 2234.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 9,
+      "hours": 251,
+      "rentals": 183834,
+      "mean": 732.406374501992,
+      "p90": 1200.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 10,
+      "hours": 251,
+      "rentals": 136156,
+      "mean": 542.4541832669323,
+      "p90": 914.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 11,
+      "hours": 251,
+      "rentals": 153786,
+      "mean": 612.6932270916335,
+      "p90": 1012.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 12,
+      "hours": 251,
+      "rentals": 175723,
+      "mean": 700.0916334661355,
+      "p90": 1188.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 13,
+      "hours": 251,
+      "rentals": 177212,
+      "mean": 706.0239043824702,
+      "p90": 1151.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 14,
+      "hours": 251,
+      "rentals": 181070,
+      "mean": 721.394422310757,
+      "p90": 1174.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 15,
+      "hours": 251,
+      "rentals": 198348,
+      "mean": 790.2310756972112,
+      "p90": 1292.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 16,
+      "hours": 251,
+      "rentals": 228403,
+      "mean": 909.9721115537849,
+      "p90": 1550.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 17,
+      "hours": 251,
+      "rentals": 297133,
+      "mean": 1183.796812749004,
+      "p90": 2099.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 18,
+      "hours": 251,
+      "rentals": 432737,
+      "mean": 1724.0517928286852,
+      "p90": 3119.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 19,
+      "hours": 251,
+      "rentals": 327910,
+      "mean": 1306.414342629482,
+      "p90": 2454.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 20,
+      "hours": 251,
+      "rentals": 286389,
+      "mean": 1140.9920318725099,
+      "p90": 2202.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 21,
+      "hours": 251,
+      "rentals": 276937,
+      "mean": 1103.3346613545816,
+      "p90": 2100.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 22,
+      "hours": 251,
+      "rentals": 249236,
+      "mean": 992.9721115537849,
+      "p90": 1881.0
+    },
+    {
+      "daytype": "Weekday",
+      "hour": 23,
+      "hours": 251,
+      "rentals": 177153,
+      "mean": 705.7888446215139,
+      "p90": 1343.0
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 0,
+      "hours": 101,
+      "rentals": 67725,
+      "mean": 670.5445544554456,
+      "p90": 1185.0
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 1,
+      "hours": 101,
+      "rentals": 55327,
+      "mean": 547.7920792079208,
+      "p90": 969.0
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 2,
+      "hours": 101,
+      "rentals": 41468,
+      "mean": 410.5742574257426,
+      "p90": 698.0
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 3,
+      "hours": 101,
+      "rentals": 28657,
+      "mean": 283.73267326732673,
+      "p90": 491.0
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 4,
+      "hours": 101,
+      "rentals": 17622,
+      "mean": 174.47524752475246,
+      "p90": 307.0
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 5,
+      "hours": 101,
+      "rentals": 12670,
+      "mean": 125.44554455445545,
+      "p90": 256.0
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 6,
+      "hours": 101,
+      "rentals": 16536,
+      "mean": 163.72277227722773,
+      "p90": 324.0
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 7,
+      "hours": 102,
+      "rentals": 26019,
+      "mean": 255.08823529411765,
+      "p90": 490.90000000000003
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 8,
+      "hours": 102,
+      "rentals": 42921,
+      "mean": 420.79411764705884,
+      "p90": 786.7
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 9,
+      "hours": 102,
+      "rentals": 51950,
+      "mean": 509.3137254901961,
+      "p90": 931.3000000000001
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 10,
+      "hours": 102,
+      "rentals": 56499,
+      "mean": 553.9117647058823,
+      "p90": 1008.7
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 11,
+      "hours": 102,
+      "rentals": 65525,
+      "mean": 642.4019607843137,
+      "p90": 1162.2000000000003
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 12,
+      "hours": 102,
+      "rentals": 79573,
+      "mean": 780.1274509803922,
+      "p90": 1403.8000000000002
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 13,
+      "hours": 102,
+      "rentals": 90423,
+      "mean": 886.5,
+      "p90": 1582.6
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 14,
+      "hours": 102,
+      "rentals": 95901,
+      "mean": 940.2058823529412,
+      "p90": 1711.7
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 15,
+      "hours": 102,
+      "rentals": 104305,
+      "mean": 1022.5980392156863,
+      "p90": 1890.9
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 16,
+      "hours": 102,
+      "rentals": 111274,
+      "mean": 1090.921568627451,
+      "p90": 2094.3
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 17,
+      "hours": 102,
+      "rentals": 118423,
+      "mean": 1161.0098039215686,
+      "p90": 2249.6000000000004
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 18,
+      "hours": 102,
+      "rentals": 115831,
+      "mean": 1135.5980392156862,
+      "p90": 2265.9
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 19,
+      "hours": 102,
+      "rentals": 108319,
+      "mean": 1061.950980392157,
+      "p90": 2181.9
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 20,
+      "hours": 102,
+      "rentals": 103783,
+      "mean": 1017.4803921568628,
+      "p90": 2042.5000000000002
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 21,
+      "hours": 102,
+      "rentals": 99542,
+      "mean": 975.9019607843137,
+      "p90": 1935.7000000000003
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 22,
+      "hours": 102,
+      "rentals": 87585,
+      "mean": 858.6764705882352,
+      "p90": 1681.8999999999999
+    },
+    {
+      "daytype": "Weekend",
+      "hour": 23,
+      "hours": 102,
+      "rentals": 67808,
+      "mean": 664.7843137254902,
+      "p90": 1287.0
+    }
+  ],
+  "holiday": [
+    {
+      "holiday": "Holiday",
+      "hours": 408,
+      "rentals": 215895,
+      "mean": 529.1544117647059,
+      "p90": 1495.1000000000001,
+      "days": 17
+    },
+    {
+      "holiday": "No Holiday",
+      "hours": 8057,
+      "rentals": 5956419,
+      "mean": 739.2849695916594,
+      "p90": 1708.4000000000005,
+      "days": 336
+    }
+  ],
+  "rain": [
+    {
+      "wet": "Dry",
+      "hours": 7949,
+      "rentals": 6086009,
+      "mean": 765.6320291860611,
+      "p90": 1731.1999999999998
+    },
+    {
+      "wet": "Wet",
+      "hours": 516,
+      "rentals": 86305,
+      "mean": 167.2577519379845,
+      "p90": 424.5
+    }
+  ],
+  "temperature": [
+    {
+      "temperature": "<0\u00b0C",
+      "min_temp": -17.8,
+      "hours": 1433,
+      "rentals": 283721,
+      "mean": 197.99092812281927,
+      "p90": 372.5999999999999
+    },
+    {
+      "temperature": "0\u2013<10\u00b0C",
+      "min_temp": 0.0,
+      "hours": 2118,
+      "rentals": 902988,
+      "mean": 426.3399433427762,
+      "p90": 883.0
+    },
+    {
+      "temperature": "10\u2013<20\u00b0C",
+      "min_temp": 10.0,
+      "hours": 2050,
+      "rentals": 1716170,
+      "mean": 837.1560975609756,
+      "p90": 1599.3000000000004
+    },
+    {
+      "temperature": "20\u2013<30\u00b0C",
+      "min_temp": 20.0,
+      "hours": 2340,
+      "rentals": 2686617,
+      "mean": 1148.126923076923,
+      "p90": 2175.1
+    },
+    {
+      "temperature": "\u226530\u00b0C",
+      "min_temp": 30.0,
+      "hours": 524,
+      "rentals": 582818,
+      "mean": 1112.2480916030534,
+      "p90": 1925.6
+    }
+  ],
+  "snow": [
+    {
+      "snow_status": "No snow",
+      "hours": 8022,
+      "rentals": 6090314,
+      "mean": 759.2014460234356,
+      "p90": 1729.9000000000005
+    },
+    {
+      "snow_status": "Snow recorded",
+      "hours": 443,
+      "rentals": 82000,
+      "mean": 185.10158013544017,
+      "p90": 369.40000000000003
+    }
+  ],
+  "weather_correlations": {
+    "temperature": 0.5627401718632253,
+    "humidity": -0.2019726695828879,
+    "wind_speed": 0.12502194587699608,
+    "visibility": 0.21232277570308847,
+    "dew_point": 0.4002628293214643,
+    "solar_radiation": 0.2738615505717593,
+    "rainfall": -0.1286260930540117,
+    "snowfall": -0.15161075292932058
+  },
+  "weather_quality": {
+    "temp_min": -17.8,
+    "temp_max": 39.4,
+    "humidity_min": 0.0,
+    "humidity_max": 98.0,
+    "zero_humidity_hours": 17,
+    "outside_humidity_range": 0,
+    "wind_min": 0.0,
+    "wind_max": 7.4,
+    "visibility_min": 27.0,
+    "visibility_max": 2000.0,
+    "dew_min": -30.6,
+    "dew_max": 27.2,
+    "dew_above_temperature_hours": 0,
+    "solar_min": 0.0,
+    "solar_max": 3.52,
+    "rain_min": 0.0,
+    "rain_max": 35.0,
+    "snow_min": 0.0,
+    "snow_max": 8.8,
+    "negative_nonnegative_weather_hours": 0
+  },
+  "holiday_raw_difference_pct": -28.423485728787124,
+  "window_daytype": [
+    {
+      "daytype": "Weekday",
+      "time_window": "02\u201305",
+      "hours": 1004,
+      "rentals": 183055,
+      "mean": 182.3256972111554,
+      "p90": 370.4000000000001
+    },
+    {
+      "daytype": "Weekday",
+      "time_window": "07\u201309",
+      "hours": 753,
+      "rentals": 706817,
+      "mean": 938.667994687915,
+      "p90": 1898.4
+    },
+    {
+      "daytype": "Weekday",
+      "time_window": "10\u201316",
+      "hours": 1757,
+      "rentals": 1250698,
+      "mean": 711.8372225384178,
+      "p90": 1225.2000000000003
+    },
+    {
+      "daytype": "Weekday",
+      "time_window": "17\u201319",
+      "hours": 753,
+      "rentals": 1057780,
+      "mean": 1404.754316069057,
+      "p90": 2612.8
+    },
+    {
+      "daytype": "Weekday",
+      "time_window": "Other hours",
+      "hours": 1757,
+      "rentals": 1308278,
+      "mean": 744.6089926010245,
+      "p90": 1764.0000000000005
+    },
+    {
+      "daytype": "Weekend",
+      "time_window": "02\u201305",
+      "hours": 404,
+      "rentals": 100417,
+      "mean": 248.55693069306932,
+      "p90": 524.8
+    },
+    {
+      "daytype": "Weekend",
+      "time_window": "07\u201309",
+      "hours": 306,
+      "rentals": 120890,
+      "mean": 395.06535947712416,
+      "p90": 791.0
+    },
+    {
+      "daytype": "Weekend",
+      "time_window": "10\u201316",
+      "hours": 714,
+      "rentals": 603500,
+      "mean": 845.2380952380952,
+      "p90": 1659.0000000000005
+    },
+    {
+      "daytype": "Weekend",
+      "time_window": "17\u201319",
+      "hours": 306,
+      "rentals": 342573,
+      "mean": 1119.5196078431372,
+      "p90": 2255.5
+    },
+    {
+      "daytype": "Weekend",
+      "time_window": "Other hours",
+      "hours": 711,
+      "rentals": 498306,
+      "mean": 700.8523206751055,
+      "p90": 1604.0
+    }
+  ],
+  "window_season_wet": [
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "02\u201305",
+      "hours": 218,
+      "rentals": 48583,
+      "mean": 222.8577981651376,
+      "p90": 364.1000000000001
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "07\u201309",
+      "hours": 158,
+      "rentals": 202445,
+      "mean": 1281.2974683544303,
+      "p90": 2103.1
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "10\u201316",
+      "hours": 376,
+      "rentals": 368612,
+      "mean": 980.3510638297872,
+      "p90": 1390.5
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "17\u201319",
+      "hours": 164,
+      "rentals": 306338,
+      "mean": 1867.9146341463415,
+      "p90": 2616.5
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "Other hours",
+      "hours": 384,
+      "rentals": 352117,
+      "mean": 916.9713541666666,
+      "p90": 1630.6
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "02\u201305",
+      "hours": 10,
+      "rentals": 937,
+      "mean": 93.7,
+      "p90": 230.2
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "07\u201309",
+      "hours": 13,
+      "rentals": 3207,
+      "mean": 246.69230769230768,
+      "p90": 686.4000000000001
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "10\u201316",
+      "hours": 23,
+      "rentals": 3881,
+      "mean": 168.7391304347826,
+      "p90": 545.2000000000002
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "17\u201319",
+      "hours": 7,
+      "rentals": 444,
+      "mean": 63.42857142857143,
+      "p90": 89.60000000000001
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "Other hours",
+      "hours": 15,
+      "rentals": 2649,
+      "mean": 176.6,
+      "p90": 485.19999999999993
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "02\u201305",
+      "hours": 88,
+      "rentals": 27024,
+      "mean": 307.09090909090907,
+      "p90": 526.8
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "07\u201309",
+      "hours": 67,
+      "rentals": 35683,
+      "mean": 532.5820895522388,
+      "p90": 836.6
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "10\u201316",
+      "hours": 162,
+      "rentals": 190543,
+      "mean": 1176.1913580246915,
+      "p90": 1837.4
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "17\u201319",
+      "hours": 70,
+      "rentals": 102365,
+      "mean": 1462.357142857143,
+      "p90": 2122.9
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "Other hours",
+      "hours": 163,
+      "rentals": 141912,
+      "mean": 870.6257668711656,
+      "p90": 1517.4
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "07\u201309",
+      "hours": 5,
+      "rentals": 235,
+      "mean": 47.0,
+      "p90": 126.60000000000001
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "10\u201316",
+      "hours": 6,
+      "rentals": 1070,
+      "mean": 178.33333333333334,
+      "p90": 375.5
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "02\u201305",
+      "hours": 224,
+      "rentals": 36798,
+      "mean": 164.27678571428572,
+      "p90": 279.2000000000001
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "07\u201309",
+      "hours": 178,
+      "rentals": 178839,
+      "mean": 1004.7134831460675,
+      "p90": 1834.8000000000006
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "10\u201316",
+      "hours": 421,
+      "rentals": 359392,
+      "mean": 853.6627078384798,
+      "p90": 1312.0
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "17\u201319",
+      "hours": 181,
+      "rentals": 289824,
+      "mean": 1601.2375690607735,
+      "p90": 2558.0
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "Other hours",
+      "hours": 401,
+      "rentals": 306893,
+      "mean": 765.3192019950125,
+      "p90": 1556.0
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "02\u201305",
+      "hours": 32,
+      "rentals": 1265,
+      "mean": 39.53125,
+      "p90": 77.8
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "07\u201309",
+      "hours": 14,
+      "rentals": 1831,
+      "mean": 130.78571428571428,
+      "p90": 333.9000000000002
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "10\u201316",
+      "hours": 27,
+      "rentals": 4870,
+      "mean": 180.37037037037038,
+      "p90": 483.80000000000007
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "17\u201319",
+      "hours": 11,
+      "rentals": 1243,
+      "mean": 113.0,
+      "p90": 304.0
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "Other hours",
+      "hours": 47,
+      "rentals": 5023,
+      "mean": 106.87234042553192,
+      "p90": 307.19999999999993
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "02\u201305",
+      "hours": 93,
+      "rentals": 19196,
+      "mean": 206.40860215053763,
+      "p90": 418.4
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "07\u201309",
+      "hours": 68,
+      "rentals": 27983,
+      "mean": 411.5147058823529,
+      "p90": 728.9000000000002
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "10\u201316",
+      "hours": 167,
+      "rentals": 173943,
+      "mean": 1041.5748502994013,
+      "p90": 1837.8
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "17\u201319",
+      "hours": 69,
+      "rentals": 90643,
+      "mean": 1313.6666666666667,
+      "p90": 2275.0
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "Other hours",
+      "hours": 167,
+      "rentals": 110862,
+      "mean": 663.8443113772455,
+      "p90": 1487.4
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "02\u201305",
+      "hours": 11,
+      "rentals": 867,
+      "mean": 78.81818181818181,
+      "p90": 141.0
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "07\u201309",
+      "hours": 10,
+      "rentals": 332,
+      "mean": 33.2,
+      "p90": 54.39999999999996
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "10\u201316",
+      "hours": 15,
+      "rentals": 1158,
+      "mean": 77.2,
+      "p90": 189.19999999999996
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "17\u201319",
+      "hours": 9,
+      "rentals": 340,
+      "mean": 37.77777777777778,
+      "p90": 59.0
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "Other hours",
+      "hours": 15,
+      "rentals": 607,
+      "mean": 40.46666666666667,
+      "p90": 106.99999999999996
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "02\u201305",
+      "hours": 229,
+      "rentals": 74257,
+      "mean": 324.26637554585153,
+      "p90": 513.0000000000001
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "07\u201309",
+      "hours": 179,
+      "rentals": 242830,
+      "mean": 1356.5921787709497,
+      "p90": 2118.2000000000003
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "10\u201316",
+      "hours": 430,
+      "rentals": 390949,
+      "mean": 909.1837209302325,
+      "p90": 1277.5000000000005
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "17\u201319",
+      "hours": 174,
+      "rentals": 368816,
+      "mean": 2119.632183908046,
+      "p90": 2964.1
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "Other hours",
+      "hours": 412,
+      "rentals": 545417,
+      "mean": 1323.8276699029127,
+      "p90": 2178.5
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "02\u201305",
+      "hours": 35,
+      "rentals": 3796,
+      "mean": 108.45714285714286,
+      "p90": 210.20000000000007
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "07\u201309",
+      "hours": 19,
+      "rentals": 6947,
+      "mean": 365.63157894736844,
+      "p90": 803.1999999999999
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "10\u201316",
+      "hours": 32,
+      "rentals": 6776,
+      "mean": 211.75,
+      "p90": 623.3000000000001
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "17\u201319",
+      "hours": 24,
+      "rentals": 13653,
+      "mean": 568.875,
+      "p90": 1585.1999999999996
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "Other hours",
+      "hours": 50,
+      "rentals": 9034,
+      "mean": 180.68,
+      "p90": 352.50000000000006
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "02\u201305",
+      "hours": 103,
+      "rentals": 43165,
+      "mean": 419.07766990291265,
+      "p90": 689.5999999999999
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "07\u201309",
+      "hours": 73,
+      "rentals": 47016,
+      "mean": 644.054794520548,
+      "p90": 928.9999999999999
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "10\u201316",
+      "hours": 169,
+      "rentals": 182548,
+      "mean": 1080.1656804733727,
+      "p90": 1707.4
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "17\u201319",
+      "hours": 72,
+      "rentals": 126230,
+      "mean": 1753.1944444444443,
+      "p90": 2365.7999999999997
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "Other hours",
+      "hours": 170,
+      "rentals": 211201,
+      "mean": 1242.3588235294117,
+      "p90": 2055.0
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "07\u201309",
+      "hours": 5,
+      "rentals": 586,
+      "mean": 117.2,
+      "p90": 274.6
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "10\u201316",
+      "hours": 13,
+      "rentals": 4395,
+      "mean": 338.0769230769231,
+      "p90": 991.6
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "17\u201319",
+      "hours": 6,
+      "rentals": 1964,
+      "mean": 327.3333333333333,
+      "p90": 799.0
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "Other hours",
+      "hours": 12,
+      "rentals": 3600,
+      "mean": 300.0,
+      "p90": 725.1000000000001
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "02\u201305",
+      "hours": 252,
+      "rentals": 17237,
+      "mean": 68.40079365079364,
+      "p90": 115.0
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "07\u201309",
+      "hours": 190,
+      "rentals": 70363,
+      "mean": 370.3315789473684,
+      "p90": 650.3
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "10\u201316",
+      "hours": 446,
+      "rentals": 116149,
+      "mean": 260.4237668161435,
+      "p90": 377.0
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "17\u201319",
+      "hours": 187,
+      "rentals": 76648,
+      "mean": 409.88235294117646,
+      "p90": 635.8
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekday",
+      "wet": "Dry",
+      "time_window": "Other hours",
+      "hours": 438,
+      "rentals": 86074,
+      "mean": 196.5159817351598,
+      "p90": 322.3
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "17\u201319",
+      "hours": 5,
+      "rentals": 814,
+      "mean": 162.8,
+      "p90": 279.0
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekday",
+      "wet": "Wet",
+      "time_window": "Other hours",
+      "hours": 10,
+      "rentals": 1071,
+      "mean": 107.1,
+      "p90": 197.3
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "02\u201305",
+      "hours": 101,
+      "rentals": 9096,
+      "mean": 90.05940594059406,
+      "p90": 192.0
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "07\u201309",
+      "hours": 74,
+      "rentals": 8767,
+      "mean": 118.47297297297297,
+      "p90": 221.7
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "10\u201316",
+      "hours": 179,
+      "rentals": 49627,
+      "mean": 277.24581005586595,
+      "p90": 468.2000000000001
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "17\u201319",
+      "hours": 76,
+      "rentals": 20001,
+      "mean": 263.17105263157896,
+      "p90": 432.5
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekend",
+      "wet": "Dry",
+      "time_window": "Other hours",
+      "hours": 176,
+      "rentals": 29623,
+      "mean": 168.3125,
+      "p90": 285.5
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekend",
+      "wet": "Wet",
+      "time_window": "Other hours",
+      "hours": 6,
+      "rentals": 174,
+      "mean": 29.0,
+      "p90": 53.5
+    }
+  ],
+  "hourly_peaks_by_season_daytype": [
+    {
+      "season": "Autumn",
+      "daytype": "Weekday",
+      "hour": 18,
+      "hours": 57,
+      "mean": 2200.9473684210525
+    },
+    {
+      "season": "Autumn",
+      "daytype": "Weekend",
+      "hour": 17,
+      "hours": 24,
+      "mean": 1531.3333333333333
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekday",
+      "hour": 18,
+      "hours": 64,
+      "mean": 1887.8125
+    },
+    {
+      "season": "Spring",
+      "daytype": "Weekend",
+      "hour": 17,
+      "hours": 26,
+      "mean": 1272.3846153846155
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekday",
+      "hour": 18,
+      "hours": 66,
+      "mean": 2327.3636363636365
+    },
+    {
+      "season": "Summer",
+      "daytype": "Weekend",
+      "hour": 20,
+      "hours": 26,
+      "mean": 1761.0384615384614
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekday",
+      "hour": 8,
+      "hours": 64,
+      "mean": 543.890625
+    },
+    {
+      "season": "Winter",
+      "daytype": "Weekend",
+      "hour": 15,
+      "hours": 26,
+      "mean": 340.1923076923077
+    }
+  ],
+  "rain_standardized": {
+    "common_cells": 144,
+    "exposed_hours": 516,
+    "reference_hours": 6087,
+    "standardized_exposed_mean": 153.64200435588444,
+    "standardized_reference_mean": 884.3935923588782,
+    "relative_difference_pct": -82.62741773760635,
+    "exposed_observed_mean": 167.2577519379845,
+    "reference_at_exposed_mix": 874.4009502823119,
+    "exposed_mix_difference_pct": -80.8717325977307
+  },
+  "rain_standardized_month": {
+    "common_cells": 297,
+    "exposed_hours": 516,
+    "reference_hours": 4343,
+    "standardized_exposed_mean": 155.96940042532756,
+    "standardized_reference_mean": 974.418001765479,
+    "relative_difference_pct": -83.99358384771858,
+    "exposed_observed_mean": 167.2577519379845,
+    "reference_at_exposed_mix": 926.0350205008966,
+    "exposed_mix_difference_pct": -81.9382908599381
+  },
+  "holiday_standardized": {
+    "common_cells": 144,
+    "exposed_hours": 408,
+    "reference_hours": 6809,
+    "standardized_exposed_mean": 661.1212784628885,
+    "standardized_reference_mean": 713.410371338433,
+    "relative_difference_pct": -7.329455104142191,
+    "exposed_observed_mean": 529.1544117647059,
+    "reference_at_exposed_mix": 585.67071066047,
+    "exposed_mix_difference_pct": -9.649842115551554
+  },
+  "holiday_standardized_month": {
+    "common_cells": 288,
+    "exposed_hours": 408,
+    "reference_hours": 4776,
+    "standardized_exposed_mean": 595.7576195987655,
+    "standardized_reference_mean": 687.246016293569,
+    "relative_difference_pct": -13.312321137664151,
+    "exposed_observed_mean": 529.1544117647059,
+    "reference_at_exposed_mix": 642.123403102602,
+    "exposed_mix_difference_pct": -17.593034421741095
+  },
+  "independent_reconciliation": {
+    "total_from_daily": 6172314,
+    "date_groups": 365
+  }
+}

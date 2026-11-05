@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seoul bike demand — fleet planning report</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5f6b7a;
+    --accent: #1f6feb;
+    --accent-soft: #f5f8ff;
+    --rule: #e3e8ee;
+    --page: #ffffff;
+    --canvas: #f0f2f5;
+    --good: #1d7a3a;
+    --good-soft: #f6fbf6;
+    --good-rule: #cfe8cf;
+    --bad: #b42318;
+    --warn: #8a5a00;
+    --warn-rule: #d0a000;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .page {
+    max-width: 780px;
+    margin: 32px auto;
+    background: var(--page);
+    padding: 46px 56px 52px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+  }
+  .kicker {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 6px 0 4px;
+    font-size: 25px;
+    line-height: 1.25;
+  }
+  .byline {
+    margin: 0 0 22px;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .bottomline {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+  }
+  .bottomline b { color: #000; }
+  h2 {
+    margin: 24px 0 11px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  h3 {
+    margin: 22px 0 5px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin: 0 0 7px; }
+  .num {
+    color: #000;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .caveat {
+    color: var(--warn);
+    border-bottom: 1px dotted var(--warn-rule);
+  }
+  .finding { margin: 0 0 6px; }
+  .fig {
+    margin: 10px 0 16px;
+    text-align: center;
+  }
+  .fig svg,
+  .fig img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .fig figcaption {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+  table.bridge {
+    width: 100%;
+    margin: 10px 0 12px;
+    border-collapse: collapse;
+    font-size: 15.5px;
+  }
+  table.bridge th,
+  table.bridge td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.bridge th {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+  .up { color: var(--good); font-weight: 700; }
+  .down { color: var(--bad); font-weight: 700; }
+  .rec {
+    margin: 8px 0 16px;
+    padding: 14px 18px;
+    background: var(--good-soft);
+    border: 1px solid var(--good-rule);
+    border-radius: 6px;
+  }
+  .rec h2 {
+    margin-top: 0;
+    border: 0;
+    color: var(--good);
+  }
+  .method {
+    color: #3d4654;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .foot {
+    margin-top: 20px;
+    color: #9aa4b1;
+    font-size: 12.5px;
+  }
+  em { color: #000; }
+  code {
+    padding: 1px 4px;
+    background: #f6f8fa;
+    border-radius: 4px;
+    font: .92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media screen and (max-width: 680px) {
+    body { font-size: 16px; }
+    .page { margin: 0; padding: 28px 22px 34px; border-radius: 0; }
+    table.bridge { font-size: 14px; }
+    table.bridge th,
+    table.bridge td { padding: 7px 6px; }
+    .num { white-space: normal; }
+  }
+  /* ── Print / PDF ──────────────────────────────────────────────────────────
+     The on-screen "card" is a screen affordance; on paper the sheet IS the card.
+     The print rules preserve the document layout during browser export. */
+  @media print {
+    :root { color-scheme: light; }
+    @page { margin: 12mm; }
+    html, body { background: #fff !important; }
+    body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important; /* keep callout & chart fills, not white */
+    }
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: #fff;
+    }
+    /* never split a finding, chart, table row, or callout across a page fold */
+    .finding, .fig, figure, table.bridge, tr, img, svg,
+    .rec, .bottomline { break-inside: avoid; page-break-inside: avoid; }
+    /* don't strand a heading at the foot of a page */
+    h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    /* opt-in hard page break: <div class="new-page"></div> */
+    .new-page { break-before: page; page-break-before: always; }
+  }
+details { margin: 12px 0; } summary { cursor: pointer; color: var(--accent); font-size: 14px; } td { font-variant-numeric: tabular-nums; } @media print { details > * { display: block; } }
+</style>
+</head>
+<body><main class="page">
+<div class="kicker">Fleet availability • historical planning study</div>
+<h1>Staff seasonal peaks with a calendar-aware forecast and a reviewed reserve</h1>
+<div class="byline">Seoul bike sharing · 1 December 2017–30 November 2018 · prepared 4 November 2026</div>
+<section class="bottomline"><b>Pilot a 28-day same-hour forecast that separates weekdays from weekends, with a rolling workload buffer and human review for holidays, rain and reopening.</b>
+It has the lowest April–November average error among the five tested candidates (274 rentals/hour), while the rolling buffer covers 90.3% of hours overall but only 80.2% on holidays.
+These are retrospective results from one historical year; fresh rental data, issued weather forecasts and station-level inventory/trip information are still required before production validation or numeric fleet sizing.</section>
+<p>This report diagnoses completed rentals, tests a midnight-issued forecast for the coming day, and translates the results into staffing and rebalancing decisions. It is a historical assignment, not a forecast for present-day Seoul.</p>
+<section class="finding" data-claim="analyse/diagnostics/scratch/diagnose.py">
+<h2>Operating hours reveal the demand pattern; closures conceal it</h2>
+<p>The file contains <span class="num">6,172,314 rentals across 8,760 hours</span>, with a complete hourly grid over 365 days. There are no duplicate date/hour keys, missing values, negative rental counts, or zero-rental operating hours. All 295 nonfunctioning hours have zero rentals: 12 entire days and one partial day. Those zeros describe service status, not proof that nobody wanted a bike.</p>
+<table class="bridge"><thead><tr><th>Service status</th><th>Hours</th><th>Rentals</th><th>Mean/hour</th></tr></thead><tbody><tr><td>No</td><td>295</td><td>0</td><td>0.0</td></tr><tr><td>Yes</td><td>8,465</td><td>6,172,314</td><td>729.2</td></tr></tbody></table><p>All demand summaries below exclude closed hours. Across the full file, counting closures lowers the average from 729 to 705 rentals/hour. In autumn, the same denominator change lowers 924 to 820. The dataset does not identify closure causes or whether each closure was scheduled.</p></section><section class="finding" data-claim="analyse/diagnostics/scratch/diagnose.py"><h2>Peak timing changes with season and day of week</h2><figure class="fig" style="--weekday:#2a78d6;--weekend:#1baf7a"><svg class="viz-hourly" viewBox="0 0 760 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Weekdays have two pronounced rental peaks"><style>
+  .viz-hourly {
+    --surface: #fcfcfb; --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --c-blue: #2a78d6;
+    --c-aqua: #1baf7a;
+  }
+  .viz-hourly text { font-family: system-ui,-apple-system,'Segoe UI',sans-serif; }
+</style><rect x="0" y="0" width="760" height="350" fill="var(--surface)"/><text x="52" y="20" fill="var(--ink-primary)" font-size="14.5" font-weight="700">Weekdays have two pronounced rental peaks</text><text x="52" y="37" fill="var(--ink-secondary)" font-size="12">Mean completed rentals per operating hour; all seasons</text><line x1="52" y1="310.0" x2="652" y2="310.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="313.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">0</text><line x1="52" y1="244.0" x2="652" y2="244.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="247.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">500</text><line x1="52" y1="178.0" x2="652" y2="178.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="181.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">1,000</text><line x1="52" y1="112.0" x2="652" y2="112.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="115.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">1,500</text><line x1="52" y1="46.0" x2="652" y2="46.0" stroke="var(--grid)" stroke-width="1"/><text x="44" y="49.5" fill="var(--ink-muted)" font-size="10.5" text-anchor="end">2,000</text><text x="52.0" y="328.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">00</text><text x="208.5" y="328.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">06</text><text x="365.0" y="328.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">12</text><text x="521.6" y="328.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">18</text><text x="652.0" y="328.0" fill="var(--ink-muted)" font-size="10.5" text-anchor="middle">23</text><path d="M 52.0,241.7 L 78.1,257.3 L 104.2,273.9 L 130.3,286.0 L 156.3,293.8 L 182.4,290.0 L 208.5,263.5 L 234.6,207.4 L 260.7,137.6 L 286.8,213.3 L 312.9,238.4 L 339.0,229.1 L 365.0,217.6 L 391.1,216.8 L 417.2,214.8 L 443.3,205.7 L 469.4,189.9 L 495.5,153.7 L 521.6,82.4 L 547.7,137.6 L 573.7,159.4 L 599.8,164.4 L 625.9,178.9 L 652.0,216.8" fill="none" stroke="var(--c-blue)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="241.7" r="4" fill="var(--c-blue)" stroke="var(--surface)" stroke-width="2"/><circle cx="652.0" cy="216.8" r="4" fill="var(--c-blue)" stroke="var(--surface)" stroke-width="2"/><path d="M 52.0,221.5 L 78.1,237.7 L 104.2,255.8 L 130.3,272.5 L 156.3,287.0 L 182.4,293.4 L 208.5,288.4 L 234.6,276.3 L 260.7,254.5 L 286.8,242.8 L 312.9,236.9 L 339.0,225.2 L 365.0,207.0 L 391.1,193.0 L 417.2,185.9 L 443.3,175.0 L 469.4,166.0 L 495.5,156.7 L 521.6,160.1 L 547.7,169.8 L 573.7,175.7 L 599.8,181.2 L 625.9,196.7 L 652.0,222.2" fill="none" stroke="var(--c-aqua)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="221.5" r="4" fill="var(--c-aqua)" stroke="var(--surface)" stroke-width="2"/><circle cx="652.0" cy="222.2" r="4" fill="var(--c-aqua)" stroke="var(--surface)" stroke-width="2"/></svg><figcaption><span aria-hidden="true" style="display:inline-block;width:16px;height:4px;background:var(--weekday);vertical-align:middle"></span> Weekday &nbsp; <span aria-hidden="true" style="display:inline-block;width:16px;height:4px;background:var(--weekend);vertical-align:middle"></span> Weekend<br>Hour labels use the dataset’s local clock. Weekday means include weekday holidays; holiday effects are examined separately below.</figcaption></figure><p>Weekday 08:00 averages <b>1,306 rentals/hour</b>, versus 421 on weekends; weekday 18:00 averages <b>1,724</b>. Weekday 02:00–05:59 averages only <b>182</b>. Weekend demand builds later, so a weekday-only staffing schedule would allocate effort at the wrong time.</p><details><summary>Hourly chart data: means and operating-hour sample sizes</summary><table class="bridge"><thead><tr><th>Hour</th><th>Weekday mean</th><th>n</th><th>Weekend mean</th><th>n</th></tr></thead><tbody><tr><td>00:00</td><td>517.6</td><td>251</td><td>670.5</td><td>101</td></tr><tr><td>01:00</td><td>399.3</td><td>251</td><td>547.8</td><td>101</td></tr><tr><td>02:00</td><td>273.4</td><td>251</td><td>410.6</td><td>101</td></tr><tr><td>03:00</td><td>181.5</td><td>251</td><td>283.7</td><td>101</td></tr><tr><td>04:00</td><td>122.6</td><td>251</td><td>174.5</td><td>101</td></tr><tr><td>05:00</td><td>151.8</td><td>251</td><td>125.4</td><td>101</td></tr><tr><td>06:00</td><td>352.3</td><td>251</td><td>163.7</td><td>101</td></tr><tr><td>07:00</td><td>777.6</td><td>251</td><td>255.1</td><td>102</td></tr><tr><td>08:00</td><td>1,306.0</td><td>251</td><td>420.8</td><td>102</td></tr><tr><td>09:00</td><td>732.4</td><td>251</td><td>509.3</td><td>102</td></tr><tr><td>10:00</td><td>542.5</td><td>251</td><td>553.9</td><td>102</td></tr><tr><td>11:00</td><td>612.7</td><td>251</td><td>642.4</td><td>102</td></tr><tr><td>12:00</td><td>700.1</td><td>251</td><td>780.1</td><td>102</td></tr><tr><td>13:00</td><td>706.0</td><td>251</td><td>886.5</td><td>102</td></tr><tr><td>14:00</td><td>721.4</td><td>251</td><td>940.2</td><td>102</td></tr><tr><td>15:00</td><td>790.2</td><td>251</td><td>1,022.6</td><td>102</td></tr><tr><td>16:00</td><td>910.0</td><td>251</td><td>1,090.9</td><td>102</td></tr><tr><td>17:00</td><td>1,183.8</td><td>251</td><td>1,161.0</td><td>102</td></tr><tr><td>18:00</td><td>1,724.1</td><td>251</td><td>1,135.6</td><td>102</td></tr><tr><td>19:00</td><td>1,306.4</td><td>251</td><td>1,062.0</td><td>102</td></tr><tr><td>20:00</td><td>1,141.0</td><td>251</td><td>1,017.5</td><td>102</td></tr><tr><td>21:00</td><td>1,103.3</td><td>251</td><td>975.9</td><td>102</td></tr><tr><td>22:00</td><td>993.0</td><td>251</td><td>858.7</td><td>102</td></tr><tr><td>23:00</td><td>705.8</td><td>251</td><td>664.8</td><td>102</td></tr></tbody></table></details><figure class="fig"><svg class="viz-seasons" viewBox="0 0 760 186" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Summer rental throughput is 4.6 times winter"><style>
+  .viz-seasons {
+    --surface: #fcfcfb; --ink-primary: #0b0b0b;
+    --ink-secondary: #52514e; --ink-muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --c-blue: #2a78d6;
+  }
+  .viz-seasons text { font-family: system-ui,-apple-system,'Segoe UI',sans-serif; }
+</style><rect x="0" y="0" width="760" height="186" fill="var(--surface)"/><text x="16" y="20" fill="var(--ink-primary)" font-size="14.5" font-weight="700">Summer rental throughput is 4.6 times winter</text><text x="16" y="37" fill="var(--ink-secondary)" font-size="12">Completed rentals per operating hour; closures excluded</text><path d="M150.0,50.0 L624.3,50.0 Q628.3,50.0 628.3,54.0 L628.3,62.0 Q628.3,66.0 624.3,66.0 L150.0,66.0 Z" fill="var(--c-blue)"/><text x="142" y="63.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Summer</text><text x="634.3" y="63.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">1,034</text><path d="M150.0,80.0 L573.4,80.0 Q577.4,80.0 577.4,84.0 L577.4,92.0 Q577.4,96.0 573.4,96.0 L150.0,96.0 Z" fill="var(--c-blue)"/><text x="142" y="93.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Autumn</text><text x="583.4" y="93.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">924</text><path d="M150.0,110.0 L491.1,110.0 Q495.1,110.0 495.1,114.0 L495.1,122.0 Q495.1,126.0 491.1,126.0 L150.0,126.0 Z" fill="var(--c-blue)"/><text x="142" y="123.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Spring</text><text x="501.1" y="123.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">746</text><path d="M150.0,140.0 L250.3,140.0 Q254.3,140.0 254.3,144.0 L254.3,152.0 Q254.3,156.0 250.3,156.0 L150.0,156.0 Z" fill="var(--c-blue)"/><text x="142" y="153.0" fill="var(--ink-secondary)" font-size="11" text-anchor="end">Winter</text><text x="260.3" y="153.0" fill="var(--ink-primary)" font-size="11" font-weight="600" text-anchor="start">226</text></svg><figcaption>Each season is observed once. Temperature, daylight, calendar and any fleet changes are not separable causal effects here.</figcaption></figure><table class="bridge"><thead><tr><th>Season</th><th>Open hours</th><th>Mean/hour</th><th>90th percentile</th></tr></thead><tbody><tr><td>Summer</td><td>2,208</td><td>1,034.1</td><td>2,094.6</td></tr><tr><td>Autumn</td><td>1,937</td><td>924.1</td><td>1,836.2</td></tr><tr><td>Spring</td><td>2,160</td><td>746.3</td><td>1,648.3</td></tr><tr><td>Winter</td><td>2,160</td><td>225.5</td><td>412.3</td></tr></tbody></table><table class="bridge"><thead><tr><th>Season</th><th>Day type</th><th>Peak hour</th><th>Mean at peak</th><th>n</th></tr></thead><tbody><tr><td>Autumn</td><td>Weekday</td><td>18:00</td><td>2,201</td><td>57</td></tr><tr><td>Autumn</td><td>Weekend</td><td>17:00</td><td>1,531</td><td>24</td></tr><tr><td>Spring</td><td>Weekday</td><td>18:00</td><td>1,888</td><td>64</td></tr><tr><td>Spring</td><td>Weekend</td><td>17:00</td><td>1,272</td><td>26</td></tr><tr><td>Summer</td><td>Weekday</td><td>18:00</td><td>2,327</td><td>66</td></tr><tr><td>Summer</td><td>Weekend</td><td>20:00</td><td>1,761</td><td>26</td></tr><tr><td>Winter</td><td>Weekday</td><td>08:00</td><td>544</td><td>64</td></tr><tr><td>Winter</td><td>Weekend</td><td>15:00</td><td>340</td><td>26</td></tr></tbody></table><p><b>The staffing flip test matters:</b> winter weekdays peak at 08:00, while spring, summer and autumn peak at 18:00. Summer weekends peak at 20:00, versus 15:00 in winter. These are average peak hours, not guaranteed daily maxima.</p></section><section class="finding" data-claim="analyse/diagnostics/scratch/diagnose.py"><h2>Rain matters strongly; the raw holiday discount is misleading</h2><table class="bridge"><thead><tr><th>Condition</th><th>Open hours</th><th>Mean rentals/hour</th></tr></thead><tbody><tr><td>Dry</td><td>7,949</td><td>765.6</td></tr><tr><td>Wet</td><td>516</td><td>167.3</td></tr><tr><td>No snow</td><td>8,022</td><td>759.2</td></tr><tr><td>Snow recorded</td><td>443</td><td>185.1</td></tr><tr><td>Holiday</td><td>408</td><td>529.2</td></tr><tr><td>No Holiday</td><td>8,057</td><td>739.3</td></tr></tbody></table><p>Wet hours average <b>167</b> rentals versus <b>766</b> in dry hours. Standardizing within season × hour × weekday/weekend cells gives <b>153.6 versus 884.4</b>, an 82.6% gap; matching by month instead gives an 84.0% gap. This remains an association: rain timing, temperature and other factors are not randomized.</p><p>The evening peak also weakens in rain. On summer weekdays, 17:00–19:59 averages <b>2,120 in dry hours versus 569 in wet hours</b> (174 and 24 hours); in autumn it is 1,868 versus 63 (164 and only 7 hours). Keep reserve crews flexible and avoid applying a universal rain multiplier.</p><p>Holidays average 529 rentals/hour versus 739 otherwise, a raw <b>28.4% discount</b>. After matching season, hour and weekend status, the comparison is 661 versus 713, only <b>7.3% lower</b>; month matching gives 13.3% lower. There are only 17 operating holiday dates. A blanket 28% holiday fleet reduction would overstate the evidence.</p><table class="bridge"><thead><tr><th>Temperature</th><th>Open hours</th><th>Mean/hour</th></tr></thead><tbody><tr><td>&lt;0°C</td><td>1,433</td><td>198.0</td></tr><tr><td>0–&lt;10°C</td><td>2,118</td><td>426.3</td></tr><tr><td>10–&lt;20°C</td><td>2,050</td><td>837.2</td></tr><tr><td>20–&lt;30°C</td><td>2,340</td><td>1,148.1</td></tr><tr><td>≥30°C</td><td>524</td><td>1,112.2</td></tr></tbody></table><details><summary>Other weather signals and interpretation</summary><table class="bridge"><thead><tr><th>Measured variable</th><th>Pearson correlation with rentals</th></tr></thead><tbody><tr><td>Temperature (°C)</td><td>+0.563</td></tr><tr><td>Humidity (%)</td><td>-0.202</td></tr><tr><td>Wind (m/s)</td><td>+0.125</td></tr><tr><td>Visibility (10 m)</td><td>+0.212</td></tr><tr><td>Dew point (°C)</td><td>+0.400</td></tr><tr><td>Solar radiation (MJ/m²)</td><td>+0.274</td></tr><tr><td>Rainfall (mm)</td><td>-0.129</td></tr><tr><td>Snowfall (cm)</td><td>-0.152</td></tr></tbody></table><p>All correlations use 8,465 operating hours and are descriptive, unadjusted associations. Positive wind and solar correlations can reflect time-of-day and season; they do not justify increasing supply when wind rises. Rainfall’s weak linear correlation does not contradict the large wet/dry difference: most hours have zero rain. Temperature and dew point overlap; avoid interpreting correlated predictors as independent drivers. Seventeen observations record zero humidity and need a sensor/coding check before weather deployment. The deployable models do not use those weather readings.</p></details></section><h3>Temperature matching confirms the rain signal; holiday size depends on the comparison</h3>
+<p>Matching wet and dry observations on temperature as well as calendar leaves a large negative association. Each specification below also matches hour and weekday/weekend; 5°C bins group similar temperatures. Shares refer to retained operating wet/dry hours.</p><table class="bridge"><thead><tr><th>Matched variables</th><th>Wet / dry hours</th><th>Wet / dry retained</th><th>Wet / dry mean</th><th>Difference</th></tr></thead><tbody><tr><td>Season</td><td>516 / 6,087</td><td>100.0% / 76.6%</td><td>153.6 / 884.4</td><td>-82.6%</td></tr><tr><td>Season + temperature</td><td>509 / 3,400</td><td>98.6% / 42.8%</td><td>201.0 / 938.3</td><td>-78.6%</td></tr><tr><td>Month + temperature</td><td>458 / 1,882</td><td>88.8% / 23.7%</td><td>181.8 / 937.2</td><td>-80.6%</td></tr><tr><td>Season + temperature + humidity</td><td>365 / 735</td><td>70.7% / 9.2%</td><td>209.0 / 704.7</td><td>-70.3%</td></tr></tbody></table><p>The season/temperature comparison contains 100 wet dates and 332 dry dates, with possible overlap; hours and dates are not independent experiments. Requiring at least three observations per arm in each cell gives a −83.1% rain gap but retains only 171 wet and 613 dry hours. Adding humidity narrows support sharply and may adjust away part of the weather pathway. Excluding the zero-humidity readings leaves that matched result unchanged. <b>The direction is consistent; none of these percentages is a causal rain effect or a ready-to-use forecast multiplier.</b> Different specifications retain different populations, so differences between estimates cannot be attributed entirely to the added matching variable.</p>
+<p>Holiday stability is assessed by omitting each of the 17 operating holiday dates and recomputing the matched comparison. The ranges below are sensitivity ranges, not confidence intervals.</p><table class="bridge"><thead><tr><th>Matching</th><th>Full difference</th><th>Leave-one-date-out range</th><th>Negative omissions</th></tr></thead><tbody><tr><td>Season + hour + day type</td><td>-7.3%</td><td>-14.9% to +0.2%</td><td>16 / 17</td></tr><tr><td>Month + hour + day type</td><td>-13.3%</td><td>-19.7% to -9.3%</td><td>17 / 17</td></tr><tr><td>Season + calendar + temperature + rain</td><td>-12.0%</td><td>-17.7% to -9.3%</td><td>17 / 17</td></tr><tr><td>Month + calendar + temperature + rain</td><td>-13.7%</td><td>-16.8% to -12.2%</td><td>17 / 17</td></tr></tbody></table><p>The season-only holiday result can change sign when one date is removed; the sign flip persists when common-support cells are fixed (−16.0% to +0.7%). Month-and-weather matching remains negative, but retains only 372 of 408 holiday hours and 1,677 of 8,057 nonholiday hours. Holding support fixed across every weather-matched omission leaves just 130 holiday hours from 10 dates; its range is −16.7% to −7.4%. This supports event-specific review and additional years of holiday data, rather than a single fleet-reduction percentage.</p><section class="finding" data-claim="analyse/forecast-stress/scratch/forecast_stress.py"><h2>Calendar-aware recent demand is the strongest overall pilot candidate</h2>
+<p><b>Forecast contract:</b> issue at 00:00 local time for hours 00–23 using only information already available. All counts through the preceding day are assumed finalized for the main comparison; reporting-delay scenarios are tested below. Target-day rentals and realized target-hour weather never enter deployable forecasts. Planned closures may override the forecast only when genuinely known in advance.</p>
+<p>Five fixed candidates are evaluated on the same <b>5,561 operating hours from April through November</b>. Forecasts are generated forward from March; each fitted model trains only before its forecast month. All of these dates have already been examined during this assignment, so this is an exploratory retrospective comparison, not a new untouched holdout.</p><table class="bridge"><thead><tr><th>Candidate</th><th>Construction / update</th></tr></thead><tbody><tr><td>Recent 7 days</td><td>Mean of the same hour over the preceding 7 calendar days, excluding closed observations.</td></tr><tr><td>28-day weekday/weekend</td><td>Mean of the same hour and same weekday/weekend type over the preceding 28 calendar days.</td></tr><tr><td>Previous 4 same weekdays</td><td>Mean of the same hour on the preceding 4 occurrences of the weekday.</td></tr><tr><td>Monthly expanding model</td><td>Fixed histogram gradient boosting settings; refit on all eligible earlier history at each month start.</td></tr><tr><td>Monthly 90-day model</td><td>Same settings/features; refit using eligible operating observations within the preceding 90 calendar days.</td></tr></tbody></table><p>The fitted models use hour, weekday, month, annual sine/cosine and the holiday calendar, plus lagged counts: 24/48/168-hour lags, prior seven-day same-hour mean/standard deviation, prior four-week same-weekday/hour mean, and prior-day mean. Closed past hours are unavailable, not demand zeros. Empty baseline strata fall back to a past-only 28-day same-hour mean. No holiday-specific baseline reduction is fitted from these sparse holidays.</p><table class="bridge"><thead><tr><th>April–November</th><th>MAE</th><th>RMSE</th><th>WAPE</th><th>Bias</th><th>Month wins</th></tr></thead><tbody><tr><td>Recent 7 days</td><td>292.2</td><td>445.7</td><td>30.6%</td><td>-0.2%</td><td>3/8</td></tr><tr><td>28-day weekday/weekend</td><td>274.1</td><td>420.6</td><td>28.7%</td><td>-0.9%</td><td>3/8</td></tr><tr><td>Previous 4 same weekdays</td><td>309.4</td><td>461.8</td><td>32.4%</td><td>-1.2%</td><td>0/8</td></tr><tr><td>Monthly expanding model</td><td>290.4</td><td>456.8</td><td>30.4%</td><td>-0.3%</td><td>2/8</td></tr><tr><td>Monthly 90-day model</td><td>299.0</td><td>460.6</td><td>31.4%</td><td>-1.3%</td><td>0/8</td></tr></tbody></table><p>Errors are rentals/hour. The calendar-aware baseline has MAE <b>274.1</b>, compared with 292.2 for the seven-day baseline and 290.4 for monthly expanding training. The morning 06:00–09:59 error improves from 380.1 to 255.9 relative to the seven-day baseline. However, it wins only three of eight months; the seven-day baseline also wins three, and the expanding model wins two. In April–May, expanding training has lower MAE (331.2 versus 353.4). Keep both alternatives visible in shadow evaluation.</p><details><summary>Monthly MAE for every candidate</summary><table class="bridge"><thead><tr><th>Month</th><th>7 days</th><th>Day type 28</th><th>Same weekday 4</th><th>Expanding</th><th>Rolling 90</th></tr></thead><tbody><tr><td>2018-04</td><td>330.7</td><td>318.5</td><td>339.5</td><td>276.2</td><td>279.7</td></tr><tr><td>2018-05</td><td>378.7</td><td>387.2</td><td>434.0</td><td>384.4</td><td>384.4</td></tr><tr><td>2018-06</td><td>312.1</td><td>312.4</td><td>342.4</td><td>382.5</td><td>347.1</td></tr><tr><td>2018-07</td><td>295.1</td><td>246.0</td><td>293.3</td><td>300.6</td><td>348.3</td></tr><tr><td>2018-08</td><td>238.6</td><td>219.2</td><td>242.5</td><td>221.4</td><td>221.9</td></tr><tr><td>2018-09</td><td>310.0</td><td>327.2</td><td>350.4</td><td>370.3</td><td>366.0</td></tr><tr><td>2018-10</td><td>261.9</td><td>225.2</td><td>273.5</td><td>243.2</td><td>264.1</td></tr><tr><td>2018-11</td><td>205.0</td><td>152.3</td><td>195.0</td><td>137.6</td><td>175.0</td></tr></tbody></table></details><p>On the common October–November slice, monthly retraining yields MAE <b>191.1</b>, compared with 238.5 when the same model is frozen after August. The calendar-aware baseline scores <b>189.2</b>, but its +10.8% bias is less favorable than the retrained model’s +2.5%. Thus stale model weights explain part of the earlier comparison; the baseline’s small autumn error advantage does not establish a universal winner.</p><table class="bridge"><thead><tr><th>October–November</th><th>MAE</th><th>RMSE</th><th>Bias</th></tr></thead><tbody><tr><td>Recent 7 days</td><td>233.8</td><td>377.0</td><td>+3.2%</td></tr><tr><td>28-day weekday/weekend</td><td>189.2</td><td>331.0</td><td>+10.8%</td></tr><tr><td>Previous 4 same weekdays</td><td>234.7</td><td>376.2</td><td>+12.4%</td></tr><tr><td>Monthly expanding model</td><td>191.1</td><td>320.0</td><td>+2.5%</td></tr><tr><td>Monthly 90-day model</td><td>220.1</td><td>343.4</td><td>-3.1%</td></tr></tbody></table><p>Across April–November, the calendar-aware baseline’s paired MAE advantage is 18.2 rentals/hour over recent seven days and 16.3 over expanding training. Approximate seven-day-block bootstrap intervals are 0.8–39.6 and 0.05–37.6, respectively. Because the reference was selected on these scored dates, these intervals are conditional, exploratory and not adjusted for selection; the second barely excludes zero. <b>Recommend a pilot candidate, not proven statistical or operational superiority.</b></p>
+<p>Realized-weather readings remain a diagnostic only: the original October–November comparator scored MAE 182.5 using weather from the rental hour. Archived forecasts issued at planning time are needed to establish achievable weather-aware accuracy.</p></section><section class="finding" data-claim="analyse/forecast-stress/scratch/forecast_stress.py"><h2>Rolling buffers improve the trade-off, but miss some months and holidays</h2>
+<p>Each hourly upper workload estimate adds a nonnegative 90th-percentile residual buffer to its point forecast. Residuals come from <b>earlier out-of-sample forecasts</b> whose outcomes are available before the current day. Compare three fixed recipes: March-only buffers by time block; preceding 28 days by block; and preceding 56 days by block × weekday/weekend. Sparse cells fall back to broader past-only groups. No buffer is tuned to hit 90% on the scored period.</p><table class="bridge"><thead><tr><th>28-day calendar baseline buffer</th><th>Coverage</th><th>Shortfall</th><th>Unused/hour</th><th>90% loss</th></tr></thead><tbody><tr><td>Fixed March / block</td><td>88.89%</td><td>1.86%</td><td>413</td><td>57.3</td></tr><tr><td>Rolling 28 days / block</td><td>90.27%</td><td>1.49%</td><td>381</td><td>50.9</td></tr><tr><td>Rolling 56 days / block + day type</td><td>89.43%</td><td>1.66%</td><td>410</td><td>55.3</td></tr></tbody></table><p>The rolling 28-day recipe covers <b>90.3%</b> of operating hours, with a <b>1.49%</b> shortfall proxy and <b>381 rentals/hour</b> of unused headroom. It has the lowest 90th-percentile loss among the tested model/recipe combinations. This loss weights each unit of underprediction nine times each unit of overprediction; it is an illustrative loss function, not measured operator cost. Splitting buffers further by weekday/weekend over 56 days does not improve the pooled trade-off.</p>
+<p>Coverage is the fraction of hours with rentals ≤ upper estimate. Shortfall is total positive (rentals − upper) divided by total rentals; unused headroom is mean positive (upper − rentals). These remain workload proxies, not stockouts, unused bicycles or a guaranteed customer-availability level.</p><table class="bridge"><thead><tr><th>Month</th><th>Hours</th><th>Rolling coverage</th><th>Shortfall</th></tr></thead><tbody><tr><td>2018-04</td><td>696</td><td>86.6%</td><td>2.98%</td></tr><tr><td>2018-05</td><td>720</td><td>89.3%</td><td>1.69%</td></tr><tr><td>2018-06</td><td>720</td><td>93.1%</td><td>0.74%</td></tr><tr><td>2018-07</td><td>744</td><td>96.6%</td><td>0.23%</td></tr><tr><td>2018-08</td><td>744</td><td>80.4%</td><td>3.34%</td></tr><tr><td>2018-09</td><td>624</td><td>84.0%</td><td>2.36%</td></tr><tr><td>2018-10</td><td>665</td><td>95.5%</td><td>0.75%</td></tr><tr><td>2018-11</td><td>648</td><td>96.9%</td><td>0.15%</td></tr></tbody></table><table class="bridge"><thead><tr><th>Slice</th><th>Hours</th><th>Coverage</th><th>Shortfall</th><th>Unused/hour</th></tr></thead><tbody><tr><td>Weekday</td><td>3,960</td><td>90.8%</td><td>1.21%</td><td>373</td></tr><tr><td>Weekend</td><td>1,601</td><td>88.9%</td><td>2.24%</td><td>399</td></tr><tr><td>Nonholiday</td><td>5,369</td><td>90.6%</td><td>1.44%</td><td>375</td></tr><tr><td>Holiday</td><td>192</td><td>80.2%</td><td>3.00%</td><td>548</td></tr><tr><td>Dry</td><td>5,109</td><td>89.4%</td><td>1.51%</td><td>310</td></tr><tr><td>Wet</td><td>452</td><td>99.8%</td><td>0.04%</td><td>1,178</td></tr><tr><td>06:00–09:59</td><td>927</td><td>90.7%</td><td>1.65%</td><td>390</td></tr></tbody></table><p><b>Overall calibration hides material gaps:</b> August coverage is 80.4%, September 84.0%, and holiday coverage 80.2% across eight holiday dates. Wet-hour coverage is 99.8%, leaving 1,178 rentals/hour of unused headroom. The default therefore needs event and weather review; neither extra segmentation nor a historical 90% average is sufficient for autonomous resource allocation.</p><table class="bridge"><thead><tr><th>Reopening slice</th><th>Hours</th><th>Coverage</th><th>Shortfall</th><th>Unused/hour</th></tr></thead><tbody><tr><td>Other operating hours</td><td>5,273</td><td>90.2%</td><td>1.52%</td><td>373</td></tr><tr><td>First 24 hours after reopening</td><td>288</td><td>91.3%</td><td>1.03%</td><td>521</td></tr></tbody></table><p>The reopening envelope covers 91.3% of hours but leaves 521 rentals/hour of unused headroom, compared with 373 otherwise. Its coverage does not remove the need to review reopening forecasts and resource allocation.</p></section><section class="finding" data-claim="scratch/closure_latency.py"><h2>Review reopening forecasts and enforce the actual data cutoff</h2>
+<p>There are <b>12 reopening events</b> in April–November, contributing <b>288 operating hours</b> in the first 24 hours after a closed-to-open transition. Calendar-aware baseline error is higher in these hours. Comparing with normal hours matched to the reopening mix shows how much of the gap can reflect the calendar and weather.</p><table class="bridge"><thead><tr><th>Baseline comparison</th><th>Post-reopening hours</th><th>Post MAE</th><th>Matched normal MAE</th></tr></thead><tbody><tr><td>Season + hour + day type</td><td>288</td><td>319.8</td><td>242.7</td></tr><tr><td>Also wet/dry</td><td>283</td><td>311.9</td><td>287.7</td></tr></tbody></table><p>Calendar matching gives 319.8 versus 242.7 rentals/hour of error. Adding wet/dry matching narrows this to <b>311.9 versus 287.7</b>, retaining 283 reopening hours. This does not isolate a causal closure effect or prove that missing history alone causes the errors. Flag reopening for manual review, retain older valid history, and monitor its errors separately; closure reasons and station inventories are needed to explain the residual.</p>
+<p>Latency scenarios assume that an hour’s count is available only at the <b>end of the hour plus 1, 6 or 24 hours</b> of processing delay. Forecast issue stays at midnight. Both features and refit labels obey that cutoff. “Unadapted” fitted models learn from clean-history features but receive delayed features at scoring; “latency-trained” models use the same delayed feature construction during training and scoring.</p><table class="bridge"><thead><tr><th>Extra delay</th><th>7-day MAE</th><th>Day-type MAE</th><th>Fitted unadapted MAE</th><th>Latency-trained MAE</th></tr></thead><tbody><tr><td>0 hours</td><td>292.2</td><td>274.1</td><td>290.4</td><td>290.4</td></tr><tr><td>1 hours</td><td>292.7</td><td>274.2</td><td>299.1</td><td>288.0</td></tr><tr><td>6 hours</td><td>297.0</td><td>275.7</td><td>287.4</td><td>292.1</td></tr><tr><td>24 hours</td><td>305.0</td><td>278.7</td><td>317.5</td><td>312.7</td></tr></tbody></table><p>The calendar-aware baseline is relatively stable in these scenarios: MAE 274.1 with no extra delay and 278.7 with 24 hours. The expanding model moves from 290.4 to 317.5 unadapted, or 312.7 after latency-aware retraining. Shorter-delay effects are not monotonic, so this is not a universal degradation curve. Under a 24-hour delay, yesterday’s same-hour count and yesterday’s mean are unavailable throughout the forecast day; all-missing columns are removed when training that scenario. Baseline fallbacks remained finite in every tested case.</p>
+<p>Intervention checks changed every target-day-and-later rental count and operating status and confirmed that the day’s feature values did not change at any tested latency. Availability assertions also verify every lag against its interval-end cutoff. <b>Actual ingestion timestamps are absent</b>: these tests establish code behavior under assumed delays, not the real pipeline’s latency or readiness.</p></section><section class="finding" data-claim="analyse/forecast-stress/scratch/forecast_stress.py"><h2>A historical next-day forecast separates Saturday demand from weekday demand</h2><p>For <b>1 December 2018</b>, assuming an operating nonholiday Saturday, the calendar-aware baseline predicts <b>14,254</b> daily rentals. This is a historical illustration beyond the file endpoint; there is no observed outcome to score and no present-day prediction.</p><table class="bridge"><thead><tr><th>Hours inclusive</th><th>7-day mean/hour</th><th>Day-type mean/hour</th><th>Monthly model mean/hour</th></tr></thead><tbody><tr><td>00–05</td><td>265</td><td>348</td><td>307</td></tr><tr><td>06–09</td><td>656</td><td>296</td><td>481</td></tr><tr><td>10–16</td><td>627</td><td>820</td><td>678</td></tr><tr><td>17–20</td><td>958</td><td>837</td><td>885</td></tr><tr><td>21–23</td><td>635</td><td>632</td><td>582</td></tr></tbody></table><p>The calendar-aware morning forecast is 296 rentals/hour versus 656 from the baseline that mixes weekdays and weekends. Fitted-model values use the month-start refit stated in the methodology. These are block averages of hourly point forecasts, not fleet counts or block-capacity guarantees.</p></section><section class="rec"><h2>Fleet-planning recommendation</h2>
+<ul><li><b>Pilot the calendar-aware baseline with the rolling 28-day workload buffer.</b> Keep monthly expanding forecasts as a challenger, monitor seasonal bias, and require human review for holidays, rain and reopening. Validate this fixed choice on newly acquired dates before promotion.</li>
+<li><b>Rebalance before the demand arrives.</b> Pilot a pre-07:00 weekday readiness check and pre-17:00 replenishment in spring, summer and autumn; prioritize readiness before 08:00 in winter. Use station-level outbound and return patterns to decide truck routes and dock capacity. The citywide data establish timing, not origins and destinations.</li>
+<li><b>Shift flexible staffing by season and day type.</b> Retain coverage into summer weekend evenings; winter weekends need an earlier afternoon emphasis. Allocate maintenance and repairs preferentially to 02:00–05:59, subject to safety and labor constraints, while preserving a core service.</li>
+<li><b>Use weather and events for reviewed adjustments.</b> Prepare a wet-weather roster with reserve staff that can return when conditions change. Avoid a blanket holiday reduction; check event calendars and demand on comparable dates. Scheduled closures have a separate operations workflow, not a low-demand forecast.</li>
+<li><b>Pilot service targets before expanding the fleet.</b> Use station stockout minutes, full-dock minutes, unserved requests, and rebalancing moves per staff-hour to judge availability and cost. Treat 90% hourly workload coverage only as a trial forecast target; choose a customer-availability target and budget with the operator.</li>
+<li><b>Defer a numeric fleet purchase or crew count.</b> Hourly rentals are flows; the same bike can be rented repeatedly. Estimate bikes concurrently in use from departures and trip duration, then add idle bikes required at stations, imbalance reserves and maintenance stock. Crew sizing additionally needs relocation volumes, travel/loading time and measured productivity. None of those inputs is in this file. A 4.6× summer/winter rental ratio is not a 4.6× fleet requirement.</li>
+</ul></section>
+<h2>Watch items that could change the decision</h2>
+<ul>
+<li><b>Demand censored by supply:</b> completed rentals miss failed attempts and empty/full stations. A low forecast can perpetuate shortages. Log unserved demand and station inventory alongside rentals; distinguish capacity restrictions from preference changes.</li>
+<li><b>Drift:</b> store forecast issue time, input cutoff, model version and forecast as issued. Report rolling weekly and four-week MAE, WAPE and signed bias, plus peak-hour, wet/dry, holiday and station slices. Compare against the same calendar-aware baseline each time and track first-day-after-reopening performance separately. Avoid MAPE because closures are zeros and low-volume hours make percentage errors unstable.</li>
+<li><b>Coverage and cost:</b> monitor envelope exceedance, shortfall proxy, and unused headroom together. Review both undercoverage and sustained overcoverage. Recalibrate with completed past dates and test the new rule on a fresh forward window; do not tune using the scored horizon.</li>
+<li><b>Illustrative alert policy:</b> review a model after two consecutive weekly WAPE readings above 35%, absolute bias above 10%, or four-week envelope coverage outside 85–95%. These are proposed starting thresholds, not estimated optima; require adequate sample size and separate holiday/event review. Alerts should trigger diagnosis, not automatic fleet cuts.</li>
+<li><b>Changing inputs:</b> watch late rental logs, missing lags, closure frequency, weather missingness and out-of-range readings, holidays, station additions and pricing changes. Use a measured ingestion cutoff. If counts are late, remove unavailable lags and use the tested past-only baseline fallback; repeat calibration under that actual latency. Check the 17 zero-humidity readings before adopting weather features.</li>
+<li><b>Generalization:</b> only one historical annual cycle is observed; forward evaluation covers April–November and has already been used to compare candidates. No fresh confirmation period, independent winter or year-to-year test establishes that these accuracy figures transfer to another season or to today. Revalidate on current operations before using the recommendations for procurement.</li>
+</ul>
+<h2>More data is still needed for operational validation and fleet sizing</h2>
+<p>All four requested checks were completed with the supplied file. The following gaps cannot be resolved by more modeling of the same completed-rental counts.</p><table class="bridge"><thead><tr><th>Additional data needed</th><th>What it would let us check</th><th>Current limit</th></tr></thead><tbody><tr><td>Newer rentals and additional full years</td><td>Confirm the selected model/buffer on untouched dates, including winter and changing station coverage.</td><td>Current model selection and sensitivity intervals are retrospective; no validated present-day accuracy.</td></tr><tr><td>Weather forecasts archived as issued, with issue time and horizon</td><td>Measure forecast-weather error and test a deployable weather-aware model.</td><td>Realized weather associations cannot be used as tested day-ahead inputs.</td></tr><tr><td>Station inventory, dock capacity, departures/returns, trip durations, rejected attempts</td><td>Estimate bikes concurrently in use, unmet demand, station stockouts and rebalancing routes.</td><td>Hourly completed rentals do not identify fleet stock or availability.</td></tr><tr><td>Holiday/event identities over multiple years; closure cause and schedule</td><td>Separate individual events, scheduled downtime and unexpected outages.</td><td>17 operating holiday dates and 12 evaluation reopening events support limited generalization.</td></tr><tr><td>Record arrival/finalization times and weather-sensor quality metadata</td><td>Verify midnight availability, actual latency and zero-humidity coding.</td><td>1/6/24-hour delays are simulations; sensor anomalies remain unexplained.</td></tr><tr><td>Relocation volumes, truck travel/loading times, repair workload and staff productivity</td><td>Convert workload forecasts into crew shifts, reserve costs and procurement decisions.</td><td>No defensible numeric fleet purchase or crew count can be inferred from this file.</td></tr></tbody></table><h2>Methodology and reproducibility</h2><div class="method">
+<p>Source: supplied <code>examples/seoul-bike-sharing-demand/question/data.csv</code>; attribution: <a href="https://doi.org/10.24432/C5F62R">Seoul Bike Sharing Demand (2020), UCI Machine Learning Repository</a>, CC BY 4.0. Metadata was opened on 5 November 2026 UTC for definitions; every empirical number comes from the local CSV. Source records are processed only in memory; saved outputs are aggregates.</p>
+<p>Dates parse as day/month/year. Weekends are Saturday/Sunday, wet means rainfall &gt; 0, and all demand/error tables exclude nonfunctioning hours unless explicitly stated. Standardized weather/holiday means weight each retained common-support cell by its combined exposed/reference count. Five-degree temperature and 20-percentage-point humidity bins are defined in the saved instrument. Leave-one-holiday-date-out ranges recompute comparisons; fixed-support checks distinguish changes in cell coverage. These remain observational associations.</p>
+<p>Forward predictions start in March; April–November evaluation uses 5,561 operating hours. Monthly model fits use earlier operating observations beginning 29 December 2017, or the most recent 90 days for the rolling candidate. Hyperparameters are fixed: 180 iterations, 15 leaves, learning rate 0.06, L2 10, leaf minimum 25, no early stopping, seed 42. Seven-day moving-block resampling uses 2,000 replicates. The baseline and buffer recommendations were selected from this retrospective comparison; no new untouched test is claimed.</p>
+<p>Upper buffers use sorted residual rank min(n, ceil((n+1) × 0.90)); cells require at least 30 earlier out-of-sample errors, otherwise fall back to the same time block and then the broader past window. The 56-day recipe initially uses available history since March. All rows share the same scored hours. Coverage, positive shortfall, excess headroom and 90% pinball loss expose both undercapacity and overcapacity. Averages of hourly envelopes are not quantiles of multi-hour totals.</p>
+<p>Reopening means the first 24 hours after a nonfunctioning-to-functioning transition. Calendar and wet/dry matched normal-hour error means are weighted to the reopening-hour mix. Delay scenarios enforce count-interval end plus processing delay ≤ forecast issue, including refit-label availability. They assume uniform delays and do not establish real arrival timing.</p>
+<p>Instruments: <code>analyse/diagnostics/scratch/diagnose.py</code>, <code>analyse/forecast-stress/scratch/forecast_stress.py</code>, <code>analyse/weather-sensitivity/scratch/sensitivity.py</code>, and <code>scratch/closure_latency.py</code>; shared feature construction is in <code>scratch/forecast_common.py</code>. The original frozen-model comparison remains reproducible in <code>scratch/model.py</code>. Full commands, checks and missing-data requirements are in <code>methodology.md</code>. Charts and styling are embedded; no network or JavaScript is required.</p></div><h2>Question &amp; Framing</h2>
+<div class="method"><p><b>As asked:</b> advise a city bike-share operator on fleet availability; diagnose demand by hour, season, weather, holiday and functioning-day status; build a rental-count forecast with clear deployment-time predictors; recommend service-level, staffing or rebalancing actions; explain planning pitfalls and drift monitoring.</p><table class="bridge"><thead><tr><th>Framing decision</th><th>Resolved as</th></tr></thead><tbody><tr><td>Period</td><td>Full supplied year for diagnosis; monthly forward predictions from March, April–November retrospective comparison; original October/November split retained as a same-period reference.</td></tr><tr><td>Target</td><td>Systemwide hourly completed rentals conditional on operation; workload envelope and shortfall proxy, not unconstrained requests or concurrent bike stock.</td></tr><tr><td>Deployment</td><td>Midnight issue with available past counts and calendar; test 1/6/24-hour processing delays. Known schedules only; actual weather remains diagnostic.</td></tr><tr><td>Deliverable</td><td>Report with forecasts and operational proxies, stronger model comparisons, sequential calibration, weather/holiday sensitivity, closure/latency checks, recommendations and explicit additional-data needs.</td></tr></tbody></table><p><b>Additional requested scope:</b> complete the four robustness checks described above and state what still needs more data.</p></div><div class="foot">Historical observational evidence • limited holiday samples • no station inventory or trip durations</div></main></body></html>

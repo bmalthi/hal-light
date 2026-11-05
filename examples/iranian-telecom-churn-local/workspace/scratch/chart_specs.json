@@ -1,0 +1,31 @@
+{
+  "id": "policy_precision",
+  "form": "hbar",
+  "title": "Risk ranking finds more observed churners per contact",
+  "subtitle": "653 held-out records \u2022 130 contacts per policy \u2022 observed precision, not treatment lift",
+  "width": 700,
+  "pad_l": 165,
+  "value_format": "{:.1%}",
+  "x_domain": [
+    0,
+    0.8
+  ],
+  "rows": [
+    {
+      "label": "Risk score",
+      "value": 0.5923076923076923
+    },
+    {
+      "label": "Complaints first",
+      "value": 0.4153846153846154
+    },
+    {
+      "label": "Risk \u00d7 value",
+      "value": 0.2923076923076923
+    },
+    {
+      "label": "Value only",
+      "value": 0.007692307692307693
+    }
+  ]
+}
